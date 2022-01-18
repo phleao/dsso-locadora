@@ -5,8 +5,3 @@ Vamos criar um sistema de locação de filmes.
 
 João Victor Neves Zaniboni (21100505)
 Pedro Henrique Leao Schiavinatto (21104935)
-
--------------------------------------------
-
-Teste ao mesmo tempo
-
