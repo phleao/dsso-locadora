@@ -1,0 +1,11 @@
+- Codigo dos filmes ser automático
+
+- Não precisar de código na alteração
+
+- Listar filmes mostrar "01 - NOME FILME"
+
+- Selecionar filme e ver sinopse, faixa etaria e etc
+
+- Colocar data de locação o próprio dia (biblioteca)
+
+- 
