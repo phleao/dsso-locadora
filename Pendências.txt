@@ -8,4 +8,6 @@
 
 - Colocar data de locação o próprio dia (biblioteca)
 
-- 
+- Criar tela cadastra func/cliente
+
+- Verificar login
