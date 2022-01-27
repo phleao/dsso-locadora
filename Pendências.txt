@@ -11,3 +11,10 @@
 - Criar tela cadastra func/cliente
 
 - Verificar login
+
+- Tela de opções para cada tipo de pessoa
+
+- Criar verificação de tipo de pessoa logando
+
+- Impedir que o mesmo email seja cadastrado como cliente e funcionario
+

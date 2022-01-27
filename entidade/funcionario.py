@@ -1,4 +1,4 @@
-from abstract_pessoa import AbstractPessoa
+from entidade.abstract_pessoa import AbstractPessoa
 
 class Funcionario(AbstractPessoa):
     def __init__(self, nome: str, cpf: str, codigo: int, email: str, senha: str):

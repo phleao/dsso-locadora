@@ -6,8 +6,8 @@ class TelaSistema:
         print("BEM VINDO AO SISTEMA LOCAÇON")
         print("Escolha sua opcao")
         print("1 - Login")
-        print("2 - Cadastrar como Funcionário")
-        print("3 - Cadastrar como Cliente")
+        print("2 - Cadastrar como Cliente")
+        print("3 - Cadastrar como Funcionário")
         print("0 - Finalizar sistema")
         opcao = int(input("Escolha a opcao: "))
         return opcao

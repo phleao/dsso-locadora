@@ -9,6 +9,7 @@ class ControladorFilmes():
         self.__controlador_sistema = controlador_sistema
         self.__tela_filme = TelaFilme()
 
+
     def pega_filme_por_codigo(self, codigo: int):
         for filme in self.__filmes:
             if(filme.codigo == codigo):
