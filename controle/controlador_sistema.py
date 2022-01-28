@@ -57,7 +57,12 @@ class ControladorSistema:
         while True:
             opcao_escolhida = self.__tela_sistema.tela_login()
             funcao_escolhida = lista_opcoes_login[opcao_escolhida]
-            funcao_escolhida()
+            if opcao_escolhida == 1:
+                retorno = funcao_escolhida()
+                if retorno != 0:
+                    return retorno
+            else:
+                funcao_escolhida()
     
     def verifica_login(self, email, senha):
         #retorno 0 se login deu errado, retorno 1 se é funcionário, retorno 2 se é cliente
