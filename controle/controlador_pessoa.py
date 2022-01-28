@@ -21,10 +21,10 @@ class ControladorPessoa():
 
     def incluir_funcionario(self):
         dados_funcionario = self.__tela_pessoa.pega_dados_funcionario()
-        funcionarios = Funcionario(dados_funcionario["nome"], dados_funcionario["codigo"], dados_funcionario['email'], dados_funcionario['senha'], dados_funcionario['cpf'])
+        funcionarios = Funcionario(dados_funcionario["nome"], dados_funcionario['cpf'], dados_funcionario["codigo"], dados_funcionario['email'], dados_funcionario['senha'])
         self.__funcionarios.append(funcionarios)
     
     def incluir_cliente(self):
         dados_cliente = self.__tela_pessoa.pega_dados_cliente()
-        clientes = Cliente(dados_cliente["nome"], dados_cliente["codigo"], dados_cliente['email'], dados_cliente['senha'], dados_cliente['data_nascimento'])
+        clientes = Cliente(dados_cliente["nome"], dados_cliente['data_nascimento'], dados_cliente["codigo"], dados_cliente['email'], dados_cliente['senha'], )
         self.__clientes.append(clientes)
