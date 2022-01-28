@@ -11,16 +11,16 @@ class TelaPessoa():
         return {"nome": nome, "codigo": codigo, "email": email, "faixa_etaria": email, "senha": senha}
 
     def pega_dados_cliente(self):
-        self.pega_dados_pessoa()
+        dados_pessoa = self.pega_dados_pessoa()
         data_nascimento = input("Data de Nascimento: ")
-
-        return {"data_nascimento": data_nascimento}
+        dados_pessoa["data_nascimento"] = data_nascimento
+        return dados_pessoa
     
     def pega_dados_funcionario(self):
-        self.pega_dados_pessoa()
+        dados_pessoa = self.pega_dados_pessoa()
         cpf = input("CPF: ")
-
-        return {"cpf": cpf}
+        dados_pessoa["cpf"] = cpf
+        return dados_pessoa
     
     def pega_dados_login(self):
         email = input("Email: ")

@@ -10,6 +10,15 @@ class ControladorPessoa():
         self.__controlador_sistema = controlador_sistema
         self.__tela_pessoa = TelaPessoa()
 
+    @property
+    def funcionarios(self):
+        return self.__funcionarios
+
+    @property
+    def clientes(self):
+        return self.__clientes
+
+
     def incluir_funcionario(self):
         dados_funcionario = self.__tela_pessoa.pega_dados_funcionario()
         funcionarios = Funcionario(dados_funcionario["nome"], dados_funcionario["codigo"], dados_funcionario['email'], dados_funcionario['senha'], dados_funcionario['cpf'])

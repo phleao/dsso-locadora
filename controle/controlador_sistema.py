@@ -9,19 +9,32 @@ class ControladorSistema:
 
     def __init__(self):
         self.__controlador_filmes = ControladorFilmes(self)
+        self.__controlador_pessoa = ControladorPessoa(self)
         self.__tela_sistema = TelaSistema()
         self.__tela_pessoa = TelaPessoa()
 
     def inicializa_sistema(self):
-        if self.abre_tela_login():
-            self.abre_tela()
+        login = self.abre_tela_login()
+        if login == 1:
+            self.abre_tela_funcionario()
+        elif login == 2:
+            self.abre_tela_cliente()
 
-    def abre_tela(self):
+    def abre_tela_funcionario(self):
         lista_opcoes = {1: self.cadastra_livros, 2: self.opcao2, 3: self.opcao3,
                         0: self.encerra_sistema}
 
         while True:
-            opcao_escolhida = self.__tela_sistema.tela_opcoes()
+            opcao_escolhida = self.__tela_sistema.tela_opcoes_do_funcionario()
+            funcao_escolhida = lista_opcoes[opcao_escolhida]
+            funcao_escolhida()
+
+    def abre_tela_cliente(self):
+        lista_opcoes = {1: self.cadastra_livros, 2: self.opcao2, 3: self.opcao3,
+                        0: self.encerra_sistema}
+
+        while True:
+            opcao_escolhida = self.__tela_sistema.tela_opcoes_do_cliente()
             funcao_escolhida = lista_opcoes[opcao_escolhida]
             funcao_escolhida()
 
@@ -45,19 +58,35 @@ class ControladorSistema:
             opcao_escolhida = self.__tela_sistema.tela_login()
             funcao_escolhida = lista_opcoes_login[opcao_escolhida]
             funcao_escolhida()
-            return True
     
-    def verifica_login(self, email):
-
-        print("FAZER VERIFICACAO EM QUAL TIPO DE PESSOA O EMAIL EXISTE")           
+    def verifica_login(self, email, senha):
+        #retorno 0 se login deu errado, retorno 1 se é funcionário, retorno 2 se é cliente
+        for funcionario in self.__controlador_pessoa.funcionarios:
+            if funcionario.email == email and funcionario.senha == senha:
+                return 1
+        for cliente in self.__controlador_pessoa.clientes:
+            if cliente.email == email and cliente.senha == senha:
+                return 2
+        return 0
     
     def acessa_login(self):
-        self.__tela_pessoa.pega_dados_login()
-    
+        dados = self.__tela_pessoa.pega_dados_login()
+        verificacao = self.verifica_login(dados["email"], dados["senha"])
+        if verificacao == 0:
+            print("Email ou senha digitados não foram encontrados, tente novamente")
+            return verificacao
+        elif verificacao == 1:
+            print("Bem vindo funcionário!")
+            return verificacao
+        else:
+            print("Bem vindo cliente!")
+            return verificacao
+
     
     def acessa_cad_cliente(self):
-        self.__tela_pessoa.pega_dados_cliente()
+        self.__controlador_pessoa.incluir_cliente()
+
 
     def acessa_cad_funcionario(self):
-        self.__tela_pessoa.pega_dados_funcionario()
+        self.__controlador_pessoa.incluir_funcionario()
         
