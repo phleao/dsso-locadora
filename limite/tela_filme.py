@@ -16,14 +16,13 @@ class TelaFilme():
     def pega_dados_filme(self):
         print("-------- DADOS FILME ----------")
         titulo = input("Titulo: ")
-        codigo = input("Codigo: ")
         sinopse = input("Sinopse: ")
         faixa_etaria = input("Faixa etária: ")
         idioma = input("Idioma: ")
         link_acesso = input("Link de acesso:")
 
 
-        return {"titulo": titulo, "codigo": codigo, "sinopse": sinopse, "faixa_etaria": faixa_etaria, "idioma": idioma, "link_acesso": link_acesso}
+        return {"titulo": titulo, "sinopse": sinopse, "faixa_etaria": faixa_etaria, "idioma": idioma, "link_acesso": link_acesso}
 
     # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado, tbm alterar modo de mostrar
     def mostra_filme(self, dados_filme):

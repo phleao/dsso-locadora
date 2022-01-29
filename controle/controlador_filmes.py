@@ -18,7 +18,7 @@ class ControladorFilmes():
 
     def incluir_filme(self):
         dados_filme = self.__tela_filme.pega_dados_filme()
-        filme = Filme(dados_filme["titulo"], dados_filme["codigo"], dados_filme['sinopse'], dados_filme['faixa_etaria'], dados_filme['idioma'], dados_filme['link_acesso'])
+        filme = Filme(dados_filme["titulo"], (len(self.__filmes) + 1), dados_filme['sinopse'], dados_filme['faixa_etaria'], dados_filme['idioma'], dados_filme['link_acesso'])
         self.__filmes.append(filme)
 
     def alterar_filme(self):
@@ -29,7 +29,6 @@ class ControladorFilmes():
         if(filme is not None):
             novos_dados_filme = self.__tela_filme.pega_dados_filme()
             filme.titulo = novos_dados_filme["titulo"]
-            filme.codigo = novos_dados_filme["codigo"]
             filme.sinopse = novos_dados_filme["sinopse"]
             filme.faixa_etaria = novos_dados_filme["faixa_etaria"]
             filme.idioma = novos_dados_filme["idioma"]

@@ -23,9 +23,6 @@ class Filme:
   def codigo(self):
     return self.__codigo
 
-  @codigo.setter
-  def codigo(self, codigo):
-    self.__codigo = codigo
 
   @property
   def sinopse(self):
