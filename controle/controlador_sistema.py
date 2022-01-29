@@ -14,6 +14,7 @@ class ControladorSistema:
         self.__tela_pessoa = TelaPessoa()
 
     def inicializa_sistema(self):
+        print("BEM VINDO AO SISTEMA LOCAÇON")
         login = self.abre_tela_login()
         if login == 1:
             self.abre_tela_funcionario()
@@ -93,5 +94,9 @@ class ControladorSistema:
 
 
     def acessa_cad_funcionario(self):
-        self.__controlador_pessoa.incluir_funcionario()
-        
+        tentativa_de_senha = self.__tela_pessoa.pega_senha_de_cadastro()
+        senha_acesso = "123"
+        if tentativa_de_senha == senha_acesso:
+            self.__controlador_pessoa.incluir_funcionario()
+        else:
+            print("Senha inválida")

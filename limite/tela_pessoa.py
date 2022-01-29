@@ -15,7 +15,11 @@ class TelaPessoa():
         data_nascimento = input("Data de Nascimento: ")
         dados_pessoa["data_nascimento"] = data_nascimento
         return dados_pessoa
-    
+
+    def pega_senha_de_cadastro(self):
+        senha = str(input("Essa ação só é permitida para pessoas autorizadas, digite a senha de acesso:"))
+        return senha
+
     def pega_dados_funcionario(self):
         dados_pessoa = self.pega_dados_pessoa()
         cpf = input("CPF: ")

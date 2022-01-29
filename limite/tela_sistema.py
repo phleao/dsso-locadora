@@ -3,7 +3,6 @@
 class TelaSistema:
 
     def tela_login(self):
-        print("BEM VINDO AO SISTEMA LOCAÇON")
         print("Escolha sua opcao")
         print("1 - Login")
         print("2 - Cadastrar como Cliente")
