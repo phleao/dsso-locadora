@@ -32,7 +32,7 @@ class ControladorSistema:
             funcao_escolhida()
 
     def abre_tela_cliente(self):
-        lista_opcoes = {1: self.cadastra_livros, 2: self.opcao2, 3: self.opcao3,
+        lista_opcoes = {1: self.cadastra_livros, 2: self.cadastra_locacao, 3: self.opcao3,
                         0: self.encerra_sistema}
 
         while True:
@@ -43,7 +43,7 @@ class ControladorSistema:
     def cadastra_livros(self):
         self.__controlador_filmes.abre_tela()
 
-    def opcao2(self):
+    def cadastra_locacao(self):
         print("\nVocê escolheu a opcao 2")
 
     def opcao3(self):

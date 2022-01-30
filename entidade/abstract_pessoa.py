@@ -3,9 +3,8 @@ from abc import ABC, abstractmethod
 
 class AbstractPessoa(ABC):
     @abstractmethod
-    def __init__(self, nome: str, codigo: int, email: str, senha: str):
+    def __init__(self, nome: str, email: str, senha: str):
         self.__nome = nome
-        self.__codigo = codigo
         self.__email = email
         self.__senha = senha
 
@@ -16,14 +15,6 @@ class AbstractPessoa(ABC):
     @nome.setter
     def nome(self, nome: str):
         self.__nome = nome
-
-    @property
-    def codigo(self):
-        return self.__codigo
-
-    @codigo.setter
-    def codigo(self, codigo: int):
-        self.__codigo = codigo
 
     @property
     def email(self):

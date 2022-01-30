@@ -2,10 +2,10 @@
 from entidade.abstract_pessoa import AbstractPessoa
 
 class Cliente(AbstractPessoa):
-    def __init__(self, nome: str, data_de_nascimento: str, codigo: int, email: str, senha: str):
+    def __init__(self, nome: str, data_de_nascimento: str, email: str, senha: str):
         self.__data_de_nascimento = data_de_nascimento
         self.__status = False
-        super().__init__(nome, codigo, email, senha)
+        super().__init__(nome, email, senha)
 
     @property
     def data_de_nascimento(self):

@@ -4,11 +4,10 @@ class TelaPessoa():
     def pega_dados_pessoa(self):
         print("-------- DADOS DO USUARIO ----------")
         nome = input("Nome: ")
-        codigo = input("Codigo: ")
         email = input("Email: ")
         senha = input("Senha: ")
 
-        return {"nome": nome, "codigo": codigo, "email": email, "faixa_etaria": email, "senha": senha}
+        return {"nome": nome, "email": email, "faixa_etaria": email, "senha": senha}
 
     def pega_dados_cliente(self):
         dados_pessoa = self.pega_dados_pessoa()
