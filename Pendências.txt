@@ -27,3 +27,5 @@
 - Verificar TODAS as entradas, se entrou valores validos ou nao
 
 - Alterar data final de locação para cliente finalizar a propria locacao e aparecer a tela de avaliacao
+
+- Alterar data de locacao para data_em_texto = data_atual.strftime(‘%d/%m/%Y’)
