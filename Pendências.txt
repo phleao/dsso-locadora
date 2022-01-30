@@ -25,3 +25,5 @@
 - Colocar data de locacao e data final no MOSTRAR LOCACAO
 
 - Verificar TODAS as entradas, se entrou valores validos ou nao
+
+- Alterar data final de locação para cliente finalizar a propria locacao e aparecer a tela de avaliacao
