@@ -1,30 +1,30 @@
-class Locacao():
+from datetime import date
+from cliente import Cliente
+from filme import Filme
 
-    def __init__(self, cliente: Cliente, codigo: int, filme: Filme, data_aluguel: str, data_fim: str):
+class Locacao():
+    
+    def __init__(self, cliente: Cliente, codigo: int, filme: Filme, data_final: str):
+        data_atual = date.today()
         self.__filme = filme
         self.__cliente = cliente
         self.__codigo = codigo
         self.__status = True
-        self.__data_aluguel = data_aluguel
-        self.__data_fim = data_fim
+        self.__data_aluguel = "{}/{}/{}".format(data_atual.day, data_atual.month, data_atual.year)
+        self.__data_final = data_final
 
     @property
     def data_aluguel(self):
         return self.data_aluguel
 
-    @data_aluguel.setter
-    def data_aluguel(self, data_aluguel: str):
-        self.__data_aluguel = data_aluguel
-
-
     @property
-    def data_fim(self):
-        return self.data_fim
+    def data_final(self):
+        return self.data_final
 
 
-    @data_fim.setter
-    def data_fim(self, data_fim: str):
-        self.__data_fim = data_fim
+    @data_final.setter
+    def data_final(self, data_final: str):
+        self.__data_final = data_final
 
 
     @property
@@ -33,5 +33,5 @@ class Locacao():
 
 
     @status.setter
-    def status(self, status: boolean):
+    def status(self, status: bool):
         self.__status = status

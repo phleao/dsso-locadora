@@ -12,6 +12,7 @@ class ControladorSistema:
         self.__controlador_pessoa = ControladorPessoa(self)
         self.__tela_sistema = TelaSistema()
         self.__tela_pessoa = TelaPessoa()
+        self.__email_logado = ""
 
     def inicializa_sistema(self):
         print("BEM VINDO AO SISTEMA LOCAÇON")
@@ -82,13 +83,20 @@ class ControladorSistema:
             print("Email ou senha digitados não foram encontrados, tente novamente")
             return verificacao
         elif verificacao == 1:
-            print("Bem vindo funcionário!")
+            print(f"Bem vindo funcionário!")
             return verificacao
         else:
             print("Bem vindo cliente!")
+            self.guarda_email_login(dados["email"])
             return verificacao
 
-    
+    def guarda_email_login(self, email):
+        self.__email_logado = email
+
+    @property
+    def email_logado(self):
+        return self.__email_logado
+
     def acessa_cad_cliente(self):
         self.__controlador_pessoa.incluir_cliente()
 

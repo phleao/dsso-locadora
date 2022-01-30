@@ -10,6 +10,7 @@ class Filme:
     self.__faixa_etaria = faixa_etaria
     self.__idioma = idioma
     self.__link_acesso = link_acesso
+    self.__avaliacoes = []
 
   @property
   def titulo(self):

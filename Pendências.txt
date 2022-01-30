@@ -18,3 +18,8 @@
 
 - Impedir que o mesmo email seja cadastrado como cliente e funcionario
 
+- Nao deixar ter o mesmo email em cliente e funcionario
+
+- Tirar codigo do cliente/funcionario de tudo
+
+- Colocar data de locacao e data final no MOSTRAR LOCACAO
