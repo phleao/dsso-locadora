@@ -23,3 +23,5 @@
 - Tirar codigo do cliente/funcionario de tudo
 
 - Colocar data de locacao e data final no MOSTRAR LOCACAO
+
+- Verificar TODAS as entradas, se entrou valores validos ou nao
