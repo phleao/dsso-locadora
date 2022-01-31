@@ -16,7 +16,7 @@ class TelaSistema:
         print("Escolha sua opcao")
         print("1 - Filmes")
         print("2 - Locações")
-        print("3 - Opcao 3")
+        print("3 - Clientes")
         print("0 - Deslogar")
         opcao = int(input("Escolha a opcao: "))
         return opcao
@@ -24,9 +24,9 @@ class TelaSistema:
     def tela_opcoes_do_cliente(self):
         print("-------- LocadaçON ---------")
         print("Escolha sua opcao")
-        print("1 - Cátalogo de filmes")
+        print("1 - Cátalogo de filmes") 
         print("2 - Fazer locação")
-        print("3 - Opcao 3")
+        print("3 - Histórico de locações")
         print("0 - Deslogar")
         opcao = int(input("Escolha a opcao: "))
         return opcao

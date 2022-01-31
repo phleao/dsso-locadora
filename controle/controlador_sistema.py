@@ -29,7 +29,7 @@ class ControladorSistema:
         return self.__controlador_pessoa
 
     def inicializa_sistema(self):
-        print("BEM VINDO AO SISTEMA LOCAÇON")
+        self.__tela_sistema.mostra_mensagem("BEM VINDO AO SISTEMA LOCAÇON")
         self.abre_tela_login() 
 
     def abre_tela_funcionario(self):
@@ -96,13 +96,13 @@ class ControladorSistema:
         dados = self.__tela_pessoa.pega_dados_login()
         verificacao = self.verifica_login(dados["email"], dados["senha"])
         if verificacao == 0:
-            print("Email ou senha digitados não foram encontrados, tente novamente")
+            self.__tela_sistema.mostra_mensagem("Email ou senha digitados não foram encontrados, tente novamente")
             return verificacao
         elif verificacao == 1:
-            print(f"Bem vindo funcionário!")
+            self.__tela_sistema.mostra_mensagem("Bem vindo funcionário!")
             self.abre_tela_funcionario()
         else:
-            print("Bem vindo cliente!")
+            self.__tela_sistema.mostra_mensagem("Bem vindo cliente!")
             self.guarda_email_login(dados["email"])
             self.abre_tela_cliente()
 
@@ -123,4 +123,4 @@ class ControladorSistema:
         if tentativa_de_senha == senha_acesso:
             self.__controlador_pessoa.incluir_funcionario()
         else:
-            print("Senha inválida")
+            self.__tela_sistema.mostra_mensagem("Senha inválida")

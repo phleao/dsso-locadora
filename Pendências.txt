@@ -31,3 +31,5 @@
 - Alterar data de locacao para data_em_texto = data_atual.strftime(‘%d/%m/%Y’)
 
 - tirar prints dos controladores, e s;o ter eles nas telas
+
+- Verificar idade e faixa etaria

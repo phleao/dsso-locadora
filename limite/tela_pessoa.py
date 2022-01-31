@@ -16,7 +16,7 @@ class TelaPessoa():
         return dados_pessoa
 
     def pega_senha_de_cadastro(self):
-        senha = str(input("Essa ação só é permitida para pessoas autorizadas, digite a senha de acesso:"))
+        senha = str(input("Essa ação só é permitida para pessoas autorizadas, digite a senha de acesso: "))
         return senha
 
     def pega_dados_funcionario(self):
@@ -33,3 +33,4 @@ class TelaPessoa():
 
     def mostra_mensagem(self, msg):
         print(msg)
+    
