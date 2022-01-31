@@ -30,3 +30,6 @@ class TelaPessoa():
         senha = input("Senha: ")
 
         return {"email": email, "senha": senha}
+
+    def mostra_mensagem(self, msg):
+        print(msg)

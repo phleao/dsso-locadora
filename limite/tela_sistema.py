@@ -30,3 +30,6 @@ class TelaSistema:
         print("0 - Deslogar")
         opcao = int(input("Escolha a opcao: "))
         return opcao
+
+    def mostra_mensagem(self, msg):
+        print(msg)

@@ -25,8 +25,7 @@ class ControladorLocacao():
     for cliente in self.__controlador_sistema.controlador_pessoa.clientes:
       if cliente.email == email:
         cliente_logado = cliente
-        data_final = dados_locacao["data_final"]
-        locacao = Locacao(cliente_logado, (len(self.__locacoes) + 1), filme, data_final)
+        locacao = Locacao(cliente_logado, (len(self.__locacoes) + 1), filme)
         self.__locacoes.append(locacao)
         break
 
@@ -60,3 +59,4 @@ class ControladorLocacao():
     continua = True
     while continua:
       lista_opcoes[self.__tela_locacao.tela_opcoes()]()
+

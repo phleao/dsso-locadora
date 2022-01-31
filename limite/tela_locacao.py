@@ -13,16 +13,15 @@ class TelaLocacao():
   def pega_dados_locacao(self):
     print("-------- DADOS LOCACAO ----------")
     codigo = int(input("Codigo Filme: "))
-    data_final = int(input("Quantos dias deseja ter acesso ao filme: "))
 
-    return {"codigo": codigo, "data_final": data_final}
+    return {"codigo": codigo}
 
   def mostra_locacao(self, dados_locacao):
     print("CODIGO DA LOCACAO: ", dados_locacao["codigo"])
     print("TITULO DO FILME: ", dados_locacao["titulo_filme"])
     print("CODIGO DO FILME: ", dados_locacao["codigo_filme"])
     print("EMAIL DO CLIENTE: ", dados_locacao["email_cliente"])
-    print("DIAS DE LOCAÇÃO: ", dados_locacao["data_final"])
+    print("DIA EM QUE LOCOU: ", dados_locacao["data_aluguel"])
     print("\n")
 
   def seleciona_locacao(self):
