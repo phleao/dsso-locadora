@@ -22,9 +22,15 @@ class ControladorLocacao():
 
     filme = self.__controlador_sistema.controlador_filme.pega_filme_por_codigo(dados_locacao["codigo"])
     email = self.__controlador_sistema.email_logado
-    data_final = dados_locacao["data_final"]
-    locacao = Locacao(email, (len(self.__locacoes) + 1), filme, data_final)
-    self.__locacoes.append(locacao)
+    for cliente in self.__controlador_sistema.controlador_pessoa.clientes:
+      if cliente.email == email:
+        cliente_logado = cliente
+        data_final = dados_locacao["data_final"]
+        locacao = Locacao(cliente_logado, (len(self.__locacoes) + 1), filme, data_final)
+        self.__locacoes.append(locacao)
+        break
+
+
 
 
   def lista_locacao(self):

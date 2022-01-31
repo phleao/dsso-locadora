@@ -1,6 +1,6 @@
 from datetime import date
-from cliente import Cliente
-from filme import Filme
+from entidade.cliente import Cliente
+from entidade.filme import Filme
 
 class Locacao():
     

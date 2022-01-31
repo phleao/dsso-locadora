@@ -54,7 +54,7 @@ class ControladorFilmes():
             self.__tela_filme.mostra_mensagem("ATENCAO: Filme não existente")
 
     def retornar(self):
-        self.__controlador_sistema.abre_tela()
+        self.__controlador_sistema.abre_tela_funcionario()
 
     def abre_tela(self):
         lista_opcoes = {1: self.incluir_filme, 2: self.alterar_filme, 3: self.lista_filme, 4: self.excluir_filme, 0: self.retornar}

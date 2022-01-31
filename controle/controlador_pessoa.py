@@ -26,5 +26,5 @@ class ControladorPessoa():
     
     def incluir_cliente(self):
         dados_cliente = self.__tela_pessoa.pega_dados_cliente()
-        clientes = Cliente(dados_cliente["nome"], dados_cliente['data_nascimento'], dados_cliente['email'], dados_cliente['senha'], )
+        clientes = Cliente(dados_cliente["nome"], dados_cliente['idade'], dados_cliente['email'], dados_cliente['senha'], )
         self.__clientes.append(clientes)

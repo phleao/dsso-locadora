@@ -4,15 +4,29 @@ from limite.tela_sistema import TelaSistema
 from controle.controlador_filmes import ControladorFilmes
 from limite.tela_pessoa import TelaPessoa
 from controle.controlador_pessoa import ControladorPessoa
+from controle.controlador_locacao import ControladorLocacao
 
 class ControladorSistema:
 
     def __init__(self):
         self.__controlador_filmes = ControladorFilmes(self)
+        self.__controlador_locacao = ControladorLocacao(self)
         self.__controlador_pessoa = ControladorPessoa(self)
         self.__tela_sistema = TelaSistema()
         self.__tela_pessoa = TelaPessoa()
         self.__email_logado = ""
+
+    @property
+    def controlador_filmes(self):
+        return self.__controlador_filmes
+
+    @property
+    def controlador_locacao(self):
+        return self.__controlador_locacao
+
+    @property
+    def controlador_pessoa(self):
+        return self.__controlador_pessoa
 
     def inicializa_sistema(self):
         print("BEM VINDO AO SISTEMA LOCAÇON")
@@ -23,8 +37,8 @@ class ControladorSistema:
             self.abre_tela_cliente()
 
     def abre_tela_funcionario(self):
-        lista_opcoes = {1: self.cadastra_livros, 2: self.opcao2, 3: self.opcao3,
-                        0: self.encerra_sistema}
+        lista_opcoes = {1: self.cadastra_filmes, 2: self.cadastra_locacao, 3: self.opcao3,
+                        0: self.abre_tela_login}
 
         while True:
             opcao_escolhida = self.__tela_sistema.tela_opcoes_do_funcionario()
@@ -32,19 +46,25 @@ class ControladorSistema:
             funcao_escolhida()
 
     def abre_tela_cliente(self):
-        lista_opcoes = {1: self.cadastra_livros, 2: self.cadastra_locacao, 3: self.opcao3,
-                        0: self.encerra_sistema}
+        lista_opcoes = {1: self.ver_catalogo, 2: self.fazer_locacao, 3: self.opcao3,
+                        0: self.abre_tela_login}
 
         while True:
             opcao_escolhida = self.__tela_sistema.tela_opcoes_do_cliente()
             funcao_escolhida = lista_opcoes[opcao_escolhida]
             funcao_escolhida()
 
-    def cadastra_livros(self):
+    def ver_catalogo(self):
+        self.__controlador_filmes.lista_filme()
+
+    def cadastra_filmes(self):
         self.__controlador_filmes.abre_tela()
 
     def cadastra_locacao(self):
-        print("\nVocê escolheu a opcao 2")
+        pass
+
+    def fazer_locacao(self):
+        self.__controlador_locacao.incluir_locacao()
 
     def opcao3(self):
         print("\nVocê escolheu a opcao 3")

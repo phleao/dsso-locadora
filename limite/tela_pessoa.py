@@ -7,12 +7,12 @@ class TelaPessoa():
         email = input("Email: ")
         senha = input("Senha: ")
 
-        return {"nome": nome, "email": email, "faixa_etaria": email, "senha": senha}
+        return {"nome": nome, "email": email, "senha": senha}
 
     def pega_dados_cliente(self):
         dados_pessoa = self.pega_dados_pessoa()
-        data_nascimento = input("Data de Nascimento: ")
-        dados_pessoa["data_nascimento"] = data_nascimento
+        idade = input("Idade: ")
+        dados_pessoa["idade"] = idade
         return dados_pessoa
 
     def pega_senha_de_cadastro(self):

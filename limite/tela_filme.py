@@ -32,7 +32,7 @@ class TelaFilme():
 
     #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
     def seleciona_filme(self):
-        codigo = input("Código do filme que deseja selecionar: ")
+        codigo = int(input("Código do filme que deseja selecionar: "))
         return codigo
 
     def mostra_mensagem(self, msg):

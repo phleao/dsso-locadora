@@ -2,18 +2,18 @@
 from entidade.abstract_pessoa import AbstractPessoa
 
 class Cliente(AbstractPessoa):
-    def __init__(self, nome: str, data_de_nascimento: str, email: str, senha: str):
-        self.__data_de_nascimento = data_de_nascimento
+    def __init__(self, nome: str, idade: str, email: str, senha: str):
+        self.__idade = idade
         self.__status = False
         super().__init__(nome, email, senha)
 
     @property
-    def data_de_nascimento(self):
-        return self.__data_de_nascimento
+    def idade(self):
+        return self.__idade
 
-    @data_de_nascimento.setter
-    def data_de_nascimento(self, data_de_nascimento: str):
-        self.__data_de_nascimento = data_de_nascimento
+    @idade.setter
+    def idade(self, idade: str):
+        self.__idade = idade
 
     @property
     def status(self):
