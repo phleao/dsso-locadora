@@ -20,7 +20,7 @@ class ControladorLocacao():
     self.__controlador_sistema.controlador_filmes.lista_filme()
     dados_locacao = self.__tela_locacao.pega_dados_locacao()
 
-    filme = self.__controlador_sistema.controlador_filme.pega_filme_por_codigo(dados_locacao["codigo"])
+    filme = self.__controlador_sistema.controlador_filmes.pega_filme_por_codigo(dados_locacao["codigo"])
     email = self.__controlador_sistema.email_logado
     for cliente in self.__controlador_sistema.controlador_pessoa.clientes:
       if cliente.email == email:

@@ -12,7 +12,7 @@ class TelaLocacao():
 
   def pega_dados_locacao(self):
     print("-------- DADOS LOCACAO ----------")
-    codigo = input("Codigo Filme: ")
+    codigo = int(input("Codigo Filme: "))
     data_final = int(input("Quantos dias deseja ter acesso ao filme: "))
 
     return {"codigo": codigo, "data_final": data_final}
