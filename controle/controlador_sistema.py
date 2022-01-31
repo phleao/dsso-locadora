@@ -30,11 +30,7 @@ class ControladorSistema:
 
     def inicializa_sistema(self):
         print("BEM VINDO AO SISTEMA LOCAÇON")
-        login = self.abre_tela_login()
-        if login == 1:
-            self.abre_tela_funcionario()
-        elif login == 2:
-            self.abre_tela_cliente()
+        self.abre_tela_login() 
 
     def abre_tela_funcionario(self):
         lista_opcoes = {1: self.cadastra_filmes, 2: self.cadastra_locacao, 3: self.opcao3,
@@ -104,11 +100,11 @@ class ControladorSistema:
             return verificacao
         elif verificacao == 1:
             print(f"Bem vindo funcionário!")
-            return verificacao
+            self.abre_tela_funcionario()
         else:
             print("Bem vindo cliente!")
             self.guarda_email_login(dados["email"])
-            return verificacao
+            self.abre_tela_cliente()
 
     def guarda_email_login(self, email):
         self.__email_logado = email
