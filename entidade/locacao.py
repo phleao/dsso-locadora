@@ -14,12 +14,24 @@ class Locacao():
         self.__data_final = data_final
 
     @property
+    def cliente(self):
+        return self.__cliente
+
+    @property
+    def filme(self):
+        return self.__filme
+
+    @property
+    def codigo(self):
+        return self.__codigo
+
+    @property
     def data_aluguel(self):
-        return self.data_aluguel
+        return self.__data_aluguel
 
     @property
     def data_final(self):
-        return self.data_final
+        return self.__data_final
 
 
     @data_final.setter
@@ -29,7 +41,7 @@ class Locacao():
 
     @property
     def status(self):
-        return self.status
+        return self.__status
 
 
     @status.setter
