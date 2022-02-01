@@ -21,15 +21,8 @@ class ControladorLocacao():
     dados_locacao = self.__tela_locacao.pega_dados_locacao()
 
     filme = self.__controlador_sistema.controlador_filmes.pega_filme_por_codigo(dados_locacao["codigo"])
-    email = self.__controlador_sistema.email_logado
-    for cliente in self.__controlador_sistema.controlador_pessoa.clientes:
-      if cliente.email == email:
-        cliente_logado = cliente
-        locacao = Locacao(cliente_logado, (len(self.__locacoes) + 1), filme)
-        self.__locacoes.append(locacao)
-        break
-
-
+    locacao = Locacao(self.__controlador_sistema.cliente_logado, (len(self.__locacoes) + 1), filme)
+    self.__locacoes.append(locacao)
 
 
   def lista_locacao(self):
@@ -60,3 +53,7 @@ class ControladorLocacao():
     while continua:
       lista_opcoes[self.__tela_locacao.tela_opcoes()]()
 
+  def ver_locacao_atual_cliente(self):
+    for locacao in self.__locacoes:
+      if self.__controlador_sistema.cliente_logado == locacao.cliente and locacao.status == True:
+        return locacao

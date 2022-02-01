@@ -14,7 +14,11 @@ class ControladorSistema:
         self.__controlador_pessoa = ControladorPessoa(self)
         self.__tela_sistema = TelaSistema()
         self.__tela_pessoa = TelaPessoa()
-        self.__email_logado = ""
+        self.__cliente_logado = ''
+
+    @property
+    def cliente_logado(self):
+        return self.__cliente_logado
 
     @property
     def controlador_filmes(self):
@@ -42,13 +46,37 @@ class ControladorSistema:
             funcao_escolhida()
 
     def abre_tela_cliente(self):
-        lista_opcoes = {1: self.ver_catalogo, 2: self.fazer_locacao, 3: self.opcao3,
-                        0: self.abre_tela_login}
-
         while True:
-            opcao_escolhida = self.__tela_sistema.tela_opcoes_do_cliente()
-            funcao_escolhida = lista_opcoes[opcao_escolhida]
-            funcao_escolhida()
+            if self.__cliente_logado.status == False:
+                lista_opcoes = {1: self.ver_catalogo, 2: self.fazer_locacao, 3: self.opcao3,
+                            0: self.abre_tela_login}
+
+
+                while True:
+                    opcao_escolhida = self.__tela_sistema.tela_opcoes_do_cliente()
+                    funcao_escolhida = lista_opcoes[opcao_escolhida]
+                    funcao_escolhida()
+
+
+            else:
+                lista_opcoes = {1: self.ver_catalogo, 2: self.verificar_locacao_atual, 3: self.finalizar_locacao,
+                                0: self.abre_tela_login}
+
+                while True:
+                    opcao_escolhida = self.__tela_sistema.tela_opcoes_do_cliente_status_true()
+                    funcao_escolhida = lista_opcoes[opcao_escolhida]
+                    funcao_escolhida()
+
+
+    def verificar_locacao_atual(self):
+        locacao = self.__controlador_locacao.ver_locacao_atual_cliente()
+        self.__tela_sistema.mostra_mensagem("{} --- {} ---- {}".format(locacao.filme.titulo, locacao.filme.link_acesso, locacao.data_aluguel))
+
+    def finalizar_locacao(self):
+        locacao = self.__controlador_locacao.ver_locacao_atual_cliente()
+        locacao.status = True
+        self.__cliente_logado.status = False
+        self.__tela_sistema.mostra_mensagem("Filme devolvido com sucesso!!")
 
     def ver_catalogo(self):
         self.__controlador_filmes.lista_filme()
@@ -61,6 +89,8 @@ class ControladorSistema:
 
     def fazer_locacao(self):
         self.__controlador_locacao.incluir_locacao()
+        self.__cliente_logado.status = True
+        return False
 
     def opcao3(self):
         print("\nVocê escolheu a opcao 3")
@@ -103,7 +133,9 @@ class ControladorSistema:
             self.abre_tela_funcionario()
         else:
             self.__tela_sistema.mostra_mensagem("Bem vindo cliente!")
-            self.guarda_email_login(dados["email"])
+            for cliente in self.__controlador_pessoa.clientes:
+                if cliente.email == dados["email"]:
+                    self.__cliente_logado = cliente
             self.abre_tela_cliente()
 
     def guarda_email_login(self, email):
