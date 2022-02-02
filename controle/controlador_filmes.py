@@ -40,12 +40,20 @@ class ControladorFilmes():
             self.__tela_filme.mostra_mensagem("ATENCAO: Filme não existente")
 
     def lista_filme(self):
-        for filme in self.__filmes:
-            self.__tela_filme.mostra_filme({"titulo": filme.titulo, "codigo": filme.codigo})
+        if len(self.__filmes) == 0:
+            self.__tela_filme.mostra_mensagem("Nenhum filme foi cadastrado ainda :(\n")
+        else:
+            for filme in self.__filmes:
+                self.__tela_filme.mostra_filme({"titulo": filme.titulo, "codigo": filme.codigo})
 
     def lista_filme_catalogo(self):
-        for filme in self.__filmes:
-            self.__tela_filme.mostra_filme_catalogo({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero})
+        if len(self.__filmes) == 0:
+            self.__tela_filme.mostra_mensagem("Nenhum filme foi cadastrado ainda :(\n")
+        else:
+            for filme in self.__filmes:
+                self.__tela_filme.mostra_filme_catalogo({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero})
+            
+            
 
     def excluir_filme(self):
         self.lista_filme()

@@ -38,7 +38,7 @@ class ControladorSistema:
         self.abre_tela_login() 
 
     def abre_tela_funcionario(self):
-        lista_opcoes = {1: self.cadastra_filmes, 2: self.lista_locacoes, 3: self.mostra_clientes,
+        lista_opcoes = {1: self.acessa_filmes, 2: self.lista_locacoes, 3: self.mostra_clientes,
                         0: self.abre_tela_login}
 
         while True:
@@ -85,7 +85,7 @@ class ControladorSistema:
     def ver_catalogo(self):
         self.__controlador_filmes.lista_filme_catalogo()
 
-    def cadastra_filmes(self):
+    def acessa_filmes(self):
         self.__controlador_filmes.abre_tela()
 
     def lista_locacoes(self):

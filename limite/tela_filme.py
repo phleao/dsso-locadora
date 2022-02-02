@@ -25,8 +25,7 @@ class TelaFilme():
 
     # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado, tbm alterar modo de mostrar
     def mostra_filme(self, dados_filme):
-        print("TITULO DO FILME: ", dados_filme["titulo"])
-        print("CODIGO DO FILME: ", dados_filme["codigo"])
+        print("CODIGO: ", dados_filme["codigo"], "    TITULO DO FILME: ", dados_filme["titulo"])
         print("\n")
 
     def mostra_filme_catalogo(self, dados_filme):
