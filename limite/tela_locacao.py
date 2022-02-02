@@ -17,11 +17,7 @@ class TelaLocacao():
     return {"codigo": codigo}
 
   def mostra_locacao(self, dados_locacao):
-    print("CODIGO DA LOCACAO: ", dados_locacao["codigo"])
-    print("TITULO DO FILME: ", dados_locacao["titulo_filme"])
-    print("CODIGO DO FILME: ", dados_locacao["codigo_filme"])
-    print("EMAIL DO CLIENTE: ", dados_locacao["email_cliente"])
-    print("DIA EM QUE LOCOU: ", dados_locacao["data_aluguel"])
+    print(dados_locacao["codigo"], "  ", dados_locacao["titulo_filme"], "  ", dados_locacao["email"], "  ", dados_locacao["data_aluguel"], dados_locacao["status"])
     print("\n")
 
   def seleciona_locacao(self):
@@ -39,3 +35,4 @@ class TelaLocacao():
 
   def mostra_historico_locacao(self, locacao):
     print("FILME: ", locacao.filme.titulo, "no dia: ", locacao.data_aluguel)
+  

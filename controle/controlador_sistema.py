@@ -38,7 +38,7 @@ class ControladorSistema:
         self.abre_tela_login() 
 
     def abre_tela_funcionario(self):
-        lista_opcoes = {1: self.cadastra_filmes, 2: self.cadastra_locacao, 3: self.opcao3,
+        lista_opcoes = {1: self.cadastra_filmes, 2: self.lista_locacoes, 3: self.mostra_clientes,
                         0: self.abre_tela_login}
 
         while True:
@@ -88,16 +88,16 @@ class ControladorSistema:
     def cadastra_filmes(self):
         self.__controlador_filmes.abre_tela()
 
-    def cadastra_locacao(self):
-        pass
+    def lista_locacoes(self):
+        self.__controlador_locacao.lista_locacao()
 
     def fazer_locacao(self):
         self.__controlador_locacao.incluir_locacao()
         self.__cliente_logado.status = True
         return False
 
-    def opcao3(self):
-        print("\nVocê escolheu a opcao 3")
+    def mostra_clientes(self):
+        self.__controlador_pessoa.lista_clientes()
 
     def encerra_sistema(self):
         exit(0)
@@ -163,3 +163,4 @@ class ControladorSistema:
 
     def historico_locacao(self):
         self.__controlador_locacao.lista_historico_locacao()
+    

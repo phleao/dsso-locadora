@@ -28,3 +28,7 @@ class ControladorPessoa():
         dados_cliente = self.__tela_pessoa.pega_dados_cliente()
         clientes = Cliente(dados_cliente["nome"], dados_cliente['idade'], dados_cliente['email'], dados_cliente['senha'], )
         self.__clientes.append(clientes)
+
+    def lista_clientes(self):
+        for cliente in self.__clientes:
+            self.__tela_pessoa.mostra_clientes({"nome": cliente.nome, "email": cliente.email, "status": cliente.status, "idade": cliente.idade})

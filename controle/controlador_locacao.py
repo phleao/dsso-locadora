@@ -29,8 +29,9 @@ class ControladorLocacao():
     for e in self.__locacoes:
       self.__tela_locacao.mostra_locacao({"codigo": e.codigo,
                                                 "titulo_filme": e.filme.titulo,
-                                                "codigo_filme": e.filme.codigo,
-                                                "email": e.cliente.email})
+                                                "email": e.cliente.email,
+                                                "data_aluguel": e.data_aluguel,
+                                                "status": e.status})
 
   def excluir_locacao(self):
     self.lista_locacao()
@@ -70,4 +71,5 @@ class ControladorLocacao():
     for locacao in self.__locacoes:
       if (locacao.cliente == self.__controlador_sistema.cliente_logado):
         self.__tela_locacao.mostra_historico_locacao(locacao)
-    
+  
+  
