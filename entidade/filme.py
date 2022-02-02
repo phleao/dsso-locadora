@@ -3,12 +3,12 @@ from cmath import sin
 
 class Filme:
   # fazer aqui tratamento dos dados, caso os parametros sejam diferentes do esperado
-  def __init__(self, titulo: str, codigo: int, sinopse: str, faixa_etaria: int, idioma: str, link_acesso: str):
+  def __init__(self, titulo: str, codigo: int, sinopse: str, faixa_etaria: int, genero: str, link_acesso: str):
     self.__titulo = titulo
     self.__codigo = codigo
     self.__sinopse = sinopse
     self.__faixa_etaria = faixa_etaria
-    self.__idioma = idioma
+    self.__genero = genero
     self.__link_acesso = link_acesso
     self.__avaliacoes = []
 
@@ -42,12 +42,12 @@ class Filme:
     self.__faixa_etaria = faixa_etaria
 
   @property
-  def idioma(self):
-    return self.__idioma
+  def genero(self):
+    return self.__genero
 
-  @idioma.setter
-  def idioma(self, idioma):
-    self.__idioma = idioma
+  @genero.setter
+  def genero(self, genero):
+    self.__genero = genero
 
   @property
   def link_acesso(self):

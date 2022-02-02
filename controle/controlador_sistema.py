@@ -80,7 +80,7 @@ class ControladorSistema:
         self.__tela_sistema.mostra_mensagem("Filme devolvido com sucesso!!")
 
     def ver_catalogo(self):
-        self.__controlador_filmes.lista_filme()
+        self.__controlador_filmes.lista_filme_catalogo()
 
     def cadastra_filmes(self):
         self.__controlador_filmes.abre_tela()

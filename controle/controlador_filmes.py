@@ -18,7 +18,7 @@ class ControladorFilmes():
 
     def incluir_filme(self):
         dados_filme = self.__tela_filme.pega_dados_filme()
-        filme = Filme(dados_filme["titulo"], (len(self.__filmes) + 1), dados_filme['sinopse'], dados_filme['faixa_etaria'], dados_filme['idioma'], dados_filme['link_acesso'])
+        filme = Filme(dados_filme["titulo"], (len(self.__filmes) + 1), dados_filme['sinopse'], dados_filme['genero'], dados_filme['idioma'], dados_filme['link_acesso'])
         self.__filmes.append(filme)
 
     def alterar_filme(self):
@@ -30,7 +30,7 @@ class ControladorFilmes():
             novos_dados_filme = self.__tela_filme.pega_dados_filme()
             filme.titulo = novos_dados_filme["titulo"]
             filme.sinopse = novos_dados_filme["sinopse"]
-            filme.faixa_etaria = novos_dados_filme["faixa_etaria"]
+            filme.genero = novos_dados_filme["genero"]
             filme.idioma = novos_dados_filme["idioma"]
             filme.link_acesso = novos_dados_filme["link_acesso"]
             self.lista_filme()
@@ -41,6 +41,10 @@ class ControladorFilmes():
     def lista_filme(self):
         for filme in self.__filmes:
             self.__tela_filme.mostra_filme({"titulo": filme.titulo, "codigo": filme.codigo})
+
+    def lista_filme_catalogo(self):
+        for filme in self.__filmes:
+            self.__tela_filme.mostra_filme_catalogo({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero})
 
     def excluir_filme(self):
         self.lista_filme()

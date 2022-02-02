@@ -17,17 +17,24 @@ class TelaFilme():
         print("-------- DADOS FILME ----------")
         titulo = input("Titulo: ")
         sinopse = input("Sinopse: ")
-        faixa_etaria = input("Faixa etária: ")
+        genero = input("Gênero: ")
         idioma = input("Idioma: ")
         link_acesso = input("Link de acesso:")
 
 
-        return {"titulo": titulo, "sinopse": sinopse, "faixa_etaria": faixa_etaria, "idioma": idioma, "link_acesso": link_acesso}
+        return {"titulo": titulo, "sinopse": sinopse, "genero": genero, "idioma": idioma, "link_acesso": link_acesso}
 
     # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado, tbm alterar modo de mostrar
     def mostra_filme(self, dados_filme):
         print("TITULO DO FILME: ", dados_filme["titulo"])
         print("CODIGO DO FILME: ", dados_filme["codigo"])
+        print("\n")
+
+    def mostra_filme_catalogo(self, dados_filme):
+        print("TITULO DO FILME: ", dados_filme["titulo"])
+        print("SINOPSE: ", dados_filme["sinopse"])
+        print("GÊNERO: ", dados_filme["sinopse"])
+        print("AVALIAÇÃO: ")
         print("\n")
 
     #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
