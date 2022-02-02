@@ -69,7 +69,11 @@ class ControladorLocacao():
 
   def lista_historico_locacao(self):
     for locacao in self.__locacoes:
+      locacoes_cliente = 0
       if (locacao.cliente == self.__controlador_sistema.cliente_logado):
+        locacoes_cliente += 1
         self.__tela_locacao.mostra_historico_locacao(locacao)
-  
+
+      if locacoes_cliente == 0:
+        self.__tela_locacao.mostra_mensagem("Você nunca alugou um filme :(")
   
