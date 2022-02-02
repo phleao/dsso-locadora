@@ -47,25 +47,26 @@ class ControladorSistema:
 
     def abre_tela_cliente(self):
         while True:
-            if self.__cliente_logado.status == False:
+            while self.__cliente_logado.status == False:
                 lista_opcoes = {1: self.ver_catalogo, 2: self.fazer_locacao, 3: self.opcao3,
                             0: self.abre_tela_login}
-
-
-                while True:
+                verificador = True
+                while verificador == True:
                     opcao_escolhida = self.__tela_sistema.tela_opcoes_do_cliente()
                     funcao_escolhida = lista_opcoes[opcao_escolhida]
                     funcao_escolhida()
+                    verificador = False
 
 
-            else:
+            while self.__cliente_logado.status == True:
                 lista_opcoes = {1: self.ver_catalogo, 2: self.verificar_locacao_atual, 3: self.finalizar_locacao,
                                 0: self.abre_tela_login}
-
-                while True:
+                verificador = True
+                while verificador == True:
                     opcao_escolhida = self.__tela_sistema.tela_opcoes_do_cliente_status_true()
                     funcao_escolhida = lista_opcoes[opcao_escolhida]
                     funcao_escolhida()
+                    verificador = False
 
 
     def verificar_locacao_atual(self):
