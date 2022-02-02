@@ -1,5 +1,7 @@
+
 from limite.tela_filme import TelaFilme
 from entidade.filme import Filme
+
 
 class ControladorFilmes():
 
@@ -37,7 +39,6 @@ class ControladorFilmes():
         else:
             self.__tela_filme.mostra_mensagem("ATENCAO: Filme não existente")
 
-    # Sugestão: se a lista estiver vazia, mostrar a mensagem de lista vazia
     def lista_filme(self):
         for filme in self.__filmes:
             self.__tela_filme.mostra_filme({"titulo": filme.titulo, "codigo": filme.codigo})
@@ -66,3 +67,4 @@ class ControladorFilmes():
         continua = True
         while continua:
             lista_opcoes[self.__tela_filme.tela_opcoes()]()
+

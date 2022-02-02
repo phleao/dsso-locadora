@@ -1,4 +1,4 @@
-
+from entidade.avaliacao import Avaliacao
 from limite.tela_locacao import TelaLocacao
 from entidade.locacao import Locacao
 
@@ -57,3 +57,11 @@ class ControladorLocacao():
     for locacao in self.__locacoes:
       if self.__controlador_sistema.cliente_logado == locacao.cliente and locacao.status == True:
         return locacao
+
+  def incluir_avaliacao(self):
+    dados_avaliacao = self.__tela_locacao.pega_avaliacao()
+    locacao = self.ver_locacao_atual_cliente()
+    filme = locacao.filme
+    cliente = locacao.cliente
+    avaliacao = Avaliacao(dados_avaliacao["nota"], dados_avaliacao["comentario"], cliente)
+    filme.avaliacoes.append(avaliacao)

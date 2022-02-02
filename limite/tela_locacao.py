@@ -30,3 +30,9 @@ class TelaLocacao():
 
   def mostra_mensagem(self, msg):
     print(msg)
+  
+  def pega_avaliacao(self):
+    nota = int(input("DIGITE UMA NOTA DE 0 A 5 PARA O FILME QUE ALUGOU: "))
+    comentario = input("FAÇA UM COMENTÁRIO SOBRE O QUE ACHOU DO FILME: ")
+    
+    return {"nota": nota, "comentario": comentario}

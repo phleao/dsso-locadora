@@ -13,6 +13,10 @@ class Filme:
     self.__avaliacoes = []
 
   @property
+  def avaliacoes(self):
+    return self.__avaliacoes
+
+  @property
   def titulo(self):
     return self.__titulo
 

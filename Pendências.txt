@@ -1,20 +1,6 @@
-- Codigo dos filmes ser automático
-
-- Não precisar de código na alteração
-
 - Listar filmes mostrar "01 - NOME FILME"
 
-- Selecionar filme e ver sinopse, faixa etaria e etc
-
 - Colocar data de locação o próprio dia (biblioteca)
-
-- Criar tela cadastra func/cliente
-
-- Verificar login
-
-- Tela de opções para cada tipo de pessoa
-
-- Criar verificação de tipo de pessoa logando
 
 - Impedir que o mesmo email seja cadastrado como cliente e funcionario
 
@@ -28,8 +14,8 @@
 
 - Alterar data final de locação para cliente finalizar a propria locacao e aparecer a tela de avaliacao
 
-- Alterar data de locacao para data_em_texto = data_atual.strftime(‘%d/%m/%Y’)
-
-- tirar prints dos controladores, e s;o ter eles nas telas
-
 - Verificar idade e faixa etaria
+
+- entidade gilme genero: Genero
+
+- Qualquer coisa adicionar a data na avaliacao

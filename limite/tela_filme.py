@@ -21,7 +21,6 @@ class TelaFilme():
         idioma = input("Idioma: ")
         link_acesso = input("Link de acesso:")
 
-
         return {"titulo": titulo, "sinopse": sinopse, "genero": genero, "idioma": idioma, "link_acesso": link_acesso}
 
     # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado, tbm alterar modo de mostrar
