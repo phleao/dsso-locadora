@@ -19,3 +19,5 @@
 - entidade gilme genero: Genero
 
 - Qualquer coisa adicionar a data na avaliacao
+
+- caso o resultado seja vazio adicionar mensagem em todas as listagens

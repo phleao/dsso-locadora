@@ -49,7 +49,7 @@ class ControladorSistema:
     def abre_tela_cliente(self):
         while True:
             while self.__cliente_logado.status == False:
-                lista_opcoes = {1: self.ver_catalogo, 2: self.fazer_locacao, 3: self.opcao3,
+                lista_opcoes = {1: self.ver_catalogo, 2: self.fazer_locacao, 3: self.historico_locacao,
                             0: self.abre_tela_login}
                 verificador = True
                 while verificador == True:
@@ -160,3 +160,6 @@ class ControladorSistema:
             self.__controlador_pessoa.incluir_funcionario()
         else:
             self.__tela_sistema.mostra_mensagem("Senha inválida")
+
+    def historico_locacao(self):
+        self.__controlador_locacao.lista_historico_locacao()

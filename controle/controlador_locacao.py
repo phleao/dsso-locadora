@@ -65,3 +65,9 @@ class ControladorLocacao():
     cliente = locacao.cliente
     avaliacao = Avaliacao(dados_avaliacao["nota"], dados_avaliacao["comentario"], cliente)
     filme.avaliacoes.append(avaliacao)
+
+  def lista_historico_locacao(self):
+    for locacao in self.__locacoes:
+      if (locacao.cliente == self.__controlador_sistema.cliente_logado):
+        self.__tela_locacao.mostra_historico_locacao(locacao)
+    

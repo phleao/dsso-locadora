@@ -36,3 +36,6 @@ class TelaLocacao():
     comentario = input("FAÇA UM COMENTÁRIO SOBRE O QUE ACHOU DO FILME: ")
     
     return {"nota": nota, "comentario": comentario}
+
+  def mostra_historico_locacao(self, locacao):
+    print("FILME: ", locacao.filme.titulo, "no dia: ", locacao.data_aluguel)
