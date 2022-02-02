@@ -31,8 +31,10 @@ class TelaFilme():
     def mostra_filme_catalogo(self, dados_filme):
         print("TITULO DO FILME: ", dados_filme["titulo"])
         print("SINOPSE: ", dados_filme["sinopse"])
-        print("GÊNERO: ", dados_filme["sinopse"])
-        print("AVALIAÇÃO: ")
+        print("GÊNERO: ", dados_filme["genero"])
+        if dados_filme["nota"] != None:
+            print("NOTA: ", dados_filme["nota"])
+            print("COMENTÁRIOS: ")
         print("\n")
 
     #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
