@@ -69,7 +69,6 @@ class ControladorSistema:
                     funcao_escolhida()
                     verificador = False
 
-
     def verificar_locacao_atual(self):
         locacao = self.__controlador_locacao.ver_locacao_atual_cliente()
         self.__tela_sistema.mostra_mensagem("{} --- {} ---- {}".format(locacao.filme.titulo, locacao.filme.link_acesso, locacao.data_aluguel))
@@ -81,7 +80,6 @@ class ControladorSistema:
         self.__tela_sistema.mostra_mensagem("Filme devolvido com sucesso, agora é hora de avaliar o filme, que tal?")
         self.__controlador_locacao.incluir_avaliacao()
 
-
     def ver_catalogo(self):
         self.__controlador_filmes.lista_filme_catalogo()
 
@@ -91,9 +89,10 @@ class ControladorSistema:
     def lista_locacoes(self):
         self.__controlador_locacao.lista_locacao()
 
-    def fazer_locacao(self):
-        self.__controlador_locacao.incluir_locacao()
-        self.__cliente_logado.status = True
+    def fazer_locacao(self):        
+        if self.__controlador_locacao.incluir_locacao() == True:
+            self.__cliente_logado.status = True
+            self.__tela_sistema.mostra_mensagem("\nParabéns! Você acabou de alugar um filme muito legal!")
         return False
 
     def mostra_clientes(self):
@@ -151,7 +150,6 @@ class ControladorSistema:
 
     def acessa_cad_cliente(self):
         self.__controlador_pessoa.incluir_cliente()
-
 
     def acessa_cad_funcionario(self):
         tentativa_de_senha = self.__tela_pessoa.pega_senha_de_cadastro()

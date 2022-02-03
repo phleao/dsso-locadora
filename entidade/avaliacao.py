@@ -22,7 +22,7 @@ class Avaliacao():
 
     @comentario.setter
     def comentario(self, comentario: str):
-        self.__nota = comentario
+        self.__comentario = comentario
 
     @property
     def cliente(self):

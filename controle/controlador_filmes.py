@@ -5,12 +5,10 @@ from entidade.filme import Filme
 
 class ControladorFilmes():
 
-    # Fazer lançamento e tratamento de exceções, ao invés de apenas mostrar mensagem na tela.
     def __init__(self, controlador_sistema):
         self.__filmes = []
         self.__controlador_sistema = controlador_sistema
         self.__tela_filme = TelaFilme()
-
 
     def pega_filme_por_codigo(self, codigo: int):
         for filme in self.__filmes:
@@ -20,7 +18,7 @@ class ControladorFilmes():
 
     def incluir_filme(self):
         dados_filme = self.__tela_filme.pega_dados_filme()
-        filme = Filme(dados_filme["titulo"], (len(self.__filmes) + 1), dados_filme['sinopse'], dados_filme['genero'], dados_filme['idioma'], dados_filme['link_acesso'])
+        filme = Filme(dados_filme["titulo"], (len(self.__filmes) + 1), dados_filme['sinopse'], dados_filme['faixa_etaria'], dados_filme['genero'], dados_filme['link_acesso'])
         self.__filmes.append(filme)
 
     def alterar_filme(self):
@@ -33,7 +31,7 @@ class ControladorFilmes():
             filme.titulo = novos_dados_filme["titulo"]
             filme.sinopse = novos_dados_filme["sinopse"]
             filme.genero = novos_dados_filme["genero"]
-            filme.idioma = novos_dados_filme["idioma"]
+            filme.faixa_etaria = novos_dados_filme["faixa_etaria"]
             filme.link_acesso = novos_dados_filme["link_acesso"]
             self.lista_filme()
         else:
@@ -53,8 +51,6 @@ class ControladorFilmes():
             for filme in self.__filmes:
                 self.__tela_filme.mostra_filme_catalogo({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero, "nota": filme.nota()})
             
-            
-
     def excluir_filme(self):
         self.lista_filme()
         codigo_filme = self.__tela_filme.seleciona_filme()

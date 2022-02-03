@@ -2,7 +2,7 @@
 from entidade.abstract_pessoa import AbstractPessoa
 
 class Cliente(AbstractPessoa):
-    def __init__(self, nome: str, idade: str, email: str, senha: str):
+    def __init__(self, nome: str, idade: int, email: str, senha: str):
         self.__idade = idade
         self.__status = False
         super().__init__(nome, email, senha)
@@ -12,7 +12,7 @@ class Cliente(AbstractPessoa):
         return self.__idade
 
     @idade.setter
-    def idade(self, idade: str):
+    def idade(self, idade: int):
         self.__idade = idade
 
     @property
