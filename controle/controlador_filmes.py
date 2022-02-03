@@ -66,7 +66,7 @@ class ControladorFilmes():
         self.__controlador_sistema.abre_tela_funcionario()
 
     def abre_tela(self):
-        lista_opcoes = {1: self.incluir_filme, 2: self.alterar_filme, 3: self.lista_filme, 4: self.excluir_filme, 0: self.retornar}
+        lista_opcoes = {1: self.incluir_filme, 2: self.alterar_filme, 3: self.lista_filme_catalogo, 4: self.excluir_filme, 0: self.retornar}
 
         continua = True
         while continua:
