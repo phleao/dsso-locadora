@@ -11,7 +11,7 @@ class TelaPessoa():
 
     def pega_dados_cliente(self):
         dados_pessoa = self.pega_dados_pessoa()
-        idade = input("Idade: ")
+        idade = int(input("Idade: "))
         dados_pessoa["idade"] = idade
         return dados_pessoa
 

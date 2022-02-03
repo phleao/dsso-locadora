@@ -22,7 +22,7 @@ class TelaSistema:
         return opcao
 
     def tela_opcoes_do_cliente(self):
-        print("-------- LocadaçON ---------")
+        print("\n-------- LocadaçON ---------")
         print("Escolha sua opcao")
         print("1 - Cátalogo de filmes") 
         print("2 - Fazer locação")
@@ -32,7 +32,7 @@ class TelaSistema:
         return opcao
 
     def tela_opcoes_do_cliente_status_true(self):
-        print("-------- LocadaçON ---------")
+        print("\n-------- LocadaçON ---------")
         print("Escolha sua opcao")
         print("1 - Cátalogo de filmes")
         print("2 - Verificar locação atual")
@@ -40,7 +40,6 @@ class TelaSistema:
         print("0 - Deslogar")
         opcao = int(input("Escolha a opcao: "))
         return opcao
-
 
     def mostra_mensagem(self, msg):
         print(msg)

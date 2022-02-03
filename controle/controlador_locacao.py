@@ -19,11 +19,21 @@ class ControladorLocacao():
   def incluir_locacao(self):
     self.__controlador_sistema.controlador_filmes.lista_filme()
     dados_locacao = self.__tela_locacao.pega_dados_locacao()
-
     filme = self.__controlador_sistema.controlador_filmes.pega_filme_por_codigo(dados_locacao["codigo"])
-    locacao = Locacao(self.__controlador_sistema.cliente_logado, (len(self.__locacoes) + 1), filme)
-    self.__locacoes.append(locacao)
 
+    if self.verifica_faixa_etaria(filme) == True:
+      locacao = Locacao(self.__controlador_sistema.cliente_logado, (len(self.__locacoes) + 1), filme)
+      self.__locacoes.append(locacao)
+      return True
+    else:
+      return False
+
+  def verifica_faixa_etaria(self, filme):
+    if filme.faixa_etaria >= self.__controlador_sistema.cliente_logado.idade:
+      self.__tela_locacao.mostra_mensagem("Você não tem idade para alugar esse filme!")
+      return False
+    else:
+      return True
 
   def lista_locacao(self):
     for e in self.__locacoes:
