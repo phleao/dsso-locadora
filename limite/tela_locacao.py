@@ -12,7 +12,12 @@ class TelaLocacao():
 
   def pega_dados_locacao(self):
     print("-------- DADOS LOCACAO ----------")
-    codigo = int(input("Codigo Filme: "))
+    while True:
+      try:
+        codigo = int(input("Codigo Filme: "))
+        break
+      except ValueError:
+        print("Digite um código válido!")
 
     return {"codigo": codigo}
 

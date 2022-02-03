@@ -9,7 +9,12 @@ class TelaFilme():
         print("4 - Excluir Filme")
         print("0 - Retornar")
 
-        opcao = int(input("\n Escolha a opcao: "))
+        while True:
+            try:
+                opcao = int(input("\n Escolha a opcao: "))
+                break
+            except ValueError:
+                print("Digite um número válido")
         return opcao
 
     #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
@@ -18,9 +23,14 @@ class TelaFilme():
         titulo = input("Titulo: ")
         sinopse = input("Sinopse: ")
         genero = input("Gênero: ")
-        faixa_etaria = int(input("Faixa Etaria: "))
-        link_acesso = input("Link de acesso:")
+        while True:
+            try:
+                faixa_etaria = int(input("Faixa Etaria: "))
+                break
+            except ValueError:
+                print("Digite um número válido")
 
+        link_acesso = input("Link de acesso:")
         return {"titulo": titulo, "sinopse": sinopse, "genero": genero, "faixa_etaria": faixa_etaria, "link_acesso": link_acesso}
 
     # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado, tbm alterar modo de mostrar
@@ -34,7 +44,7 @@ class TelaFilme():
         print("GÊNERO: ", dados_filme["genero"])
         if dados_filme["nota"] != None:
             print("NOTA: ", dados_filme["nota"])
-            print("COMENTÁRIOS: ", end='')
+            print("COMENTÁRIOS: \n", end='')
             for comentario in dados_filme["comentarios"]:
                 print(comentario)
         print("\n")

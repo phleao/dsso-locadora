@@ -1,23 +1,10 @@
-- Listar filmes mostrar "01 - NOME FILME"
-
-- Colocar data de locação o próprio dia (biblioteca)
-
-- Impedir que o mesmo email seja cadastrado como cliente e funcionario
-
-- Nao deixar ter o mesmo email em cliente e funcionario
-
-- Tirar codigo do cliente/funcionario de tudo
-
-- Colocar data de locacao e data final no MOSTRAR LOCACAO
 
 - Verificar TODAS as entradas, se entrou valores validos ou nao
-
-- Alterar data final de locação para cliente finalizar a propria locacao e aparecer a tela de avaliacao
-
-- Verificar idade e faixa etaria
 
 - entidade gilme genero: Genero
 
 - Qualquer coisa adicionar a data na avaliacao
 
 - caso o resultado seja vazio adicionar mensagem em todas as listagens 
+
+- confirmar com o professor onde colocar o genero

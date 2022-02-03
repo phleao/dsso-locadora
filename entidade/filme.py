@@ -1,5 +1,4 @@
-from cmath import sin
-
+from entidade.genero import Genero
 
 class Filme:
     # fazer aqui tratamento dos dados, caso os parametros sejam diferentes do esperado
@@ -8,7 +7,7 @@ class Filme:
         self.__codigo = codigo
         self.__sinopse = sinopse
         self.__faixa_etaria = faixa_etaria
-        self.__genero = genero
+        self.__genero = Genero(genero)
         self.__link_acesso = link_acesso
         self.__avaliacoes = []
 
@@ -26,7 +25,7 @@ class Filme:
         coment = []
         if len(self.__avaliacoes) > 0:
             for avaliacao in self.__avaliacoes:
-                coment.append((avaliacao.cliente + " - " + avaliacao.comentario))
+                coment.append((avaliacao.cliente.nome + " - " + avaliacao.comentario))
             return coment
         else:
             return None

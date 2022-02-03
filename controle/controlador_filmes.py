@@ -30,7 +30,7 @@ class ControladorFilmes():
             novos_dados_filme = self.__tela_filme.pega_dados_filme()
             filme.titulo = novos_dados_filme["titulo"]
             filme.sinopse = novos_dados_filme["sinopse"]
-            filme.genero = novos_dados_filme["genero"]
+            filme.genero.nome = novos_dados_filme["genero"]
             filme.faixa_etaria = novos_dados_filme["faixa_etaria"]
             filme.link_acesso = novos_dados_filme["link_acesso"]
             self.lista_filme()
@@ -49,7 +49,7 @@ class ControladorFilmes():
             self.__tela_filme.mostra_mensagem("Nenhum filme foi cadastrado ainda :(\n")
         else:
             for filme in self.__filmes:
-                self.__tela_filme.mostra_filme_catalogo({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero,
+                self.__tela_filme.mostra_filme_catalogo({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero.nome,
                                                          "nota": filme.nota(), "comentarios": filme.comentarios()})
             
     def excluir_filme(self):
@@ -71,5 +71,11 @@ class ControladorFilmes():
 
         continua = True
         while continua:
-            lista_opcoes[self.__tela_filme.tela_opcoes()]()
+            try:
+                lista_opcoes[self.__tela_filme.tela_opcoes()]()
+            except KeyError:
+                self.__tela_filme.mostra_mensagem("Opção inválida")
+                
+
+            
 
