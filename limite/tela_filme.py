@@ -34,7 +34,9 @@ class TelaFilme():
         print("GÊNERO: ", dados_filme["genero"])
         if dados_filme["nota"] != None:
             print("NOTA: ", dados_filme["nota"])
-            print("COMENTÁRIOS: ")
+            print("COMENTÁRIOS: ", end='')
+            for comentario in dados_filme["comentarios"]:
+                print(comentario)
         print("\n")
 
     #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
