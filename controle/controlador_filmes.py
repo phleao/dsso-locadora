@@ -51,7 +51,8 @@ class ControladorFilmes():
             self.__tela_filme.mostra_mensagem("Nenhum filme foi cadastrado ainda :(\n")
         else:
             for filme in self.__filmes:
-                self.__tela_filme.mostra_filme_catalogo({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero, "nota": filme.nota()})
+                self.__tela_filme.mostra_filme_catalogo({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero,
+                                                         "nota": filme.nota(), "comentarios": filme.comentarios()})
             
             
 

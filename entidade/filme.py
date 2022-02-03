@@ -22,6 +22,15 @@ class Filme:
         else:
             return None
 
+    def comentarios(self):
+        coment = []
+        if len(self.__avaliacoes) > 0:
+            for avaliacao in self.__avaliacoes:
+                coment.append((avaliacao.cliente + " - " + avaliacao.comentario))
+            return coment
+        else:
+            return None
+
     @property
     def avaliacoes(self):
         return self.__avaliacoes
