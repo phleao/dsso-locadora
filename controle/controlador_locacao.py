@@ -90,4 +90,5 @@ class ControladorLocacao():
 
       if locacoes_cliente == 0:
         self.__tela_locacao.mostra_mensagem("Você nunca alugou um filme :(")
-  
+    if len(self.__locacoes) == 0:
+      self.__tela_locacao.mostra_mensagem("Você nunca alugou um filme :(")

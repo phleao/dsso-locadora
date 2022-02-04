@@ -40,7 +40,16 @@ class TelaLocacao():
     print(msg)
   
   def pega_avaliacao(self):
-    nota = int(input("DIGITE UMA NOTA DE 0 A 5 PARA O FILME QUE ALUGOU: "))
+    while True:
+      try:
+        nota = int(input("DIGITE UMA NOTA DE 0 A 5 PARA O FILME QUE ALUGOU: "))
+        opcoes = [0,1,2,3,4,5]
+        if nota not in opcoes:
+          raise ValueError
+        break
+      except ValueError:
+        print("Digite uma nota válida!")
+
     comentario = input("FAÇA UM COMENTÁRIO SOBRE O QUE ACHOU DO FILME: ")
     
     return {"nota": nota, "comentario": comentario}
