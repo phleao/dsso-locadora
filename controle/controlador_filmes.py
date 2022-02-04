@@ -22,7 +22,8 @@ class ControladorFilmes():
         self.__filmes.append(filme)
 
     def alterar_filme(self):
-        self.lista_filme()
+        if self.lista_filme() == False:
+            return False
         codigo_filme = self.__tela_filme.seleciona_filme()
         filme = self.pega_filme_por_codigo(codigo_filme)
 
@@ -54,13 +55,13 @@ class ControladorFilmes():
                                                          "nota": filme.nota(), "comentarios": filme.comentarios()})
             
     def excluir_filme(self):
-        self.lista_filme()
+        if self.lista_filme() == False:
+            return False
         codigo_filme = self.__tela_filme.seleciona_filme()
         filme = self.pega_filme_por_codigo(codigo_filme)
 
         if(filme is not None):
             self.__filmes.remove(filme)
-            self.lista_filme()
         else:
             self.__tela_filme.mostra_mensagem("ATENCAO: Filme não existente")
 
