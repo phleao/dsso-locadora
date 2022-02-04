@@ -40,6 +40,7 @@ class ControladorFilmes():
     def lista_filme(self):
         if len(self.__filmes) == 0:
             self.__tela_filme.mostra_mensagem("Nenhum filme foi cadastrado ainda :(\n")
+            return False
         else:
             for filme in self.__filmes:
                 self.__tela_filme.mostra_filme({"titulo": filme.titulo, "codigo": filme.codigo})
@@ -71,10 +72,7 @@ class ControladorFilmes():
 
         continua = True
         while continua:
-            try:
-                lista_opcoes[self.__tela_filme.tela_opcoes()]()
-            except KeyError:
-                self.__tela_filme.mostra_mensagem("Opção inválida")
+            lista_opcoes[self.__tela_filme.tela_opcoes()]()
                 
 
             

@@ -2,19 +2,21 @@ class TelaFilme():
     def tela_opcoes(self):
         # fazer aqui tratamento caso a entrada seja diferente do esperado
         print(" --------- FILME ---------")
-        print("Escolha a opcao")
-        print("1 - Incluir Filme")
-        print("2 - Alterar Filme")
-        print("3 - Listar Filme")
-        print("4 - Excluir Filme")
-        print("0 - Retornar")
-
         while True:
             try:
+                print("Escolha a opcao")
+                print("1 - Incluir Filme")
+                print("2 - Alterar Filme")
+                print("3 - Listar Filme")
+                print("4 - Excluir Filme")
+                print("0 - Retornar")
+                opcoes = [0,1,2,3,4]
                 opcao = int(input("\n Escolha a opcao: "))
+                if opcao not in opcoes:
+                    raise ValueError
                 break
             except ValueError:
-                print("Digite um número válido")
+                print("Digite um número válido\n")
         return opcao
 
     #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado

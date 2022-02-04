@@ -8,3 +8,5 @@
 - caso o resultado seja vazio adicionar mensagem em todas as listagens 
 
 - confirmar com o professor onde colocar o genero
+
+- apertando 5 nos menus ta indo para tela filme

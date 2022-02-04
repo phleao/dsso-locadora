@@ -1,13 +1,20 @@
 class TelaLocacao():
   def tela_opcoes(self):
     print("-------- LOCAÇÕES ----------")
-    print("Escolha a opcao")
-    print("1 - Fazer locação")
-    print("2 - Listar locações")
-    print("3 - Devolver locação")
-    print("0 - Retornar")
-
-    opcao = int(input("Escolha a opcao: "))
+    while True:
+      try:
+          print("Escolha a opcao")
+          print("1 - Fazer locação")
+          print("2 - Listar locações")
+          print("3 - Devolver locação")
+          print("0 - Retornar")
+          opcoes = [0,1,2,3]
+          opcao = int(input("\n Escolha a opcao: "))
+          if opcao not in opcoes:
+              raise ValueError
+          break
+      except ValueError:
+          print("Digite um número válido\n")
     return opcao
 
   def pega_dados_locacao(self):
