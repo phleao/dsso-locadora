@@ -32,7 +32,12 @@ class TelaPessoa():
         return {"email": email, "senha": senha}
 
     def mostra_clientes(self, dados_cliente):
-        print("Nome: ", dados_cliente["nome"], "   Email: ", dados_cliente["email"], "     Status: ", dados_cliente["status"], "     Idade: ", dados_cliente["idade"])
+        status = dados_cliente["status"]
+        if status == True:
+            status = "Locação ativa"
+        else:
+            status = "Sem locação ativa"
+        print("Nome: ", dados_cliente["nome"], "   Email: ", dados_cliente["email"], "     Status: ", status, "     Idade: ", dados_cliente["idade"])
         print("\n")
 
     def mostra_mensagem(self, msg):
