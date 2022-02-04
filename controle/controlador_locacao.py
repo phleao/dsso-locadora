@@ -46,6 +46,8 @@ class ControladorLocacao():
                                                 "email": e.cliente.email,
                                                 "data_aluguel": e.data_aluguel,
                                                 "status": e.status})
+    if len(self.__locacoes) == 0:
+      self.__tela_locacao.mostra_mensagem("Ainda não foram feitas locações")
 
   def excluir_locacao(self):
     self.lista_locacao()

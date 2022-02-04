@@ -46,3 +46,5 @@ class ControladorPessoa():
     def lista_clientes(self):
         for cliente in self.__clientes:
             self.__tela_pessoa.mostra_clientes({"nome": cliente.nome, "email": cliente.email, "status": cliente.status, "idade": cliente.idade})
+        if len(self.__clientes) == 0:
+            self.__tela_pessoa.mostra_mensagem("Ainda não existem clientes cadastrados!")
