@@ -11,7 +11,12 @@ class TelaPessoa():
 
     def pega_dados_cliente(self):
         dados_pessoa = self.pega_dados_pessoa()
-        idade = int(input("Idade: "))
+        while True:
+            try:
+                idade = int(input("Idade: "))
+                break
+            except ValueError:
+                print("Digite um número válido")
         dados_pessoa["idade"] = idade
         return dados_pessoa
 
@@ -21,7 +26,13 @@ class TelaPessoa():
 
     def pega_dados_funcionario(self):
         dados_pessoa = self.pega_dados_pessoa()
-        cpf = input("CPF: ")
+        while True:
+            try:
+                cpf = int(input("CPF: "))
+                break
+            except ValueError:
+                print("Digite um número válido")
+
         dados_pessoa["cpf"] = cpf
         return dados_pessoa
     
