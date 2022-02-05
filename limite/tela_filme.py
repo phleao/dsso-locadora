@@ -35,6 +35,9 @@ class TelaFilme():
         link_acesso = input("Link de acesso:")
         return {"titulo": titulo, "sinopse": sinopse, "genero": genero, "faixa_etaria": faixa_etaria, "link_acesso": link_acesso}
 
+    def mostra_recomendacoes(self, recomendacao):
+        print("Titulo: ", recomendacao.titulo, "Nota: ", recomendacao.nota())
+
     # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado, tbm alterar modo de mostrar
     def mostra_filme(self, dados_filme):
         print("CODIGO: ", dados_filme["codigo"], "    TITULO DO FILME: ", dados_filme["titulo"])

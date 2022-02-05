@@ -88,7 +88,21 @@ class ControladorFilmes():
             self.__tela_filme.mostra_mensagem("ATENCAO: Filme não existente")
 
     def lista_filmes_avaliados(self):
-        pass            
+        notas = []
+        recomendacoes = []
+        for filme in self.__filmes:
+            nota = filme.nota()
+            notas.append(nota)
+        
+        notas.sort(reverse=True)
+        for i in notas:
+            for j in self.__filmes:
+                if i == j.nota():
+                    recomendacoes.append(j)
+        
+        for recomendacao in range(3):
+            self.__tela_filme.mostra_recomendacoes(recomendacoes[recomendacao])
+        
 
     def retornar(self):
         self.__controlador_sistema.abre_tela_funcionario()
