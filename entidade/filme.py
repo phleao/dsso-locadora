@@ -2,12 +2,12 @@ from entidade.genero import Genero
 
 class Filme:
     # fazer aqui tratamento dos dados, caso os parametros sejam diferentes do esperado
-    def __init__(self, titulo: str, codigo: int, sinopse: str, faixa_etaria: int, genero: str, link_acesso: str):
+    def __init__(self, titulo: str, codigo: int, sinopse: str, faixa_etaria: int, genero: Genero, link_acesso: str):
         self.__titulo = titulo
         self.__codigo = codigo
         self.__sinopse = sinopse
         self.__faixa_etaria = faixa_etaria
-        self.__genero = Genero(genero)
+        self.__genero = genero
         self.__link_acesso = link_acesso
         self.__avaliacoes = []
 

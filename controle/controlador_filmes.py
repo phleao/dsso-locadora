@@ -23,8 +23,17 @@ class ControladorFilmes():
             if filme.titulo == dados_filme["titulo"]:
                 ja_existe = True
         if not ja_existe:
-            filme = Filme(dados_filme["titulo"], (len(self.__filmes) + 1), dados_filme['sinopse'], dados_filme['faixa_etaria'], dados_filme['genero'], dados_filme['link_acesso'])
+            gen = self.__controlador_sistema.verifica_se_ja_tem_genero(dados_filme['genero'])
+            if gen == False:
+                genero = self.__controlador_sistema.pega_nome_para_criar_genero(dados_filme['genero'])
+                filme = Filme(dados_filme["titulo"], (len(self.__filmes) + 1), dados_filme['sinopse'],
+                              dados_filme['faixa_etaria'], genero, dados_filme['link_acesso'])
+
+            else:
+                filme = Filme(dados_filme["titulo"], (len(self.__filmes) + 1), dados_filme['sinopse'],
+                              dados_filme['faixa_etaria'], gen, dados_filme['link_acesso'])
             self.__filmes.append(filme)
+
         else:
             self.__tela_filme.mostra_mensagem("Um Filme com esse titulo já existe!")
 
@@ -38,7 +47,12 @@ class ControladorFilmes():
             novos_dados_filme = self.__tela_filme.pega_dados_filme()
             filme.titulo = novos_dados_filme["titulo"]
             filme.sinopse = novos_dados_filme["sinopse"]
-            filme.genero.nome = novos_dados_filme["genero"]
+            gen = self.__controlador_sistema.verifica_se_ja_tem_genero(novos_dados_filme["genero"])
+            if not gen:
+                genero = self.__controlador_sistema.pega_nome_para_criar_genero(novos_dados_filme["genero"])
+                filme.genero = genero
+            else:
+                filme.genero = gen
             filme.faixa_etaria = novos_dados_filme["faixa_etaria"]
             filme.link_acesso = novos_dados_filme["link_acesso"]
             self.lista_filme()
