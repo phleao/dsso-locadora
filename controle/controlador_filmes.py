@@ -18,8 +18,15 @@ class ControladorFilmes():
 
     def incluir_filme(self):
         dados_filme = self.__tela_filme.pega_dados_filme()
-        filme = Filme(dados_filme["titulo"], (len(self.__filmes) + 1), dados_filme['sinopse'], dados_filme['faixa_etaria'], dados_filme['genero'], dados_filme['link_acesso'])
-        self.__filmes.append(filme)
+        ja_existe = False
+        for filme in self.__filmes:
+            if filme.titulo == dados_filme["titulo"]:
+                ja_existe = True
+        if not ja_existe:
+            filme = Filme(dados_filme["titulo"], (len(self.__filmes) + 1), dados_filme['sinopse'], dados_filme['faixa_etaria'], dados_filme['genero'], dados_filme['link_acesso'])
+            self.__filmes.append(filme)
+        else:
+            self.__tela_filme.mostra_mensagem("Um Filme com esse titulo já existe!")
 
     def alterar_filme(self):
         if self.lista_filme() == False:
