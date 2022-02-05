@@ -6,10 +6,12 @@ from controle.controlador_filmes import ControladorFilmes
 from limite.tela_pessoa import TelaPessoa
 from controle.controlador_pessoa import ControladorPessoa
 from controle.controlador_locacao import ControladorLocacao
+from controle.controlador_genero import ControladorGenero
 
 class ControladorSistema:
 
     def __init__(self):
+        self.__controlador_genero = ControladorGenero(self)
         self.__controlador_filmes = ControladorFilmes(self)
         self.__controlador_locacao = ControladorLocacao(self)
         self.__controlador_pessoa = ControladorPessoa(self)
@@ -164,4 +166,12 @@ class ControladorSistema:
 
     def historico_locacao(self):
         self.__controlador_locacao.lista_historico_locacao()
+
+    def verifica_se_ja_tem_genero(self, nome_genero):
+        return self.__controlador_genero.verifica_genero(nome_genero)
+
+    def pega_nome_para_criar_genero(self, nome_genero):
+        return self.__controlador_genero.inclui_genero(nome_genero)
+
+
     
