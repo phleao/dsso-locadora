@@ -1,4 +1,5 @@
 
+from entidade import filme
 from limite.tela_filme import TelaFilme
 from entidade.filme import Filme
 
@@ -64,6 +65,9 @@ class ControladorFilmes():
             self.__filmes.remove(filme)
         else:
             self.__tela_filme.mostra_mensagem("ATENCAO: Filme não existente")
+
+    def lista_filmes_avaliados(self):
+        pass            
 
     def retornar(self):
         self.__controlador_sistema.abre_tela_funcionario()

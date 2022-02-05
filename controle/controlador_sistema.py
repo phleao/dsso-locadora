@@ -49,7 +49,7 @@ class ControladorSistema:
     def abre_tela_cliente(self):
         while True:
             while self.__cliente_logado.status == False:
-                lista_opcoes = {1: self.ver_catalogo, 2: self.fazer_locacao, 3: self.historico_locacao,
+                lista_opcoes = {1: self.ver_catalogo, 2: self.fazer_locacao, 3: self.historico_locacao, 4: self.lista_filmes_avaliados,
                             0: self.abre_tela_login}
                 verificador = True
                 while verificador == True:
@@ -60,7 +60,7 @@ class ControladorSistema:
 
 
             while self.__cliente_logado.status == True:
-                lista_opcoes = {1: self.ver_catalogo, 2: self.verificar_locacao_atual, 3: self.finalizar_locacao,
+                lista_opcoes = {1: self.ver_catalogo, 2: self.verificar_locacao_atual, 3: self.finalizar_locacao, 4: self.lista_filmes_avaliados,
                                 0: self.abre_tela_login}
                 verificador = True
                 while verificador == True:
@@ -68,6 +68,9 @@ class ControladorSistema:
                     funcao_escolhida = lista_opcoes[opcao_escolhida]
                     funcao_escolhida()
                     verificador = False
+
+    def lista_filmes_avaliados(self):
+        self.__controlador_filmes.lista_filmes_avaliados()
 
     def verificar_locacao_atual(self):
         locacao = self.__controlador_locacao.ver_locacao_atual_cliente()

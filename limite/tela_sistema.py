@@ -46,8 +46,9 @@ class TelaSistema:
                 print("1 - Cátalogo de filmes") 
                 print("2 - Fazer locação")
                 print("3 - Histórico de locações")
+                print("4 - Filmes mais bem avaliados")
                 print("0 - Deslogar")
-                opcoes = [0,1,2,3]
+                opcoes = [0,1,2,3,4]
                 opcao = int(input("\n Escolha a opcao: "))
                 if opcao not in opcoes:
                     raise ValueError
@@ -64,8 +65,9 @@ class TelaSistema:
                 print("1 - Cátalogo de filmes")
                 print("2 - Verificar locação atual")
                 print("3 - Finalizar locação atual")
+                print("4 - Filmes mais bem avaliados")
                 print("0 - Deslogar")
-                opcoes = [0,1,2,3]
+                opcoes = [0,1,2,3,4]
                 opcao = int(input("\n Escolha a opcao: "))
                 if opcao not in opcoes:
                     raise ValueError
