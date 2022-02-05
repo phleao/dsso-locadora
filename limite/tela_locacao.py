@@ -29,7 +29,12 @@ class TelaLocacao():
     return {"codigo": codigo}
 
   def mostra_locacao(self, dados_locacao):
-    print(dados_locacao["codigo"], "  ", dados_locacao["titulo_filme"], "  ", dados_locacao["email"], "  ", dados_locacao["data_aluguel"], dados_locacao["status"])
+    status = dados_locacao["status"]
+    if status == False:
+        status = "Não está ativa"
+    else:
+        status = "Está ativa"
+    print(dados_locacao["codigo"], "  ", dados_locacao["titulo_filme"], "  ", dados_locacao["email"], "  ", dados_locacao["data_aluguel"], "   ", status)
     print("\n")
 
   def seleciona_locacao(self):

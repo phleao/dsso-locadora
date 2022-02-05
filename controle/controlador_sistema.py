@@ -80,10 +80,10 @@ class ControladorSistema:
 
     def finalizar_locacao(self):
         locacao = self.__controlador_locacao.ver_locacao_atual_cliente()
-        locacao.status = True
         self.__cliente_logado.status = False
         self.__tela_sistema.mostra_mensagem("Filme devolvido com sucesso, agora é hora de avaliar o filme, que tal?")
         self.__controlador_locacao.incluir_avaliacao()
+        locacao.status = False
 
     def ver_catalogo(self):
         self.__controlador_filmes.lista_filme_catalogo()
