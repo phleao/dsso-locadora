@@ -88,20 +88,29 @@ class ControladorFilmes():
             self.__tela_filme.mostra_mensagem("ATENCAO: Filme não existente")
 
     def lista_filmes_avaliados(self):
+        if len(self.__filmes) == 0:
+            self.__tela_filme.mostra_mensagem("Nenhum filme foi cadastrado ainda :(\n")
+            return False
         notas = []
         recomendacoes = []
         for filme in self.__filmes:
             nota = filme.nota()
-            notas.append(nota)
-        
+            if nota != None:
+                notas.append(nota)
+
         notas.sort(reverse=True)
         for i in notas:
             for j in self.__filmes:
                 if i == j.nota():
                     recomendacoes.append(j)
-        
-        for recomendacao in range(3):
-            self.__tela_filme.mostra_recomendacoes(recomendacoes[recomendacao])
+        if len(recomendacoes) < 3 and len(recomendacoes) != 0:
+            for l in range(len(recomendacoes)):
+                self.__tela_filme.mostra_recomendacoes(recomendacoes[l])
+        elif len(recomendacoes) == 0:
+            self.__tela_filme.mostra_mensagem("Ainda não existem filmes avaliados!\n")
+        else:
+            for recomendacao in range(3):
+                self.__tela_filme.mostra_recomendacoes(recomendacoes[recomendacao])
         
 
     def retornar(self):
