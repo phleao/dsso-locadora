@@ -19,7 +19,6 @@ class TelaFilme():
                 print("Digite um número válido\n")
         return opcao
 
-    #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
     def pega_dados_filme(self):
         print("-------- DADOS FILME ----------")
         titulo = input("Titulo: ")
@@ -38,7 +37,6 @@ class TelaFilme():
     def mostra_recomendacoes(self, recomendacao):
         print("Titulo: ", recomendacao.titulo, "Nota: ", recomendacao.nota())
 
-    # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado, tbm alterar modo de mostrar
     def mostra_filme(self, dados_filme):
         print("CODIGO: ", dados_filme["codigo"], "    TITULO DO FILME: ", dados_filme["titulo"])
         print("\n")
@@ -54,7 +52,6 @@ class TelaFilme():
                 print(comentario)
         print("\n")
 
-    #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
     def seleciona_filme(self):
         codigo = int(input("Código do filme que deseja selecionar: "))
         return codigo

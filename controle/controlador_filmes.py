@@ -108,11 +108,10 @@ class ControladorFilmes():
                 self.__tela_filme.mostra_recomendacoes(recomendacoes[l])
         elif len(recomendacoes) == 0:
             self.__tela_filme.mostra_mensagem("Ainda não existem filmes avaliados!\n")
-        else:
-            for recomendacao in range(3):
-                self.__tela_filme.mostra_recomendacoes(recomendacoes[recomendacao])
+        elif len(recomendacoes) >= 3:
+            for l in range(3):
+                self.__tela_filme.mostra_recomendacoes(recomendacoes[l])
         
-
     def retornar(self):
         self.__controlador_sistema.abre_tela_funcionario()
 

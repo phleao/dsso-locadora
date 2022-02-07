@@ -4,9 +4,9 @@ from abc import ABC, abstractmethod
 class AbstractPessoa(ABC):
     @abstractmethod
     def __init__(self, nome: str, email: str, senha: str):
-        self.__nome = nome
         self.__email = email
         self.__senha = senha
+        self.__nome = nome
 
     @property
     def nome(self):
