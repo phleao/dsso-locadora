@@ -47,6 +47,7 @@ class TelaFilme():
         print("TITULO DO FILME: ", dados_filme["titulo"])
         print("SINOPSE: ", dados_filme["sinopse"])
         print("GÊNERO: ", dados_filme["genero"])
+        print("FAIXA ETÁRIA: ", dados_filme["faixa_etaria"])
         if dados_filme["nota"] != None:
             print("NOTA: ", dados_filme["nota"])
             print("COMENTÁRIOS: \n", end='')
