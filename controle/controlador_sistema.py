@@ -131,7 +131,7 @@ class ControladorSistema:
         return 0
     
     def acessa_login(self):
-        dados = self.__tela_pessoa.pega_dados_login()
+        dados = self.__controlador_pessoa.pega_dados_log()
         verificacao = self.verifica_login(dados["email"], dados["senha"])
         if verificacao == 0:
             self.__tela_sistema.mostra_mensagem("Email ou senha digitados não foram encontrados, tente novamente")
@@ -157,7 +157,7 @@ class ControladorSistema:
         self.__controlador_pessoa.incluir_cliente()
 
     def acessa_cad_funcionario(self):
-        tentativa_de_senha = self.__tela_pessoa.pega_senha_de_cadastro()
+        tentativa_de_senha = self.__controlador_pessoa.pega_senha_cad()
         senha_acesso = "123"
         if tentativa_de_senha == senha_acesso:
             self.__controlador_pessoa.incluir_funcionario()

@@ -48,3 +48,9 @@ class ControladorPessoa():
             self.__tela_pessoa.mostra_clientes({"nome": cliente.nome, "email": cliente.email, "status": cliente.status, "idade": cliente.idade})
         if len(self.__clientes) == 0:
             self.__tela_pessoa.mostra_mensagem("Ainda não existem clientes cadastrados!")
+
+    def pega_dados_log(self):
+        return self.__tela_pessoa.pega_dados_login()
+
+    def pega_senha_cad(self):
+        return self.__tela_pessoa.pega_senha_de_cadastro()
