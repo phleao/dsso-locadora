@@ -12,7 +12,6 @@ class Locacao():
         self.__status = True
         self.__data_aluguel = data_atual.strftime('%d/%m/%Y')
 
-
     @property
     def cliente(self):
         return self.__cliente
@@ -29,11 +28,9 @@ class Locacao():
     def data_aluguel(self):
         return self.__data_aluguel
 
-
     @property
     def status(self):
         return self.__status
-
 
     @status.setter
     def status(self, status: bool):

@@ -1,6 +1,5 @@
 class TelaPessoa():
     
-    #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
     def pega_dados_pessoa(self):
         print("-------- DADOS DO USUARIO ----------")
         nome = input("Nome: ")
