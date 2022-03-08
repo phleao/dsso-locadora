@@ -1,12 +1,13 @@
 from entidade.cliente import Cliente
 from entidade.funcionario import Funcionario
 from limite.tela_pessoa import TelaPessoa
+from controle.cliente_DAO import ClienteDAO
 
 class ControladorPessoa():
 
     def __init__(self, controlador_sistema):
         self.__funcionarios = []
-        self.__clientes = []
+        self.__cliente_dao = ClienteDAO()
         self.__controlador_sistema = controlador_sistema
         self.__tela_pessoa = TelaPessoa()
 
@@ -16,13 +17,13 @@ class ControladorPessoa():
 
     @property
     def clientes(self):
-        return self.__clientes
+        return self.__cliente_dao.get_all()
 
     def verificar_se_email_existe(self, email):
         for funcionario in self.__funcionarios:
             if funcionario.email == email:
                 return False
-        for cliente in self.__clientes:
+        for cliente in self.__cliente_dao.get_all():
             if cliente.email == email:
                 return False
         return True
@@ -39,14 +40,14 @@ class ControladorPessoa():
         dados_cliente = self.__tela_pessoa.pega_dados_cliente()
         if self.verificar_se_email_existe(dados_cliente["email"]) == True:
             clientes = Cliente(dados_cliente["nome"], dados_cliente['idade'], dados_cliente['email'], dados_cliente['senha'], )
-            self.__clientes.append(clientes)
+            self.__cliente_dao.add(clientes)
         else:
             self.__tela_pessoa.mostra_mensagem("Esse email já está sendo usado")
 
     def lista_clientes(self):
-        for cliente in self.__clientes:
+        for cliente in self.__cliente_dao.get_all():
             self.__tela_pessoa.mostra_clientes({"nome": cliente.nome, "email": cliente.email, "status": cliente.status, "idade": cliente.idade})
-        if len(self.__clientes) == 0:
+        if len(self.__cliente_dao.get_all()) == 0:
             self.__tela_pessoa.mostra_mensagem("Ainda não existem clientes cadastrados!")
 
     def pega_dados_log(self):
