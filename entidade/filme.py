@@ -1,4 +1,5 @@
 from entidade.genero import Genero
+from entidade.avaliacao import Avaliacao
 
 class Filme:
     # fazer aqui tratamento dos dados, caso os parametros sejam diferentes do esperado
@@ -20,6 +21,9 @@ class Filme:
             return media_nota
         else:
             return None
+
+    def nova_avaliacao(self, dados):
+        self.__avaliacoes.append(Avaliacao(dados["nota"], dados["comentario"], dados["cliente"]))
 
     def comentarios(self):
         coment = []

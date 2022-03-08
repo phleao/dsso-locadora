@@ -1,4 +1,4 @@
-from entidade.avaliacao import Avaliacao
+
 from limite.tela_locacao import TelaLocacao
 from entidade.locacao import Locacao
 
@@ -80,15 +80,17 @@ class ControladorLocacao():
     locacao = self.ver_locacao_atual_cliente()
     filme = locacao.filme
     cliente = locacao.cliente
-    avaliacao = Avaliacao(dados_avaliacao["nota"], dados_avaliacao["comentario"], cliente)
-    filme.avaliacoes.append(avaliacao)
+    dados_avaliacao["cliente"] = cliente
+    filme.nova_avaliacao(dados_avaliacao)
 
   def lista_historico_locacao(self):
     for locacao in self.__locacoes:
       locacoes_cliente = 0
       if (locacao.cliente == self.__controlador_sistema.cliente_logado):
         locacoes_cliente += 1
-        self.__tela_locacao.mostra_historico_locacao(locacao)
+        #criar dicionario antes de mandar para tela
+        dados_locacao = {"data_aluguel": locacao.data_aluguel, "titulo_filme": locacao.filme.titulo}
+        self.__tela_locacao.mostra_historico_locacao(dados_locacao)
 
     if len(self.__locacoes) == 0 or locacoes_cliente == 0:
       self.__tela_locacao.mostra_mensagem("Você nunca alugou um filme :(")

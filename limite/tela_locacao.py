@@ -60,5 +60,4 @@ class TelaLocacao():
     return {"nota": nota, "comentario": comentario}
 
   def mostra_historico_locacao(self, locacao):
-    print("FILME: ", locacao.filme.titulo, "no dia: ", locacao.data_aluguel)
-  
+    print("FILME: ", locacao["titulo_filme"], "no dia: ", locacao["data_aluguel"]])
