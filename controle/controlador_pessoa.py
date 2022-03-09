@@ -2,25 +2,26 @@ from entidade.cliente import Cliente
 from entidade.funcionario import Funcionario
 from limite.tela_pessoa import TelaPessoa
 from controle.cliente_DAO import ClienteDAO
+from controle.funcionario_DAO import FuncionarioDAO
 
 class ControladorPessoa():
 
     def __init__(self, controlador_sistema):
-        self.__funcionarios = []
+        self.__funcionario_dao = FuncionarioDAO()
         self.__cliente_dao = ClienteDAO()
         self.__controlador_sistema = controlador_sistema
         self.__tela_pessoa = TelaPessoa()
 
     @property
     def funcionarios(self):
-        return self.__funcionarios
+        return self.__funcionario_dao.get_all()
 
     @property
     def clientes(self):
         return self.__cliente_dao.get_all()
 
     def verificar_se_email_existe(self, email):
-        for funcionario in self.__funcionarios:
+        for funcionario in self.__funcionario_dao.get_all():
             if funcionario.email == email:
                 return False
         for cliente in self.__cliente_dao.get_all():
@@ -32,7 +33,7 @@ class ControladorPessoa():
         dados_funcionario = self.__tela_pessoa.pega_dados_funcionario()
         if self.verificar_se_email_existe(dados_funcionario["email"]) == True:
             funcionarios = Funcionario(dados_funcionario["nome"], dados_funcionario['cpf'], dados_funcionario['email'], dados_funcionario['senha'])
-            self.__funcionarios.append(funcionarios)
+            self.__funcionario_dao.add(funcionarios)
         else:
             self.__tela_pessoa.mostra_mensagem("Esse email já está sendo usado")
     
