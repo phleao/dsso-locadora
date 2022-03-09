@@ -83,11 +83,13 @@ class ControladorFilmes():
     def excluir_filme(self):
         if self.__filme_dao.get_all() == False:
             return False
+        self.lista_filme()
         codigo_filme = self.__tela_filme.seleciona_filme()
         filme = self.pega_filme_por_codigo(codigo_filme)
 
         if(filme is not None):
             self.__filme_dao.remove(filme.codigo)
+            self.__tela_filme.mostra_mensagem("Filme removido com sucesso!")
         else:
             self.__tela_filme.mostra_mensagem("ATENCAO: Filme não existente")
 
