@@ -83,7 +83,8 @@ class ControladorSistema:
         self.__cliente_logado.status = False
         self.__tela_sistema.mostra_mensagem("Filme devolvido com sucesso, agora é hora de avaliar o filme, que tal?")
         self.__controlador_locacao.incluir_avaliacao()
-        locacao.status = False
+        self.__controlador_locacao.alterar_locacao(locacao)
+
 
     def ver_catalogo(self):
         self.__controlador_filmes.lista_filme_catalogo()

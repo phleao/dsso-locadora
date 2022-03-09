@@ -1,17 +1,17 @@
 
 from limite.tela_locacao import TelaLocacao
 from entidade.locacao import Locacao
-
+from controle.locacao_DAO import LocacaoDAO
 
 class ControladorLocacao():
 
   def __init__(self, controlador_sistema):
     self.__controlador_sistema = controlador_sistema
-    self.__locacoes = []
+    self.__locacao_dao = LocacaoDAO()
     self.__tela_locacao = TelaLocacao()
 
   def pega_locacao_por_codigo(self, codigo: int):
-    for locacao in self.__locacoes:
+    for locacao in self.__locacao_dao.get_all():
       if(locacao.codigo == codigo):
         return locacao
     return None
@@ -26,8 +26,8 @@ class ControladorLocacao():
       return False
 
     if self.verifica_faixa_etaria(filme) == True:
-      locacao = Locacao(self.__controlador_sistema.cliente_logado, (len(self.__locacoes) + 1), filme)
-      self.__locacoes.append(locacao)
+      locacao = Locacao(self.__controlador_sistema.cliente_logado, (len(self.__locacao_dao.get_all()) + 1), filme)
+      self.__locacao_dao.add(locacao)
       return True
     else:
       return False
@@ -40,13 +40,13 @@ class ControladorLocacao():
       return True
 
   def lista_locacao(self):
-    for e in self.__locacoes:
+    for e in self.__locacao_dao.get_all():
       self.__tela_locacao.mostra_locacao({"codigo": e.codigo,
                                                 "titulo_filme": e.filme.titulo,
                                                 "email": e.cliente.email,
                                                 "data_aluguel": e.data_aluguel,
                                                 "status": e.status})
-    if len(self.__locacoes) == 0:
+    if len(self.__locacao_dao.get_all()) == 0:
       self.__tela_locacao.mostra_mensagem("Ainda não foram feitas locações")
 
   def excluir_locacao(self):
@@ -55,7 +55,7 @@ class ControladorLocacao():
     locacao = self.pega_locacao_por_codigo(int(codigo_locacao))
 
     if (locacao is not None):
-      self.__locacoes.remove(locacao)
+      self.__locacao_dao.remove(locacao.codigo)
       self.lista_locacao()
     else:
       self.__tela_locacao.mostra_mensagem("ATENCAO: Locação não existente")
@@ -71,7 +71,7 @@ class ControladorLocacao():
       lista_opcoes[self.__tela_locacao.tela_opcoes()]()
 
   def ver_locacao_atual_cliente(self):
-    for locacao in self.__locacoes:
+    for locacao in self.__locacao_dao.get_all():
       if self.__controlador_sistema.cliente_logado == locacao.cliente and locacao.status == True:
         return locacao
 
@@ -83,14 +83,18 @@ class ControladorLocacao():
     dados_avaliacao["cliente"] = cliente
     filme.nova_avaliacao(dados_avaliacao)
 
+  def alterar_locacao(self, locacao):
+    locacao.status = False
+    self.__locacao_dao.add(locacao)
+
+
   def lista_historico_locacao(self):
-    for locacao in self.__locacoes:
+    for locacao in self.__locacao_dao.get_all():
       locacoes_cliente = 0
       if (locacao.cliente == self.__controlador_sistema.cliente_logado):
         locacoes_cliente += 1
-        #criar dicionario antes de mandar para tela
         dados_locacao = {"data_aluguel": locacao.data_aluguel, "titulo_filme": locacao.filme.titulo}
         self.__tela_locacao.mostra_historico_locacao(dados_locacao)
 
-    if len(self.__locacoes) == 0 or locacoes_cliente == 0:
+    if len(self.__locacao_dao.get_all()) == 0 or locacoes_cliente == 0:
       self.__tela_locacao.mostra_mensagem("Você nunca alugou um filme :(")
