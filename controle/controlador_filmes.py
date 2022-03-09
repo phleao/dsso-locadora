@@ -128,6 +128,7 @@ class ControladorFilmes():
         while continua:
             lista_opcoes[self.__tela_filme.tela_opcoes()]()
                 
-
+    def atualizar_filme(self, filme):
+        self.__filme_dao.add(filme)
             
 
