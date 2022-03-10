@@ -13,3 +13,6 @@ class Genero:
 
     def adiciona_filme(self, filme):
         self.__filmes.append(filme)
+
+    def remove_filme(self, filme):
+        self.__filmes.remove(filme)

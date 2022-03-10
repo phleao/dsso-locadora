@@ -177,4 +177,5 @@ class ControladorSistema:
         return self.__controlador_genero.inclui_genero(nome_genero)
 
 
-    
+    def atualiza_gen(self, genero):
+        self.__controlador_genero.atualiza_genero(genero)

@@ -33,10 +33,13 @@ class ControladorFilmes():
                 genero = self.__controlador_sistema.pega_nome_para_criar_genero(dados_filme['genero'])
                 filme = Filme(dados_filme["titulo"], (len(self.__filme_dao.get_all()) + 1), dados_filme['sinopse'],
                               dados_filme['faixa_etaria'], genero, dados_filme['link_acesso'])
-
+                genero.adiciona_filme(filme)
+                self.__controlador_sistema.atualiza_gen(genero)
             else:
                 filme = Filme(dados_filme["titulo"], (len(self.__filme_dao.get_all()) + 1), dados_filme['sinopse'],
                               dados_filme['faixa_etaria'], gen, dados_filme['link_acesso'])
+                filme.genero.adiciona_filme(filme)
+                self.__controlador_sistema.atualiza_gen(filme.genero)
             self.__filme_dao.add(filme)
 
         else:
@@ -52,12 +55,20 @@ class ControladorFilmes():
             novos_dados_filme = self.__tela_filme.pega_dados_filme()
             filme.titulo = novos_dados_filme["titulo"]
             filme.sinopse = novos_dados_filme["sinopse"]
-            gen = self.__controlador_sistema.verifica_se_ja_tem_genero(novos_dados_filme["genero"])
-            if not gen:
-                genero = self.__controlador_sistema.pega_nome_para_criar_genero(novos_dados_filme["genero"])
-                filme.genero = genero
-            else:
-                filme.genero = gen
+            if filme.genero != novos_dados_filme["genero"]:
+                gen = self.__controlador_sistema.verifica_se_ja_tem_genero(novos_dados_filme["genero"])
+                if not gen:
+                    genero = self.__controlador_sistema.pega_nome_para_criar_genero(novos_dados_filme["genero"])
+                    filme.genero = genero
+                    genero.adiciona_filme(filme)
+                    self.__controlador_sistema.atualiza_gen(genero)
+                else:
+                    filme.genero.remove_filme(filme)
+                    self.__controlador_sistema.atualiza_gen(filme.genero)
+                    filme.genero = gen
+                    filme.genero.adiciona_filme(filme)
+                    self.__controlador_sistema.atualiza_gen(filme.genero)
+
             filme.faixa_etaria = novos_dados_filme["faixa_etaria"]
             filme.link_acesso = novos_dados_filme["link_acesso"]
             self.__filme_dao.add(filme)
