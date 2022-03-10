@@ -12,7 +12,7 @@ class TelaPessoa():
 
         return {"nome": nome, "email": email, "senha": senha}
 
-    def pega_dados_cliente(self):
+    def pega_dados_cliente_antiga(self):
         dados_pessoa = self.pega_dados_pessoa()
         while True:
             try:
@@ -24,11 +24,31 @@ class TelaPessoa():
         dados_pessoa["status"] = False
         return dados_pessoa
 
-    def pega_senha_de_cadastro(self):
-        senha = str(input("Essa ação só é permitida para pessoas autorizadas, digite a senha de acesso: "))
-        return senha
+    def pega_dados_cliente(self):
+        layout = [
+                    [sg.Text('Preencha as informações necessárias')],
+                    [sg.Text('Nome', size=(15, 1)), sg.InputText()],
+                    [sg.Text('Email', size=(15, 1)), sg.InputText()],
+                    [sg.Text('Senha', size=(15, 1)), sg.InputText()],  #colocar bolinhas em vez de texto aparecendo
+                    [sg.Text('Idade', size=(15, 1)), sg.InputText()],
+                    [sg.Submit(), sg.Cancel()]]
+        
+        window = sg.Window('Cadastro de cliente', layout)
+        event, values = window.read()
+        window.close()
+        return {"nome": values[0], "email": values[1], "senha": values[2], "idade": values[3], "status": False}
 
-    def pega_dados_funcionario(self):
+    def pega_senha_de_cadastro(self):
+        layout = [
+                        [sg.Text('Senha de segurança', size=(15, 1)), sg.InputText()],
+                        [sg.Submit()]]
+            
+        window = sg.Window('Cadastro de cliente', layout)
+        event, values = window.read()
+        window.close()
+        return values[0]
+
+    def pega_dados_funcionario_antigo(self):
         dados_pessoa = self.pega_dados_pessoa()
         while True:
             try:
@@ -39,6 +59,20 @@ class TelaPessoa():
 
         dados_pessoa["cpf"] = cpf
         return dados_pessoa
+
+    def pega_dados_funcionario(self):
+        layout = [
+                    [sg.Text('Preencha as informações necessárias')],
+                    [sg.Text('Nome', size=(15, 1)), sg.InputText()],
+                    [sg.Text('Email', size=(15, 1)), sg.InputText()],
+                    [sg.Text('Senha', size=(15, 1)), sg.InputText()],  #colocar bolinhas em vez de texto aparecendo
+                    [sg.Text('CPF', size=(15, 1)), sg.InputText()],
+                    [sg.Submit(), sg.Cancel()]]
+        
+        window = sg.Window('Cadastro de cliente', layout)
+        event, values = window.read()
+        window.close()
+        return {"nome": values[0], "email": values[1], "senha": values[2], "cpf": values[3], "status": False}
     
     def pega_dados_login_antigo(self):
         email = input("Email: ")

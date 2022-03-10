@@ -40,7 +40,7 @@ class TelaSistema:
                 break
         
             else:
-                print(values[0])
+                window.close()
                 return values[0]
         
     def tela_opcoes_do_funcionario(self):
