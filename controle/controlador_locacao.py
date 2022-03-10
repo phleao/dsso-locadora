@@ -40,14 +40,19 @@ class ControladorLocacao():
       return True
 
   def lista_locacao(self):
+    locs = []
     for e in self.__locacao_dao.get_all():
-      self.__tela_locacao.mostra_locacao({"codigo": e.codigo,
+      locs.append({"codigo": e.codigo,
                                                 "titulo_filme": e.filme.titulo,
                                                 "email": e.cliente.email,
                                                 "data_aluguel": e.data_aluguel,
                                                 "status": e.status})
+      
     if len(self.__locacao_dao.get_all()) == 0:
       self.__tela_locacao.mostra_mensagem("Ainda não foram feitas locações")
+      return None
+
+    self.__tela_locacao.mostra_locacao(locs)
 
   def excluir_locacao(self):
     self.lista_locacao()
@@ -84,11 +89,9 @@ class ControladorLocacao():
     filme.nova_avaliacao(dados_avaliacao)
     return filme
 
-
   def alterar_locacao(self, locacao):
     locacao.status = False
     self.__locacao_dao.add(locacao)
-
 
   def lista_historico_locacao(self):
     for locacao in self.__locacao_dao.get_all():
