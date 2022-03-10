@@ -40,8 +40,8 @@ class ControladorSistema:
         self.abre_tela_login() 
 
     def abre_tela_funcionario(self):
-        lista_opcoes = {1: self.acessa_filmes, 2: self.lista_locacoes, 3: self.mostra_clientes,
-                        0: self.abre_tela_login}
+        lista_opcoes = {'Filmes': self.acessa_filmes, 'Locacoes': self.lista_locacoes, 'Clientes': self.mostra_clientes,
+                        'Deslogar': self.abre_tela_login}
 
         while True:
             opcao_escolhida = self.__tela_sistema.tela_opcoes_do_funcionario()
@@ -51,8 +51,8 @@ class ControladorSistema:
     def abre_tela_cliente(self):
         while True:
             while self.__cliente_logado.status == False:
-                lista_opcoes = {1: self.ver_catalogo, 2: self.fazer_locacao, 3: self.historico_locacao, 4: self.lista_filmes_avaliados,
-                            0: self.abre_tela_login}
+                lista_opcoes = {'Catalogo': self.ver_catalogo, 'Historico': self.historico_locacao, 'Melhores filmes': self.lista_filmes_avaliados,
+                            'Deslogar': self.abre_tela_login}
                 verificador = True
                 while verificador == True:
                     opcao_escolhida = self.__tela_sistema.tela_opcoes_do_cliente()

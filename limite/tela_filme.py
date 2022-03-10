@@ -1,3 +1,5 @@
+import PySimpleGUI as sg
+
 class TelaFilme():
     def tela_opcoes(self):
         # fazer aqui tratamento caso a entrada seja diferente do esperado
@@ -34,8 +36,18 @@ class TelaFilme():
         link_acesso = input("Link de acesso:")
         return {"titulo": titulo, "sinopse": sinopse, "genero": genero, "faixa_etaria": faixa_etaria, "link_acesso": link_acesso}
 
-    def mostra_recomendacoes(self, recomendacao):
+    def mostra_recomendacoes_antigo(self, recomendacao):
         print("Titulo: ", recomendacao.titulo, "Nota: ", recomendacao.nota())
+
+    def mostra_recomendacoes(self, recom):
+        layout = [
+                    [sg.Text('Top Filmes')],    
+                    ([sg.Text(filme.titulo), sg.Text(filme.nota())] for filme in recom),
+                    [sg.Cancel(button_text = "Voltar")]]
+        
+        window = sg.Window('Filmes', layout)
+        event, values = window.read()
+        window.close()
 
     def mostra_filme(self, dados_filme):
         print("CODIGO: ", dados_filme["codigo"], "    TITULO DO FILME: ", dados_filme["titulo"])

@@ -105,6 +105,8 @@ class ControladorFilmes():
             if nota != None:
                 notas.append(nota)
 
+        recom = []
+
         notas.sort(reverse=True)
         for i in notas:
             for j in self.__filme_dao.get_all():
@@ -112,12 +114,14 @@ class ControladorFilmes():
                     recomendacoes.append(j)
         if len(recomendacoes) < 3 and len(recomendacoes) != 0:
             for l in range(len(recomendacoes)):
-                self.__tela_filme.mostra_recomendacoes(recomendacoes[l])
+                recom.append(recomendacoes[l])
+            self.__tela_filme.mostra_recomendacoes(recom)
         elif len(recomendacoes) == 0:
             self.__tela_filme.mostra_mensagem("Ainda não existem filmes avaliados!\n")
         elif len(recomendacoes) >= 3:
             for l in range(3):
-                self.__tela_filme.mostra_recomendacoes(recomendacoes[l])
+                recom.append(recomendacoes[l])
+            self.__tela_filme.mostra_recomendacoes(recom)
         
     def retornar(self):
         self.__controlador_sistema.abre_tela_funcionario()

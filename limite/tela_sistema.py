@@ -43,7 +43,7 @@ class TelaSistema:
                 window.close()
                 return values[0]
         
-    def tela_opcoes_do_funcionario(self):
+    def tela_opcoes_do_funcionario_antigo(self):
         print("-------- LocadaçON ---------")
         while True:
             try:
@@ -61,7 +61,21 @@ class TelaSistema:
                 print("Digite um número válido\n")
         return opcao
 
-    def tela_opcoes_do_cliente(self):
+    def tela_opcoes_do_funcionario(self):
+        layout = [
+                    [sg.Button(button_text = "Filmes", button_type = 7)],
+                    [sg.Button(button_text = "Locacoes", button_type = 7)],
+                    [sg.Button(button_text = "Clientes", button_type = 7)],
+                    [sg.Cancel(button_text = "Deslogar")]]
+
+
+        window = sg.Window('Home - Funcionario', layout)
+        values = window.read()
+        window.close()
+        return values[0]
+
+
+    def tela_opcoes_do_cliente_antiga(self):
         print("\n-------- LocadaçON ---------")
         
         while True:
@@ -80,6 +94,20 @@ class TelaSistema:
             except ValueError:
                 print("Digite um número válido\n")
         return opcao
+
+    def tela_opcoes_do_cliente(self):
+        layout = [
+                    [sg.Button(button_text = "Catalogo", button_type = 7)],
+                    [sg.Button(button_text = "Historico", button_type = 7)],
+                    [sg.Button(button_text = "Melhores filmes", button_type = 7)],
+                    [sg.Cancel(button_text = "Deslogar")]]
+
+
+        window = sg.Window('Home - Cliente', layout)
+        values = window.read()
+        window.close()
+        return values[0]
+
 
     def tela_opcoes_do_cliente_status_true(self):
         print("\n-------- LocadaçON ---------")
