@@ -1,11 +1,12 @@
 
+from xmlrpc.client import boolean
 from entidade.abstract_pessoa import AbstractPessoa
 
 class Cliente(AbstractPessoa):
-    def __init__(self, nome: str, idade: int, email: str, senha: str):
+    def __init__(self, nome: str, idade: int, email: str, senha: str, status: boolean):
         super().__init__(nome, email, senha)
         self.__idade = idade
-        self.__status = False        
+        self.__status = status        
 
     @property
     def idade(self):
@@ -20,5 +21,5 @@ class Cliente(AbstractPessoa):
         return self.__status
 
     @status.setter
-    def status(self, status: str):
+    def status(self, status: boolean):
         self.__status = status

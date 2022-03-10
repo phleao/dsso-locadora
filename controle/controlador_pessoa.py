@@ -40,7 +40,7 @@ class ControladorPessoa():
     def incluir_cliente(self):
         dados_cliente = self.__tela_pessoa.pega_dados_cliente()
         if self.verificar_se_email_existe(dados_cliente["email"]) == True:
-            clientes = Cliente(dados_cliente["nome"], dados_cliente['idade'], dados_cliente['email'], dados_cliente['senha'], )
+            clientes = Cliente(dados_cliente["nome"], dados_cliente['idade'], dados_cliente['email'], dados_cliente['senha'], dados_cliente["status"])
             self.__cliente_dao.add(clientes)
         else:
             self.__tela_pessoa.mostra_mensagem("Esse email já está sendo usado")

@@ -108,8 +108,8 @@ class ControladorSistema:
         exit(0)
 
     def abre_tela_login(self):
-        lista_opcoes_login = {1: self.acessa_login, 2: self.acessa_cad_cliente, 3: self.acessa_cad_funcionario,
-                        0: self.encerra_sistema}
+        lista_opcoes_login = {'Login': self.acessa_login, 'Cadastrar Cliente': self.acessa_cad_cliente, 'Cadastrar Funcionario': self.acessa_cad_funcionario,
+                        'Finalizar': self.encerra_sistema}
 
         while True:
             opcao_escolhida = self.__tela_sistema.tela_login()

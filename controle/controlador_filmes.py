@@ -18,7 +18,8 @@ class ControladorFilmes():
         for filme in self.__filme_dao.get_all():
             if(filme.codigo == codigo):
                 return filme
-        return None
+            else:
+                return None
 
     def incluir_filme(self):
         dados_filme = self.__tela_filme.pega_dados_filme()
