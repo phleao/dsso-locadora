@@ -72,7 +72,7 @@ class ControladorLocacao():
 
   def ver_locacao_atual_cliente(self):
     for locacao in self.__locacao_dao.get_all():
-      if self.__controlador_sistema.cliente_logado == locacao.cliente and locacao.status == True:
+      if self.__controlador_sistema.cliente_logado.email == locacao.cliente.email and locacao.status == True:
         return locacao
 
   def incluir_avaliacao(self):
@@ -82,6 +82,8 @@ class ControladorLocacao():
     cliente = locacao.cliente
     dados_avaliacao["cliente"] = cliente
     filme.nova_avaliacao(dados_avaliacao)
+    return filme
+
 
   def alterar_locacao(self, locacao):
     locacao.status = False
@@ -91,10 +93,13 @@ class ControladorLocacao():
   def lista_historico_locacao(self):
     for locacao in self.__locacao_dao.get_all():
       locacoes_cliente = 0
-      if (locacao.cliente == self.__controlador_sistema.cliente_logado):
+      if (locacao.cliente.email == self.__controlador_sistema.cliente_logado.email):
         locacoes_cliente += 1
         dados_locacao = {"data_aluguel": locacao.data_aluguel, "titulo_filme": locacao.filme.titulo}
         self.__tela_locacao.mostra_historico_locacao(dados_locacao)
 
     if len(self.__locacao_dao.get_all()) == 0 or locacoes_cliente == 0:
       self.__tela_locacao.mostra_mensagem("Você nunca alugou um filme :(")
+
+  def atualizar_locacao(self, loc):
+    self.__locacao_dao.add(loc)

@@ -81,8 +81,10 @@ class ControladorSistema:
     def finalizar_locacao(self):
         locacao = self.__controlador_locacao.ver_locacao_atual_cliente()
         self.__cliente_logado.status = False
+        self.__controlador_pessoa.alterar_status_cliente(self.__cliente_logado, False)
         self.__tela_sistema.mostra_mensagem("Filme devolvido com sucesso, agora é hora de avaliar o filme, que tal?")
-        self.__controlador_locacao.incluir_avaliacao()
+        filme = self.__controlador_locacao.incluir_avaliacao()
+        self.__controlador_filmes.atualizar_filme(filme)
         self.__controlador_locacao.alterar_locacao(locacao)
 
 
@@ -97,7 +99,7 @@ class ControladorSistema:
 
     def fazer_locacao(self):        
         if self.__controlador_locacao.incluir_locacao() == True:
-            self.__cliente_logado.status = True
+            self.__controlador_pessoa.alterar_status_cliente(self.__cliente_logado, True)
             self.__tela_sistema.mostra_mensagem("\nParabéns! Você acabou de alugar um filme muito legal!")
         return False
 
