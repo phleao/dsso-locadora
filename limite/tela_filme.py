@@ -42,7 +42,7 @@ class TelaFilme():
     def mostra_recomendacoes(self, recom):
         layout = [
                     [sg.Text('Top Filmes')],    
-                    ([sg.Text(filme.titulo), sg.Text(filme.nota())] for filme in recom),
+                    ([sg.Text(dic["titulo"]), sg.Text(dic["nota"])] for dic in recom),
                     [sg.Cancel(button_text = "Voltar")]]
         
         window = sg.Window('Filmes', layout)
