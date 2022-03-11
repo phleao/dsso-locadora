@@ -138,11 +138,18 @@ class ControladorFilmes():
         self.__controlador_sistema.abre_tela_funcionario()
 
     def abre_tela(self):
-        lista_opcoes = {1: self.incluir_filme, 2: self.alterar_filme, 3: self.lista_filme_catalogo, 4: self.excluir_filme, 0: self.retornar}
+        dados_filmes = []
+        for filme in self.__filme_dao.get_all():
+            dados_filmes.append({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero.nome, "faixa_etaria": filme.faixa_etaria,
+                                                         "nota": filme.nota()})
 
-        continua = True
-        while continua:
-            lista_opcoes[self.__tela_filme.tela_opcoes()]()
+        lista_opcoes = {"Incluir": self.incluir_filme, "Alterar": self.alterar_filme, "Excluir": self.excluir_filme, "Cancel": self.retornar}
+        evento, valores = self.__tela_filme.tela_opcoes_nova(dados_filmes)
+        if evento == "Incluir" or evento == "Cancel":
+            lista_opcoes[evento]()
+        else:
+            lista_opcoes[evento](filme)
+        return valores
                 
     def atualizar_filme(self, filme):
         self.__filme_dao.add(filme)

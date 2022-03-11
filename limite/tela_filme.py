@@ -21,7 +21,45 @@ class TelaFilme():
                 print("Digite um número válido\n")
         return opcao
 
-    def pega_dados_filme(self):
+    def tela_opcoes_nova(self, filmes):
+
+        # verificacao nota no controlador ex:
+        # if dados_filme["nota"] != None:
+        #       print("NOTA: ", dados_filme["nota"])
+        #       print("COMENTÁRIOS: \n", end='')
+        #       for comentario in dados_filme["comentarios"]:
+        #            print(comentario)
+        # TIRAR COMENTASRIOS?
+        if len(filmes) > 0:
+            items = []
+            for filme in filmes:
+                items.append([filme["titulo"], filme["sinopse"], filme["genero"], filme["faixa_etaria"], filme["nota"]])
+
+
+            headings = [' Título','sinopse', 'Gênero', 'Faixa etária', 'nota' ]
+
+
+
+            layout = [[sg.Table(values= items, headings=headings, max_col_width=35,  justification='center', num_rows=6, key='-TABLE-', row_height=35)],
+                    [sg.Button(button_text = "Incluir"), sg.Submit(button_text = "Editar"), sg.Submit(button_text = "Excluir"), sg.Cancel()]]
+
+            window = sg.Window('tabela de teste', layout)
+            event, values = window.read()
+            window.close()
+            return event, values
+
+        else:
+            layout = [[sg.Text("Sem filmes no cátalogo")],
+                     [sg.Button(button_text="Incluir"), sg.Cancel()]]
+
+            window = sg.Window('tabela de teste', layout)
+            event, values = window.read()
+            window.close()
+            return event, values
+
+
+
+    def pega_dados_filme_antigo(self):
         print("-------- DADOS FILME ----------")
         titulo = input("Titulo: ")
         sinopse = input("Sinopse: ")
@@ -35,6 +73,22 @@ class TelaFilme():
 
         link_acesso = input("Link de acesso:")
         return {"titulo": titulo, "sinopse": sinopse, "genero": genero, "faixa_etaria": faixa_etaria, "link_acesso": link_acesso}
+
+    def pega_dados_filme(self):
+        layout = [
+            [sg.Text('Preencha as informações necessárias')],
+            [sg.Text('Titulo', size=(15, 1)), sg.InputText()],
+            [sg.Text('Sinopse', size=(15, 1)), sg.InputText()],
+            [sg.Text('Gênero', size=(15, 1)), sg.InputText()],  # colocar bolinhas em vez de texto aparecendo
+            [sg.Text('Faixa Etaria', size=(15, 1)), sg.InputText()],
+            [sg.Text('Link de acesso', size=(15, 1)), sg.InputText()],
+            [sg.Submit(), sg.Cancel()]
+        ]
+
+        window = sg.Window('Cadastro de cliente', layout)
+        event, values = window.read()
+        window.close()
+        return {"titulo": values[0], "sinopse": values[1], "genero": values[2], "faixa_etaria": values[3], "link_acesso" : values[4]}
 
     def mostra_recomendacoes_antigo(self, recomendacao):
         print("Titulo: ", recomendacao.titulo, "Nota: ", recomendacao.nota())
@@ -64,6 +118,7 @@ class TelaFilme():
             for comentario in dados_filme["comentarios"]:
                 print(comentario)
         print("\n")
+
 
     def seleciona_filme(self):
         codigo = int(input("Código do filme que deseja selecionar: "))
