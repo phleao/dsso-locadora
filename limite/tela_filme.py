@@ -46,7 +46,9 @@ class TelaFilme():
             window = sg.Window('tabela de teste', layout)
             event, values = window.read()
             window.close()
-            return event, values
+            filme = items[values["-TABLE-"][0]]
+
+            return event, filme[0]
 
         else:
             layout = [[sg.Text("Sem filmes no cátalogo")],
@@ -73,6 +75,25 @@ class TelaFilme():
 
         link_acesso = input("Link de acesso:")
         return {"titulo": titulo, "sinopse": sinopse, "genero": genero, "faixa_etaria": faixa_etaria, "link_acesso": link_acesso}
+
+    def pega_dados_filme_alterar(self, filme):
+        layout = [
+            [sg.Text('Preencha as informações necessárias')],
+            [sg.Text('Titulo', size=(15, 1)), sg.InputText(filme["titulo"])],
+            [sg.Text('Sinopse', size=(15, 1)), sg.InputText(filme["sinopse"])],
+            [sg.Text('Gênero', size=(15, 1)), sg.InputText(filme["genero"])],  # colocar bolinhas em vez de texto aparecendo
+            [sg.Text('Faixa Etaria', size=(15, 1)), sg.InputText(filme["faixa_etaria"])],
+            [sg.Text('Link de acesso', size=(15, 1)), sg.InputText(filme["link_acesso"])],
+            [sg.Submit(), sg.Cancel()]
+        ]
+
+        window = sg.Window('Cadastro de cliente', layout)
+        event, values = window.read()
+        window.close()
+        return {"titulo": values[0], "sinopse": values[1], "genero": values[2], "faixa_etaria": values[3], "link_acesso" : values[4]}
+
+
+
 
     def pega_dados_filme(self):
         layout = [
