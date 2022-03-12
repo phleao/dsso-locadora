@@ -85,12 +85,16 @@ class ControladorFilmes():
     def lista_filme_catalogo(self):
         dados_filmes = []
         for filme in self.__filme_dao.get_all():
-            dados_filmes.append({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero.nome, "faixa_etaria": filme.faixa_etaria,
+            dados_filmes.append({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero, "faixa_etaria": filme.faixa_etaria,
                                                          "nota": filme.nota()})
 
         lista_opcoes = {"Alugar": self.excluir_filme, "Cancel": self.retornar}
         evento, titulo = self.__tela_filme.mostra_filme_catalogo(dados_filmes)
-        lista_opcoes[evento](titulo)
+        
+        if evento == "Cancel":
+            lista_opcoes[evento]()
+        else:
+            lista_opcoes[evento](titulo)
             
     def excluir_filme(self, titulo):
         if self.__filme_dao.get_all() == False:
