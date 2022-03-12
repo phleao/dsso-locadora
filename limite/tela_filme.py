@@ -46,9 +46,11 @@ class TelaFilme():
             window = sg.Window('tabela de teste', layout)
             event, values = window.read()
             window.close()
-            filme = items[values["-TABLE-"][0]]
-
-            return event, filme[0]
+            if event != "Incluir" and event != "Cancel":
+                filme = items[values["-TABLE-"][0]]
+                return event, filme[0]
+            else:
+                return event, True
 
         else:
             layout = [[sg.Text("Sem filmes no cátalogo")],
