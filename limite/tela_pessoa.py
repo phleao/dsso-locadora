@@ -93,7 +93,7 @@ class TelaPessoa():
         window.close()
         return {"email": values[0], "senha": values[1]}
 
-    def mostra_clientes(self, dados_cliente):
+    def mostra_clientes_antigo(self, dados_cliente):
         status = dados_cliente["status"]
         if status == True:
             status = "Locação ativa"
@@ -101,6 +101,35 @@ class TelaPessoa():
             status = "Sem locação ativa"
         print("Nome: ", dados_cliente["nome"], "   Email: ", dados_cliente["email"], "     Status: ", status, "     Idade: ", dados_cliente["idade"])
         print("\n")
+
+    def mostra_clientes(self, clientes):
+        if len(clientes) > 0:
+            items = []
+            for cli in clientes:
+                items.append([cli["nome"], cli["email"], cli["status"], cli["idade"]])
+
+            headings = [' Nome','Email', 'Status', 'Idade']
+
+            layout = [[sg.Table(values= items, headings=headings, max_col_width=35,  justification='center', num_rows=6, key='-TABLE-', row_height=35)],
+                    [sg.Cancel()]]
+
+            window = sg.Window('tabela de teste', layout)
+            event, values = window.read()
+            window.close()
+            if event != "Incluir" and event != "Cancel":
+                cliente = items[values["-TABLE-"][0]]
+                return event, cliente[0]
+            else:
+                return event, True
+
+        else:
+            layout = [[sg.Text("Sem filmes no cátalogo")],
+                     [sg.Button(button_text="Incluir"), sg.Cancel()]]
+
+            window = sg.Window('tabela de teste', layout)
+            event, values = window.read()
+            window.close()
+            return event, values
 
     def mostra_mensagem(self, msg):
         print(msg)

@@ -23,22 +23,12 @@ class TelaFilme():
 
     def tela_opcoes_nova(self, filmes):
 
-        # verificacao nota no controlador ex:
-        # if dados_filme["nota"] != None:
-        #       print("NOTA: ", dados_filme["nota"])
-        #       print("COMENTÁRIOS: \n", end='')
-        #       for comentario in dados_filme["comentarios"]:
-        #            print(comentario)
-        # TIRAR COMENTASRIOS?
         if len(filmes) > 0:
             items = []
             for filme in filmes:
                 items.append([filme["titulo"], filme["sinopse"], filme["genero"], filme["faixa_etaria"], filme["nota"]])
 
-
             headings = [' Título','sinopse', 'Gênero', 'Faixa etária', 'nota' ]
-
-
 
             layout = [[sg.Table(values= items, headings=headings, max_col_width=35,  justification='center', num_rows=6, key='-TABLE-', row_height=35)],
                     [sg.Button(button_text = "Incluir"), sg.Submit(button_text = "Editar"), sg.Submit(button_text = "Excluir"), sg.Cancel()]]

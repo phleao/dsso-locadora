@@ -46,8 +46,16 @@ class ControladorPessoa():
             self.__tela_pessoa.mostra_mensagem("Esse email já está sendo usado")
 
     def lista_clientes(self):
+        dados_cliente = []
         for cliente in self.__cliente_dao.get_all():
-            self.__tela_pessoa.mostra_clientes({"nome": cliente.nome, "email": cliente.email, "status": cliente.status, "idade": cliente.idade})
+            dados_cliente.append({"nome": cliente.nome, "email": cliente.email, "status": cliente.status, "idade": cliente.idade})
+        evento, titulo = self.__tela_pessoa.mostra_clientes(dados_cliente)
+        lista_opcoes = {"Excluir": print("Editar linha 53 do controlador_pessoa e colocar o excluir com a função certa"), "Cancel": True}
+        if evento == "Cancel":
+            pass
+        else:
+            lista_opcoes[evento](titulo)
+
         if len(self.__cliente_dao.get_all()) == 0:
             self.__tela_pessoa.mostra_mensagem("Ainda não existem clientes cadastrados!")
 
