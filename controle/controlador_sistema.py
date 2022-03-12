@@ -85,6 +85,7 @@ class ControladorSistema:
         filme = self.__controlador_locacao.incluir_avaliacao()
         self.__controlador_filmes.atualizar_filme(filme)
         self.__controlador_locacao.alterar_locacao(locacao)
+        
 
     def ver_catalogo(self):
         self.__controlador_filmes.lista_filme_catalogo()
