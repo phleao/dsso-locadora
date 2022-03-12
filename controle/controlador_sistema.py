@@ -62,8 +62,8 @@ class ControladorSistema:
 
 
             while self.__cliente_logado.status == True:
-                lista_opcoes = {1: self.ver_catalogo, 2: self.verificar_locacao_atual, 3: self.finalizar_locacao, 4: self.lista_filmes_avaliados,
-                                0: self.abre_tela_login}
+                lista_opcoes = {'Locacao Atual': self.verificar_locacao_atual, 'Melhores filmes': self.lista_filmes_avaliados,
+                                'Deslogar': self.abre_tela_login}
                 verificador = True
                 while verificador == True:
                     opcao_escolhida = self.__tela_sistema.tela_opcoes_do_cliente_status_true()
@@ -75,18 +75,16 @@ class ControladorSistema:
         self.__controlador_filmes.lista_filmes_avaliados()
 
     def verificar_locacao_atual(self):
-        locacao = self.__controlador_locacao.ver_locacao_atual_cliente()
-        self.__tela_sistema.mostra_mensagem("{} --- {} ---- {}".format(locacao.filme.titulo, locacao.filme.link_acesso, locacao.data_aluguel))
+        self.__controlador_locacao.ver_locacao_atual_cliente()
+        
 
     def finalizar_locacao(self):
         locacao = self.__controlador_locacao.ver_locacao_atual_cliente()
-        self.__cliente_logado.status = False
-        self.__controlador_pessoa.alterar_status_cliente(self.__cliente_logado, False)
+        self.__controlador_pessoa.alterar_status(self.__cliente_logado, False)
         self.__tela_sistema.mostra_mensagem("Filme devolvido com sucesso, agora é hora de avaliar o filme, que tal?")
         filme = self.__controlador_locacao.incluir_avaliacao()
         self.__controlador_filmes.atualizar_filme(filme)
         self.__controlador_locacao.alterar_locacao(locacao)
-
 
     def ver_catalogo(self):
         self.__controlador_filmes.lista_filme_catalogo()

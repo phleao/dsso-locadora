@@ -74,7 +74,6 @@ class TelaSistema:
         window.close()
         return values[0]
 
-
     def tela_opcoes_do_cliente_antiga(self):
         print("\n-------- LocadaçON ---------")
         
@@ -108,8 +107,7 @@ class TelaSistema:
         window.close()
         return values[0]
 
-
-    def tela_opcoes_do_cliente_status_true(self):
+    def tela_opcoes_do_cliente_status_true_antigo(self):
         print("\n-------- LocadaçON ---------")
         while True:
             try:
@@ -127,6 +125,18 @@ class TelaSistema:
             except ValueError:
                 print("Digite um número válido\n")
         return opcao
+
+    def tela_opcoes_do_cliente_status_true(self):
+        layout = [
+                    [sg.Button(button_text = "Locacao Atual", button_type = 7)],
+                    [sg.Button(button_text = "Melhores filmes", button_type = 7)],
+                    [sg.Cancel(button_text = "Deslogar")]]
+
+
+        window = sg.Window('Home - Cliente', layout)
+        values = window.read()
+        window.close()
+        return values[0]
 
     def mostra_mensagem(self, msg):
         print(msg)

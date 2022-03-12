@@ -75,3 +75,13 @@ class TelaLocacao():
 
   def mostra_historico_locacao(self, locacao):
     print("FILME: ", locacao["titulo_filme"], "no dia: ", locacao["data_aluguel"])
+
+  def mostra_locacao_atual(self, locacao):
+    layout = [   
+          [sg.Text('Locação')],    
+          ([sg.Text(locacao["titulo_filme"]), sg.Text(locacao["sinopse"]), sg.Text(locacao["data_aluguel"])]  ),
+          [sg.Button(button_text="Finalizar Locacao"), sg.Cancel(button_text = "Voltar")]]
+    window = sg.Window('Filmes', layout)
+    event, values = window.read()
+    window.close()
+    return event

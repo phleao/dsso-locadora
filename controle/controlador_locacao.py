@@ -30,11 +30,12 @@ class ControladorLocacao():
       return False
 
   def verifica_faixa_etaria(self, filme):
-    if filme.faixa_etaria >= self.__controlador_sistema.cliente_logado.idade:
-      self.__tela_locacao.mostra_mensagem("Você não tem idade para alugar esse filme!")
-      return False
-    else:
-      return True
+    #if filme.faixa_etaria >= self.__controlador_sistema.cliente_logado.idade:
+    #  self.__tela_locacao.mostra_mensagem("Você não tem idade para alugar esse filme!")
+     # return False
+    #else:
+    # return True
+    pass
 
   def lista_locacao(self):
     locs = []
@@ -75,7 +76,15 @@ class ControladorLocacao():
   def ver_locacao_atual_cliente(self):
     for locacao in self.__locacao_dao.get_all():
       if self.__controlador_sistema.cliente_logado.email == locacao.cliente.email and locacao.status == True:
-        return locacao
+        loc = {"titulo_filme": locacao.filme.titulo, "sinopse": locacao.filme.sinopse, "data_aluguel": locacao.data_aluguel}
+        evento = self.__tela_locacao.mostra_locacao_atual(loc)
+
+        while True:
+          if evento == "Cancel":
+            pass
+          elif evento == "Finalizar Locacao":
+            self.__controlador_sistema.finalizar_locacao()
+        
 
   def incluir_avaliacao(self):
     dados_avaliacao = self.__tela_locacao.pega_avaliacao()
