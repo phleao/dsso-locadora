@@ -3,7 +3,7 @@ from entidade.avaliacao import Avaliacao
 
 class Filme:
     # fazer aqui tratamento dos dados, caso os parametros sejam diferentes do esperado
-    def __init__(self, titulo: str, codigo: int, sinopse: str, faixa_etaria: int, genero: Genero, link_acesso: str):
+    def __init__(self, titulo: str, codigo: int, sinopse: str, faixa_etaria: int, genero: str, link_acesso: str):
         self.__titulo = titulo
         self.__codigo = codigo
         self.__sinopse = sinopse

@@ -14,19 +14,12 @@ class ControladorFilmes():
     def filmes(self):
         return self.__filme_dao.get_all()
 
-    def pega_filme_por_codigo(self, codigo: int):
-        for filme in self.__filme_dao.get_all():
-            if(filme.codigo == codigo):
-                return filme
-            else:
-                return None
 
     def pega_filme_por_titulo(self, titulo):
         for filme in self.__filme_dao.get_all():
             if(filme.titulo == titulo):
                 return filme
-            else:
-                return None
+        return None
 
     def incluir_filme(self):
         dados_filme = self.__tela_filme.pega_dados_filme()
@@ -39,14 +32,14 @@ class ControladorFilmes():
             if gen == False:
                 genero = self.__controlador_sistema.pega_nome_para_criar_genero(dados_filme['genero'])
                 filme = Filme(dados_filme["titulo"], (len(self.__filme_dao.get_all()) + 1), dados_filme['sinopse'],
-                              dados_filme['faixa_etaria'], genero, dados_filme['link_acesso'])
+                              dados_filme['faixa_etaria'], genero.nome, dados_filme['link_acesso'])
                 genero.adiciona_filme(filme)
                 self.__controlador_sistema.atualiza_gen(genero)
             else:
                 filme = Filme(dados_filme["titulo"], (len(self.__filme_dao.get_all()) + 1), dados_filme['sinopse'],
-                              dados_filme['faixa_etaria'], gen, dados_filme['link_acesso'])
-                filme.genero.adiciona_filme(filme)
-                self.__controlador_sistema.atualiza_gen(filme.genero)
+                              dados_filme['faixa_etaria'], gen.nome, dados_filme['link_acesso'])
+                gen.adiciona_filme(filme)
+                self.__controlador_sistema.atualiza_gen(gen)
             self.__filme_dao.add(filme)
 
         else:
@@ -58,9 +51,8 @@ class ControladorFilmes():
 
         filme = self.pega_filme_por_titulo(titulo)
 
-
         if(filme is not None):
-            novos_dados_filme = self.__tela_filme.pega_dados_filme_alterar({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero.nome, "faixa_etaria": filme.faixa_etaria,
+            novos_dados_filme = self.__tela_filme.pega_dados_filme_alterar({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero, "faixa_etaria": filme.faixa_etaria,
                                                          "link_acesso" : filme.link_acesso})
             filme.titulo = novos_dados_filme["titulo"]
             filme.sinopse = novos_dados_filme["sinopse"]
@@ -68,15 +60,16 @@ class ControladorFilmes():
                 gen = self.__controlador_sistema.verifica_se_ja_tem_genero(novos_dados_filme["genero"])
                 if not gen:
                     genero = self.__controlador_sistema.pega_nome_para_criar_genero(novos_dados_filme["genero"])
-                    filme.genero = genero
+                    filme.genero = genero.nome
                     genero.adiciona_filme(filme)
                     self.__controlador_sistema.atualiza_gen(genero)
                 else:
-                    filme.genero.remove_filme(filme)
-                    self.__controlador_sistema.atualiza_gen(filme.genero)
-                    filme.genero = gen
-                    filme.genero.adiciona_filme(filme)
-                    self.__controlador_sistema.atualiza_gen(filme.genero)
+                    genero = self.__controlador_sistema.verifica_se_ja_tem_genero(filme.genero)
+                    genero.remove_filme(filme)
+                    self.__controlador_sistema.atualiza_gen(genero)
+                    filme.genero = gen.nome
+                    gen.adiciona_filme(filme)
+                    self.__controlador_sistema.atualiza_gen(gen)
 
             filme.faixa_etaria = novos_dados_filme["faixa_etaria"]
             filme.link_acesso = novos_dados_filme["link_acesso"]
@@ -104,7 +97,7 @@ class ControladorFilmes():
         filme = self.pega_filme_por_titulo(titulo)
 
         if(filme is not None):
-            self.__filme_dao.remove(filme.codigo)
+            self.__filme_dao.remove(filme.titulo)
             self.__tela_filme.mostra_mensagem("Filme removido com sucesso!")
         else:
             self.__tela_filme.mostra_mensagem("ATENCAO: Filme não existente")
@@ -144,11 +137,12 @@ class ControladorFilmes():
     def abre_tela(self):
         dados_filmes = []
         for filme in self.__filme_dao.get_all():
-            dados_filmes.append({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero.nome, "faixa_etaria": filme.faixa_etaria,
+            dados_filmes.append({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero, "faixa_etaria": filme.faixa_etaria,
                                                          "nota": filme.nota()})
 
         lista_opcoes = {"Incluir": self.incluir_filme, "Editar": self.alterar_filme, "Excluir": self.excluir_filme, "Cancel": self.retornar}
         evento, titulo = self.__tela_filme.tela_opcoes_nova(dados_filmes)
+
         if evento == "Incluir" or evento == "Cancel":
             lista_opcoes[evento]()
         else:
