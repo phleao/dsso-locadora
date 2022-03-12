@@ -51,8 +51,6 @@ class TelaFilme():
             window.close()
             return event, values
 
-
-
     def pega_dados_filme_antigo(self):
         print("-------- DADOS FILME ----------")
         titulo = input("Titulo: ")
@@ -83,9 +81,6 @@ class TelaFilme():
         event, values = window.read()
         window.close()
         return {"titulo": values[0], "sinopse": values[1], "genero": values[2], "faixa_etaria": values[3], "link_acesso" : values[4]}
-
-
-
 
     def pega_dados_filme(self):
         layout = [
@@ -120,7 +115,7 @@ class TelaFilme():
         print("CODIGO: ", dados_filme["codigo"], "    TITULO DO FILME: ", dados_filme["titulo"])
         print("\n")
 
-    def mostra_filme_catalogo(self, dados_filme):
+    def mostra_filme_catalogo_antigo(self, dados_filme):
         print("TITULO DO FILME: ", dados_filme["titulo"])
         print("SINOPSE: ", dados_filme["sinopse"])
         print("GÊNERO: ", dados_filme["genero"])
@@ -132,6 +127,34 @@ class TelaFilme():
                 print(comentario)
         print("\n")
 
+    def mostra_filme_catalogo(self, filmes):
+        if len(filmes) > 0:
+            items = []
+            for filme in filmes:
+                items.append([filme["titulo"], filme["sinopse"], filme["genero"], filme["faixa_etaria"], filme["nota"]])
+
+            headings = [' Título','sinopse', 'Gênero', 'Faixa etária', 'nota' ]
+
+            layout = [[sg.Table(values= items, headings=headings, max_col_width=35,  justification='center', num_rows=6, key='-TABLE-', row_height=35)],
+                    [sg.Submit(button_text = "Alugar"), sg.Cancel()]]
+
+            window = sg.Window('tabela de teste', layout)
+            event, values = window.read()
+            window.close()
+            if event != "Alugar" and event != "Cancel":
+                filme = items[values["-TABLE-"][0]]
+                return event, filme[0]
+            else:
+                return event, True
+
+        else:
+            layout = [[sg.Text("Sem filmes no cátalogo")],
+                     [sg.Cancel()]]
+
+            window = sg.Window('tabela de teste', layout)
+            event, values = window.read()
+            window.close()
+            return event, values
 
     def seleciona_filme(self):
         codigo = int(input("Código do filme que deseja selecionar: "))

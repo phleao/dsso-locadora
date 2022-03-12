@@ -90,12 +90,14 @@ class ControladorFilmes():
             return False
 
     def lista_filme_catalogo(self):
-        if len(self.__filme_dao.get_all()) == 0:
-            self.__tela_filme.mostra_mensagem("Nenhum filme foi cadastrado ainda :(\n")
-        else:
-            for filme in self.__filme_dao.get_all():
-                self.__tela_filme.mostra_filme_catalogo({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero.nome, "faixa_etaria": filme.faixa_etaria,
-                                                         "nota": filme.nota(), "comentarios": filme.comentarios()})
+        dados_filmes = []
+        for filme in self.__filme_dao.get_all():
+            dados_filmes.append({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero.nome, "faixa_etaria": filme.faixa_etaria,
+                                                         "nota": filme.nota()})
+
+        lista_opcoes = {"Alugar": self.excluir_filme, "Cancel": self.retornar}
+        evento, titulo = self.__tela_filme.mostra_filme_catalogo(dados_filmes)
+        lista_opcoes[evento](titulo)
             
     def excluir_filme(self, titulo):
         if self.__filme_dao.get_all() == False:
@@ -153,8 +155,7 @@ class ControladorFilmes():
             lista_opcoes[evento]()
         else:
             lista_opcoes[evento](titulo)
-
-                
+   
     def atualizar_filme(self, filme):
         self.__filme_dao.add(filme)
             
