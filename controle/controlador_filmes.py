@@ -88,7 +88,7 @@ class ControladorFilmes():
             dados_filmes.append({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero, "faixa_etaria": filme.faixa_etaria,
                                                          "nota": filme.nota()})
 
-        lista_opcoes = {"Alugar": self.excluir_filme, "Cancel": self.retornar}
+        lista_opcoes = {"Alugar": self.__controlador_sistema.locar, "Cancel": self.retornar}
         evento, titulo = self.__tela_filme.mostra_filme_catalogo(dados_filmes)
         
         if evento == "Cancel":

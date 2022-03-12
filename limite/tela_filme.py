@@ -141,7 +141,7 @@ class TelaFilme():
             window = sg.Window('tabela de teste', layout)
             event, values = window.read()
             window.close()
-            if event != "Alugar" and event != "Cancel":
+            if event != "Cancel":
                 filme = items[values["-TABLE-"][0]]
                 return event, filme[0]
             else:

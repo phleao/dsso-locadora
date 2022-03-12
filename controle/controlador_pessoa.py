@@ -64,3 +64,7 @@ class ControladorPessoa():
 
     def pega_senha_cad(self):
         return self.__tela_pessoa.pega_senha_de_cadastro()
+
+    def alterar_status(self, cliente , status):
+        cliente.status = status
+        self.__cliente_dao.add(cliente)

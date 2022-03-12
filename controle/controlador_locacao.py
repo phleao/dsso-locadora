@@ -16,14 +16,11 @@ class ControladorLocacao():
         return locacao
     return None
 
-  def incluir_locacao(self):
+  def incluir_locacao(self, titulo):
     if self.__controlador_sistema.controlador_filmes.lista_filme() == False:
       return False
-    dados_locacao = self.__tela_locacao.pega_dados_locacao()
-    filme = self.__controlador_sistema.controlador_filmes.pega_filme_por_titulo(dados_locacao["titulo"])
-    if filme == None:
-      self.__tela_locacao.mostra_mensagem("Não existe filme com esse código!")
-      return False
+
+    filme = self.__controlador_sistema.controlador_filmes.pega_filme_por_titulo(titulo)
 
     if self.verifica_faixa_etaria(filme) == True:
       locacao = Locacao(self.__controlador_sistema.cliente_logado, (len(self.__locacao_dao.get_all()) + 1), filme)

@@ -7,7 +7,7 @@ class Filme:
         self.__titulo = titulo
         self.__codigo = codigo
         self.__sinopse = sinopse
-        self.__faixa_etaria = faixa_etaria
+        self.__faixa_etaria = int(faixa_etaria)
         self.__genero = genero
         self.__link_acesso = link_acesso
         self.__avaliacoes = []

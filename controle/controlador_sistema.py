@@ -179,3 +179,7 @@ class ControladorSistema:
 
     def atualiza_gen(self, genero):
         self.__controlador_genero.atualiza_genero(genero)
+
+    def locar(self, loc):
+        self.__controlador_pessoa.alterar_status(self.__cliente_logado, True)
+        self.__controlador_locacao.incluir_locacao(loc)
