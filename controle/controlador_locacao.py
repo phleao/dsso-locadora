@@ -20,7 +20,7 @@ class ControladorLocacao():
     if self.__controlador_sistema.controlador_filmes.lista_filme() == False:
       return False
     dados_locacao = self.__tela_locacao.pega_dados_locacao()
-    filme = self.__controlador_sistema.controlador_filmes.pega_filme_por_codigo(dados_locacao["codigo"])
+    filme = self.__controlador_sistema.controlador_filmes.pega_filme_por_titulo(dados_locacao["titulo"])
     if filme == None:
       self.__tela_locacao.mostra_mensagem("Não existe filme com esse código!")
       return False

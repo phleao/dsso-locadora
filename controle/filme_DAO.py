@@ -7,7 +7,7 @@ class FilmeDAO(DAO):
 
     def add(self, filme: Filme):
         if (filme is not None) and isinstance(filme, Filme):
-            super().add(filme.codigo, filme)
+            super().add(filme.titulo, filme)
 
     def get(self, key: int):
         return super().get(key)
