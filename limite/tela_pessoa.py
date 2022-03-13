@@ -43,12 +43,12 @@ class TelaPessoa():
     def pega_senha_de_cadastro(self):
         layout = [
                         [sg.Text('Senha de segurança', size=(15, 1)), sg.InputText()],
-                        [sg.Submit()]]
+                        [sg.Submit(), sg.Cancel(button_text="Voltar")]]
             
         window = sg.Window('Cadastro de cliente', layout)
         event, values = window.read()
         window.close()
-        if event == sg.WIN_CLOSED:
+        if event == sg.WIN_CLOSED or event == "Voltar":
             return None
         return values[0]
 
@@ -132,5 +132,5 @@ class TelaPessoa():
                 return None
 
     def mostra_mensagem(self, msg):
-        print(msg)
+
         sg.Popup("", msg + "\n")

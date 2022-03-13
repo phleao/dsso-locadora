@@ -139,5 +139,4 @@ class TelaSistema:
         return values[0]
 
     def mostra_mensagem(self, msg):
-        print(msg)
         sg.Popup("", msg + "\n")

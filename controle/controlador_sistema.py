@@ -7,6 +7,7 @@ from limite.tela_pessoa import TelaPessoa
 from controle.controlador_pessoa import ControladorPessoa
 from controle.controlador_locacao import ControladorLocacao
 from controle.controlador_genero import ControladorGenero
+from erros.errou_a_senha_do_adm import ErrouSenhaDoAdmError
 
 class ControladorSistema:
 
@@ -163,14 +164,21 @@ class ControladorSistema:
         self.__controlador_pessoa.incluir_cliente()
 
     def acessa_cad_funcionario(self):
-        tentativa_de_senha = self.__controlador_pessoa.pega_senha_cad()
-        if tentativa_de_senha == None:
-            return None
-        senha_acesso = "123"
-        if tentativa_de_senha == senha_acesso:
-            self.__controlador_pessoa.incluir_funcionario()
-        else:
-            self.__tela_sistema.mostra_mensagem("Senha inválida")
+        while True:
+            tentativa_de_senha = self.__controlador_pessoa.pega_senha_cad()
+            if tentativa_de_senha == None:
+                return None
+            senha_acesso = "123"
+            try:
+                if tentativa_de_senha == senha_acesso:
+                    self.__controlador_pessoa.incluir_funcionario()
+                    break
+                else:
+                    raise ErrouSenhaDoAdmError
+            except ErrouSenhaDoAdmError:
+                self.__tela_sistema.mostra_mensagem("Senha para cadastrar funcionários Incorreta!!!")
+
+
 
     def historico_locacao(self):
         self.__controlador_locacao.lista_historico_locacao()

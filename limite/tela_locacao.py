@@ -28,7 +28,7 @@ class TelaLocacao():
     return codigo
 
   def mostra_mensagem(self, msg):
-      print(msg)
+
       sg.Popup("", msg + "\n")
 
   def pega_avaliacao(self):

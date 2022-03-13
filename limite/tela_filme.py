@@ -44,7 +44,7 @@ class TelaFilme():
 
         else:
             layout = [[sg.Text("Sem filmes no cátalogo")],
-                     [sg.Button(button_text="Incluir"), sg.Cancel()]]
+                     [sg.Button(button_text="Incluir"), sg.Cancel(button_text="Voltar")]]
 
             window = sg.Window('tabela de teste', layout)
             event, values = window.read()
@@ -74,13 +74,13 @@ class TelaFilme():
             [sg.Text('Gênero', size=(15, 1)), sg.InputText(filme["genero"])],  # colocar bolinhas em vez de texto aparecendo
             [sg.Text('Faixa Etaria', size=(15, 1)), sg.InputText(filme["faixa_etaria"])],
             [sg.Text('Link de acesso', size=(15, 1)), sg.InputText(filme["link_acesso"])],
-            [sg.Submit(), sg.Cancel()]
+            [sg.Submit(), sg.Cancel(button_text="Voltar")]
         ]
 
         window = sg.Window('Cadastro de cliente', layout)
         event, values = window.read()
         window.close()
-        if event == sg.WIN_CLOSED or event == "Cancel":
+        if event == sg.WIN_CLOSED or event == "Voltar":
             return None
         return {"titulo": values[0], "sinopse": values[1], "genero": values[2], "faixa_etaria": int(values[3]), "link_acesso" : values[4]}
 
@@ -92,13 +92,13 @@ class TelaFilme():
             [sg.Text('Gênero', size=(15, 1)), sg.InputText()],  # colocar bolinhas em vez de texto aparecendo
             [sg.Text('Faixa Etaria', size=(15, 1)), sg.InputText()],
             [sg.Text('Link de acesso', size=(15, 1)), sg.InputText()],
-            [sg.Submit(), sg.Cancel()]
+            [sg.Submit(), sg.Cancel(button_text="Voltar")]
         ]
 
         window = sg.Window('Cadastro de cliente', layout)
         event, values = window.read()
         window.close()
-        if event == sg.WIN_CLOSED or event == "Cancel":
+        if event == sg.WIN_CLOSED or event == "Voltar":
             return None
         return {"titulo": values[0], "sinopse": values[1], "genero": values[2], "faixa_etaria": int(values[3]), "link_acesso" : values[4]}
 
@@ -165,5 +165,5 @@ class TelaFilme():
         return codigo
 
     def mostra_mensagem(self, msg):
-        print(msg)
+
         sg.Popup("", msg + "\n")
