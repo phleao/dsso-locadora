@@ -50,7 +50,7 @@ class ControladorPessoa():
         for cliente in self.__cliente_dao.get_all():
             dados_cliente.append({"nome": cliente.nome, "email": cliente.email, "status": cliente.status, "idade": cliente.idade})
         evento, titulo = self.__tela_pessoa.mostra_clientes(dados_cliente)
-        lista_opcoes = {"Excluir": print("Editar linha 53 do controlador_pessoa e colocar o excluir com a função certa"), "Cancel": True}
+        lista_opcoes = {"Excluir": "", "Cancel": True}
         if evento == "Cancel":
             pass
         else:

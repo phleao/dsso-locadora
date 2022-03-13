@@ -23,6 +23,8 @@ class ControladorFilmes():
 
     def incluir_filme(self):
         dados_filme = self.__tela_filme.pega_dados_filme()
+        if dados_filme == None:
+            return None
         ja_existe = False
         for filme in self.__filme_dao.get_all():
             if filme.titulo == dados_filme["titulo"]:
@@ -54,6 +56,8 @@ class ControladorFilmes():
         if(filme is not None):
             novos_dados_filme = self.__tela_filme.pega_dados_filme_alterar({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero, "faixa_etaria": filme.faixa_etaria,
                                                          "link_acesso" : filme.link_acesso})
+            if novos_dados_filme == None:
+                return None
             filme.titulo = novos_dados_filme["titulo"]
             filme.sinopse = novos_dados_filme["sinopse"]
             if filme.genero != novos_dados_filme["genero"]:
@@ -89,12 +93,18 @@ class ControladorFilmes():
                                                          "nota": filme.nota()})
 
         lista_opcoes = {"Alugar": self.__controlador_sistema.locar, "Cancel": self.retornar}
-        evento, titulo = self.__tela_filme.mostra_filme_catalogo(dados_filmes)
+        while True:
+
+            try:
+                evento, titulo = self.__tela_filme.mostra_filme_catalogo(dados_filmes)
+                break
+            except IndexError:
+                self.__tela_filme.mostra_mensagem("Para escolher essa opção, um item da tabela precisa ser escolhido!")
         
-        if evento == "Cancel":
-            lista_opcoes[evento]()
-        else:
+        if evento == "Alugar" :
             lista_opcoes[evento](titulo)
+        else:
+            pass
             
     def excluir_filme(self, titulo):
         if self.__filme_dao.get_all() == False:

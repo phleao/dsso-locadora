@@ -140,4 +140,4 @@ class TelaSistema:
 
     def mostra_mensagem(self, msg):
         print(msg)
-        sg.Popup("", msg+'\n')
+        sg.Popup("", msg + "\n")

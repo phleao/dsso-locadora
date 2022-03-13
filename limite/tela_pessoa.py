@@ -133,4 +133,4 @@ class TelaPessoa():
 
     def mostra_mensagem(self, msg):
         print(msg)
-        sg.Popup("Erro", msg)
+        sg.Popup("", msg + "\n")
