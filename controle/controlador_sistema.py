@@ -120,9 +120,9 @@ class ControladorSistema:
 
         while True:
             opcao_escolhida = self.__tela_sistema.tela_login()
-            funcao_escolhida = lista_opcoes_login[opcao_escolhida]
             if opcao_escolhida == None:
                         self.encerra_sistema()
+            funcao_escolhida = lista_opcoes_login[opcao_escolhida]
             if opcao_escolhida == 1:
                 retorno = funcao_escolhida()
                 if retorno != 0:
@@ -142,6 +142,8 @@ class ControladorSistema:
     
     def acessa_login(self):
         dados = self.__controlador_pessoa.pega_dados_log()
+        if dados == None:
+            return 0
         verificacao = self.verifica_login(dados["email"], dados["senha"])
         if verificacao == 0:
             self.__tela_sistema.mostra_mensagem("Email ou senha digitados não foram encontrados, tente novamente")
@@ -168,6 +170,8 @@ class ControladorSistema:
 
     def acessa_cad_funcionario(self):
         tentativa_de_senha = self.__controlador_pessoa.pega_senha_cad()
+        if tentativa_de_senha == None:
+            return None
         senha_acesso = "123"
         if tentativa_de_senha == senha_acesso:
             self.__controlador_pessoa.incluir_funcionario()

@@ -36,7 +36,7 @@ class TelaFilme():
             window = sg.Window('tabela de teste', layout)
             event, values = window.read()
             window.close()
-            if event != "Incluir" and event != "Cancel":
+            if event != "Incluir" and event != "Cancel" and event != sg.WIN_CLOSED:
                 filme = items[values["-TABLE-"][0]]
                 return event, filme[0]
             else:
@@ -98,7 +98,9 @@ class TelaFilme():
         window = sg.Window('Cadastro de cliente', layout)
         event, values = window.read()
         window.close()
-        return {"titulo": values[0], "sinopse": values[1], "genero": values[2], "faixa_etaria": values[3], "link_acesso" : values[4]}
+        if event == sg.WIN_CLOSED or event == "Cancel":
+            return None
+        return {"titulo": values[0], "sinopse": values[1], "genero": values[2], "faixa_etaria": int(values[3]), "link_acesso" : values[4]}
 
     def mostra_recomendacoes_antigo(self, recomendacao):
         print("Titulo: ", recomendacao.titulo, "Nota: ", recomendacao.nota())

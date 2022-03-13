@@ -22,7 +22,12 @@ class ControladorFilmes():
         return None
 
     def incluir_filme(self):
-        dados_filme = self.__tela_filme.pega_dados_filme()
+        while True:
+            try:
+                dados_filme = self.__tela_filme.pega_dados_filme()
+                break
+            except ValueError:
+                self.__tela_filme.mostra_mensagem("O campo de faixa etária aceita apenas números")
         if dados_filme == None:
             return None
         ja_existe = False
@@ -33,12 +38,12 @@ class ControladorFilmes():
             gen = self.__controlador_sistema.verifica_se_ja_tem_genero(dados_filme['genero'])
             if gen == False:
                 genero = self.__controlador_sistema.pega_nome_para_criar_genero(dados_filme['genero'])
-                filme = Filme(dados_filme["titulo"], (len(self.__filme_dao.get_all()) + 1), dados_filme['sinopse'],
+                filme = Filme(dados_filme["titulo"], (self.pegar_maior_codigo() + 1), dados_filme['sinopse'],
                               dados_filme['faixa_etaria'], genero.nome, dados_filme['link_acesso'])
                 genero.adiciona_filme(filme)
                 self.__controlador_sistema.atualiza_gen(genero)
             else:
-                filme = Filme(dados_filme["titulo"], (len(self.__filme_dao.get_all()) + 1), dados_filme['sinopse'],
+                filme = Filme(dados_filme["titulo"], (self.pegar_maior_codigo() + 1), dados_filme['sinopse'],
                               dados_filme['faixa_etaria'], gen.nome, dados_filme['link_acesso'])
                 gen.adiciona_filme(filme)
                 self.__controlador_sistema.atualiza_gen(gen)
@@ -46,6 +51,13 @@ class ControladorFilmes():
 
         else:
             self.__tela_filme.mostra_mensagem("Um Filme com esse titulo já existe!")
+
+    def pegar_maior_codigo(self):
+        maior_codigo = 0
+        for filme in self.__filme_dao.get_all():
+            if filme.codigo > maior_codigo:
+                maior_codigo = filme.codigo
+        return maior_codigo
 
     def alterar_filme(self, titulo):
         if self.lista_filme() == False:
@@ -119,7 +131,7 @@ class ControladorFilmes():
         filme = self.pega_filme_por_titulo(titulo)
 
         if(filme is not None):
-            self.__filme_dao.remove(filme.titulo)
+            self.__filme_dao.remove(filme.codigo)
             self.__tela_filme.mostra_mensagem("Filme removido com sucesso!")
         else:
             self.__tela_filme.mostra_mensagem("ATENCAO: Filme não existente")

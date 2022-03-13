@@ -36,6 +36,8 @@ class TelaPessoa():
         window = sg.Window('Cadastro de cliente', layout)
         event, values = window.read()
         window.close()
+        if event == "Cancel" or event == sg.WIN_CLOSED:
+            return None
         return {"nome": values[0], "email": values[1], "senha": values[2], "idade": int(values[3]), "status": False}
 
     def pega_senha_de_cadastro(self):
@@ -46,6 +48,8 @@ class TelaPessoa():
         window = sg.Window('Cadastro de cliente', layout)
         event, values = window.read()
         window.close()
+        if event == sg.WIN_CLOSED:
+            return None
         return values[0]
 
     def pega_dados_funcionario_antigo(self):
@@ -74,6 +78,8 @@ class TelaPessoa():
         event, values = window.read()
 
         window.close()
+        if event == "Cancel" or event == sg.WIN_CLOSED:
+            return None
         return {"nome": values[0], "email": values[1], "senha": values[2], "cpf": int(values[3]), "status": False}
     
     def pega_dados_login_antigo(self):
@@ -93,6 +99,9 @@ class TelaPessoa():
         window = sg.Window('Cadastro de funcionario', layout)
         event, values = window.read()
         window.close()
+        if event == "Cancel" or event == sg.WIN_CLOSED:
+            return None
+
         return {"email": values[0], "senha": values[1]}
 
     def mostra_clientes_antigo(self, dados_cliente):

@@ -30,7 +30,16 @@ class ControladorPessoa():
         return True
 
     def incluir_funcionario(self):
-        dados_funcionario = self.__tela_pessoa.pega_dados_funcionario()
+        while True:
+            try:
+                dados_funcionario = self.__tela_pessoa.pega_dados_funcionario()
+                break
+            except ValueError:
+                self.__tela_pessoa.mostra_mensagem("O campo de CPF aceita apenas números")
+
+        if dados_funcionario == None:
+            return None
+
         if self.verificar_se_email_existe(dados_funcionario["email"]) == True:
             funcionarios = Funcionario(dados_funcionario["nome"], dados_funcionario['cpf'], dados_funcionario['email'], dados_funcionario['senha'])
             self.__funcionario_dao.add(funcionarios)
@@ -38,7 +47,17 @@ class ControladorPessoa():
             self.__tela_pessoa.mostra_mensagem("Esse email já está sendo usado")
     
     def incluir_cliente(self):
-        dados_cliente = self.__tela_pessoa.pega_dados_cliente()
+        while True:
+            try:
+                dados_cliente = self.__tela_pessoa.pega_dados_cliente()
+                break
+            except ValueError:
+                self.__tela_pessoa.mostra_mensagem("O campo de idade aceita apenas números")
+        if dados_cliente == None:
+            return None
+
+
+
         if self.verificar_se_email_existe(dados_cliente["email"]) == True:
             clientes = Cliente(dados_cliente["nome"], dados_cliente['idade'], dados_cliente['email'], dados_cliente['senha'], dados_cliente["status"])
             self.__cliente_dao.add(clientes)
