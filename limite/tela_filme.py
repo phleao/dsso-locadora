@@ -82,7 +82,7 @@ class TelaFilme():
         window.close()
         if event == sg.WIN_CLOSED or event == "Cancel":
             return None
-        return {"titulo": values[0], "sinopse": values[1], "genero": values[2], "faixa_etaria": values[3], "link_acesso" : values[4]}
+        return {"titulo": values[0], "sinopse": values[1], "genero": values[2], "faixa_etaria": int(values[3]), "link_acesso" : values[4]}
 
     def pega_dados_filme(self):
         layout = [

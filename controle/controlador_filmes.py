@@ -54,8 +54,14 @@ class ControladorFilmes():
         filme = self.pega_filme_por_titulo(titulo)
 
         if(filme is not None):
-            novos_dados_filme = self.__tela_filme.pega_dados_filme_alterar({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero, "faixa_etaria": filme.faixa_etaria,
-                                                         "link_acesso" : filme.link_acesso})
+            while True:
+                try:
+                    novos_dados_filme = self.__tela_filme.pega_dados_filme_alterar({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero, "faixa_etaria": filme.faixa_etaria,
+                                                            "link_acesso" : filme.link_acesso})
+                    break
+                except ValueError:
+                    self.__tela_filme.mostra_mensagem("O campo de faixa etária aceita apenas números")
+
             if novos_dados_filme == None:
                 return None
             filme.titulo = novos_dados_filme["titulo"]

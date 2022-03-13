@@ -36,7 +36,7 @@ class TelaPessoa():
         window = sg.Window('Cadastro de cliente', layout)
         event, values = window.read()
         window.close()
-        return {"nome": values[0], "email": values[1], "senha": values[2], "idade": values[3], "status": False}
+        return {"nome": values[0], "email": values[1], "senha": values[2], "idade": int(values[3]), "status": False}
 
     def pega_senha_de_cadastro(self):
         layout = [
@@ -70,9 +70,11 @@ class TelaPessoa():
                     [sg.Submit(), sg.Cancel()]]
         
         window = sg.Window('Cadastro de cliente', layout)
+
         event, values = window.read()
+
         window.close()
-        return {"nome": values[0], "email": values[1], "senha": values[2], "cpf": values[3], "status": False}
+        return {"nome": values[0], "email": values[1], "senha": values[2], "cpf": int(values[3]), "status": False}
     
     def pega_dados_login_antigo(self):
         email = input("Email: ")
