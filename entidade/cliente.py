@@ -5,7 +5,7 @@ from entidade.abstract_pessoa import AbstractPessoa
 class Cliente(AbstractPessoa):
     def __init__(self, nome: str, idade: int, email: str, senha: str, status: boolean):
         super().__init__(nome, email, senha)
-        self.__idade = idade
+        self.__idade = int(idade)
         self.__status = status        
 
     @property

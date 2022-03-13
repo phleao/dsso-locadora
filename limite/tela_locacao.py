@@ -3,34 +3,6 @@ import PySimpleGUI as sg
 sg.theme('DarkAmber')
 
 class TelaLocacao():
-  def tela_opcoes(self):
-    print("-------- LOCAÇÕES ----------")
-    while True:
-      try:
-          print("Escolha a opcao")
-          print("1 - Fazer locação")
-          print("2 - Listar locações")
-          print("3 - Devolver locação")
-          print("0 - Retornar")
-          opcoes = [0,1,2,3]
-          opcao = int(input("\n Escolha a opcao: "))
-          if opcao not in opcoes:
-              raise ValueError
-          break
-      except ValueError:
-          print("Digite um número válido\n")
-    return opcao
-
-  def pega_dados_locacao(self):
-    print("-------- DADOS LOCACAO ----------")
-    while True:
-      try:
-        codigo = int(input("Codigo Filme: "))
-        break
-      except ValueError:
-        print("Digite um código válido!")
-
-    return {"codigo": codigo}
 
   def mostra_locacao_antigo(self, dados_locacao):
     status = dados_locacao["status"]
@@ -57,21 +29,19 @@ class TelaLocacao():
 
   def mostra_mensagem(self, msg):
     print(msg)
-  
-  def pega_avaliacao(self):
-    while True:
-      try:
-        nota = int(input("DIGITE UMA NOTA DE 0 A 5 PARA O FILME QUE ALUGOU: "))
-        opcoes = [0,1,2,3,4,5]
-        if nota not in opcoes:
-          raise ValueError
-        break
-      except ValueError:
-        print("Digite uma nota válida!")
 
-    comentario = input("FAÇA UM COMENTÁRIO SOBRE O QUE ACHOU DO FILME: ")
-    
-    return {"nota": nota, "comentario": comentario}
+  def pega_avaliacao(self):
+      # "Filme devolvido com sucesso, agora é hora de avaliar o filme, que tal?"
+      layout = [
+          [sg.Text('')],
+          [sg.Text("Filme devolvido com sucesso, agora é hora de avaliar o filme, que tal?\n\n"
+                   "De uma nota de 0 a 5!")],
+          [sg.Slider(range=(0, 5), orientation='h', default_value=5, size=(45, 30))],
+          [sg.Submit()]]
+      window = sg.Window('Locação atual', layout)
+      event, values = window.read()
+      window.close()
+      return values[0]
 
   def mostra_historico_locacao(self, locacao):
     print("FILME: ", locacao["titulo_filme"], "no dia: ", locacao["data_aluguel"])
@@ -79,9 +49,9 @@ class TelaLocacao():
   def mostra_locacao_atual(self, locacao):
     layout = [   
           [sg.Text('Locação')],    
-          ([sg.Text(locacao["titulo_filme"]), sg.Text(locacao["sinopse"]), sg.Text(locacao["data_aluguel"])]  ),
-          [sg.Button(button_text="Finalizar Locacao"), sg.Cancel(button_text = "Voltar")]]
-    window = sg.Window('Filmes', layout)
+          [sg.Text(locacao["titulo_filme"]), sg.Text(locacao["sinopse"]), sg.Text(locacao["data_aluguel"])] ,
+          [sg.Button(button_text="Finalizar Locacao"), sg.Button(button_text = "Voltar")]]
+    window = sg.Window('Locação atual', layout)
     event, values = window.read()
     window.close()
     return event

@@ -76,12 +76,11 @@ class ControladorSistema:
 
     def verificar_locacao_atual(self):
         self.__controlador_locacao.ver_locacao_atual_cliente()
-        
+
 
     def finalizar_locacao(self):
-        locacao = self.__controlador_locacao.ver_locacao_atual_cliente()
+        locacao = self.__controlador_locacao.pega_locacao_cliente()
         self.__controlador_pessoa.alterar_status(self.__cliente_logado, False)
-        self.__tela_sistema.mostra_mensagem("Filme devolvido com sucesso, agora é hora de avaliar o filme, que tal?")
         filme = self.__controlador_locacao.incluir_avaliacao()
         self.__controlador_filmes.atualizar_filme(filme)
         self.__controlador_locacao.alterar_locacao(locacao)

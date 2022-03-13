@@ -4,7 +4,7 @@ from entidade.cliente import Cliente
 
 class Avaliacao():
     def __init__(self, nota: int, comentario: str, cliente: Cliente):
-        self.__nota = nota
+        self.__nota = int(nota)
         self.__comentario = comentario
         self.__cliente = cliente
 

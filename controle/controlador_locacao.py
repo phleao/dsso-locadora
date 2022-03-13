@@ -30,12 +30,12 @@ class ControladorLocacao():
       return False
 
   def verifica_faixa_etaria(self, filme):
-    #if filme.faixa_etaria >= self.__controlador_sistema.cliente_logado.idade:
-    #  self.__tela_locacao.mostra_mensagem("Você não tem idade para alugar esse filme!")
-     # return False
-    #else:
-    # return True
-    pass
+    if filme.faixa_etaria >= self.__controlador_sistema.cliente_logado.idade:
+      self.__tela_locacao.mostra_mensagem("Você não tem idade para alugar esse filme!")
+      return False
+    else:
+      return True
+
 
   def lista_locacao(self):
     locs = []
@@ -77,21 +77,21 @@ class ControladorLocacao():
     for locacao in self.__locacao_dao.get_all():
       if self.__controlador_sistema.cliente_logado.email == locacao.cliente.email and locacao.status == True:
         loc = {"titulo_filme": locacao.filme.titulo, "sinopse": locacao.filme.sinopse, "data_aluguel": locacao.data_aluguel}
-        evento = self.__tela_locacao.mostra_locacao_atual(loc)
-
-        while True:
-          if evento == "Cancel":
-            pass
-          elif evento == "Finalizar Locacao":
-            self.__controlador_sistema.finalizar_locacao()
+        evento  = self.__tela_locacao.mostra_locacao_atual(loc)
+        break
+    if evento == "Voltar":
+      return None
+    elif evento == "Finalizar Locacao":
+      self.__controlador_sistema.finalizar_locacao()
         
 
   def incluir_avaliacao(self):
-    dados_avaliacao = self.__tela_locacao.pega_avaliacao()
-    locacao = self.ver_locacao_atual_cliente()
+    nota = self.__tela_locacao.pega_avaliacao()
+
+    locacao = self.pega_locacao_cliente()
     filme = locacao.filme
     cliente = locacao.cliente
-    dados_avaliacao["cliente"] = cliente
+    dados_avaliacao = {"nota":nota, "cliente":cliente, "comentario": ''}
     filme.nova_avaliacao(dados_avaliacao)
     return filme
 
@@ -112,3 +112,8 @@ class ControladorLocacao():
 
   def atualizar_locacao(self, loc):
     self.__locacao_dao.add(loc)
+
+  def pega_locacao_cliente(self):
+    for locacao in self.__locacao_dao.get_all():
+      if self.__controlador_sistema.cliente_logado.email == locacao.cliente.email and locacao.status == True:
+        return locacao
