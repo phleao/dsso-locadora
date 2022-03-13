@@ -65,18 +65,16 @@ class ControladorPessoa():
             self.__tela_pessoa.mostra_mensagem("Esse email já está sendo usado")
 
     def lista_clientes(self):
+        if len(self.__cliente_dao.get_all()) == 0:
+            self.__tela_pessoa.mostra_mensagem("Ainda não existem clientes cadastrados!")
+            return None
         dados_cliente = []
         for cliente in self.__cliente_dao.get_all():
             dados_cliente.append({"nome": cliente.nome, "email": cliente.email, "status": cliente.status, "idade": cliente.idade})
-        evento, titulo = self.__tela_pessoa.mostra_clientes(dados_cliente)
-        lista_opcoes = {"Excluir": "", "Cancel": True}
-        if evento == "Cancel":
-            pass
-        else:
-            lista_opcoes[evento](titulo)
+        evento = self.__tela_pessoa.mostra_clientes(dados_cliente)
+        if evento == None:
+            return None
 
-        if len(self.__cliente_dao.get_all()) == 0:
-            self.__tela_pessoa.mostra_mensagem("Ainda não existem clientes cadastrados!")
 
     def pega_dados_log(self):
         return self.__tela_pessoa.pega_dados_login()

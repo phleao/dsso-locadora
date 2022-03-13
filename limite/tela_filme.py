@@ -31,12 +31,12 @@ class TelaFilme():
             headings = [' Título','sinopse', 'Gênero', 'Faixa etária', 'nota' ]
 
             layout = [[sg.Table(values= items, headings=headings, max_col_width=35,  justification='center', num_rows=6, key='-TABLE-', row_height=35)],
-                    [sg.Button(button_text = "Incluir"), sg.Submit(button_text = "Editar"), sg.Submit(button_text = "Excluir"), sg.Cancel()]]
+                    [sg.Button(button_text = "Incluir"), sg.Submit(button_text = "Editar"), sg.Submit(button_text = "Excluir"), sg.Cancel(button_text="Voltar")]]
 
             window = sg.Window('tabela de teste', layout)
             event, values = window.read()
             window.close()
-            if event != "Incluir" and event != "Cancel" and event != sg.WIN_CLOSED:
+            if event != "Incluir" and event != "Voltar" and event != sg.WIN_CLOSED:
                 filme = items[values["-TABLE-"][0]]
                 return event, filme[0]
             else:
@@ -140,12 +140,12 @@ class TelaFilme():
             headings = [' Título','sinopse', 'Gênero', 'Faixa etária', 'nota' ]
 
             layout = [[sg.Table(values= items, headings=headings, max_col_width=35,  justification='center', num_rows=6, key='-TABLE-', row_height=35)],
-                    [sg.Submit(button_text = "Alugar"), sg.Cancel()]]
+                    [sg.Submit(button_text = "Alugar"), sg.Cancel(button_text="Voltar")]]
 
             window = sg.Window('tabela de teste', layout)
             event, values = window.read()
             window.close()
-            if event != "Cancel" and event != sg.WIN_CLOSED:
+            if event != "Voltar" and event != sg.WIN_CLOSED:
                 filme = items[values["-TABLE-"][0]]
                 return event, filme[0]
             else:
@@ -153,7 +153,7 @@ class TelaFilme():
 
         else:
             layout = [[sg.Text("Sem filmes no cátalogo")],
-                     [sg.Cancel()]]
+                     [sg.Cancel(button_text="Voltar")]]
 
             window = sg.Window('tabela de teste', layout)
             event, values = window.read()
