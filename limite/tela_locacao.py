@@ -40,15 +40,15 @@ class TelaLocacao():
             headings = [' Filme','Data']
 
             layout = [[sg.Table(values= items, headings=headings, max_col_width=35,  justification='center', num_rows=6, key='-TABLE-', row_height=35)],
-                    [sg.Cancel()]]
+                    [sg.Cancel(button_text="Voltar")]]
 
             window = sg.Window('tabela de teste', layout)
             event, values = window.read()
             window.close()
             
     else:
-        layout = [[sg.Text("Você nunca alugou um filme :(")],
-                  [sg.Cancel()]]
+        layout = [[sg.Text("\nVocê nunca alugou um filme :(\n")],
+                  [sg.Cancel(button_text="Voltar")]]
 
         window = sg.Window('tabela de teste', layout)
         event, values = window.read()

@@ -100,12 +100,6 @@ class ControladorSistema:
     def lista_locacoes(self):
         self.__controlador_locacao.lista_locacao()
 
-    def fazer_locacao(self):        
-        if self.__controlador_locacao.incluir_locacao() == True:
-            self.__controlador_pessoa.alterar_status_cliente(self.__cliente_logado, True)
-            self.__tela_sistema.mostra_mensagem("\nParabéns! Você acabou de alugar um filme muito legal!")
-        return False
-
     def mostra_clientes(self):
         self.__controlador_pessoa.lista_clientes()
 

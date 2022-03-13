@@ -109,7 +109,7 @@ class ControladorFilmes():
             dados_filmes.append({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero, "faixa_etaria": filme.faixa_etaria,
                                                          "nota": filme.nota()})
 
-        lista_opcoes = {"Alugar": self.__controlador_sistema.locar, "Cancel": self.retornar}
+        lista_opcoes = {"Alugar": self.__controlador_sistema.locar, "Voltar": self.retornar}
         while True:
 
             try:
@@ -173,13 +173,15 @@ class ControladorFilmes():
             dados_filmes.append({"titulo": filme.titulo, "sinopse": filme.sinopse, "genero": filme.genero, "faixa_etaria": filme.faixa_etaria,
                                                          "nota": filme.nota()})
 
-        lista_opcoes = {"Incluir": self.incluir_filme, "Editar": self.alterar_filme, "Excluir": self.excluir_filme, "Cancel": self.retornar}
+        lista_opcoes = {"Incluir": self.incluir_filme, "Editar": self.alterar_filme, "Excluir": self.excluir_filme, "Voltar": self.retornar}
         evento, titulo = self.__tela_filme.tela_opcoes_nova(dados_filmes)
 
-        if evento == "Incluir" or evento == "Cancel":
+        if evento == "Incluir" or evento == "Voltar":
             lista_opcoes[evento]()
-        else:
+        elif evento == "Editar" or evento == "Excluir":
             lista_opcoes[evento](titulo)
+        else:
+            lista_opcoes["Voltar"]()
    
     def atualizar_filme(self, filme):
         self.__filme_dao.add(filme)

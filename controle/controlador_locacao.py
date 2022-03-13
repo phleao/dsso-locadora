@@ -107,9 +107,6 @@ class ControladorLocacao():
         locs.append(dados_locacao)
     self.__tela_locacao.mostra_historico_locacao(locs)
 
-    if len(self.__locacao_dao.get_all()) == 0 or locacoes_cliente == 0:
-      self.__tela_locacao.mostra_mensagem("Você nunca alugou um filme :(")
-
   def atualizar_locacao(self, loc):
     self.__locacao_dao.add(loc)
 
