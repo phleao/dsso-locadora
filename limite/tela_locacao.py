@@ -43,8 +43,32 @@ class TelaLocacao():
       window.close()
       return values[0]
 
-  def mostra_historico_locacao(self, locacao):
+  def mostra_historico_locacao_antigo(self, locacao):
     print("FILME: ", locacao["titulo_filme"], "no dia: ", locacao["data_aluguel"])
+
+  def mostra_historico_locacao(self, locacao):
+    if len(locacao) > 0:
+            items = []
+            for loc in locacao:
+                items.append([loc["titulo_filme"], loc["data_aluguel"]])
+
+            headings = [' Filme','Data']
+
+            layout = [[sg.Table(values= items, headings=headings, max_col_width=35,  justification='center', num_rows=6, key='-TABLE-', row_height=35)],
+                    [sg.Cancel()]]
+
+            window = sg.Window('tabela de teste', layout)
+            event, values = window.read()
+            window.close()
+            
+    else:
+        layout = [[sg.Text("Você nunca alugou um filme :(")],
+                  [sg.Cancel()]]
+
+        window = sg.Window('tabela de teste', layout)
+        event, values = window.read()
+        window.close()
+        return event, values
 
   def mostra_locacao_atual(self, locacao):
     layout = [   

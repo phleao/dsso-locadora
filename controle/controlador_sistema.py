@@ -45,6 +45,8 @@ class ControladorSistema:
 
         while True:
             opcao_escolhida = self.__tela_sistema.tela_opcoes_do_funcionario()
+            if opcao_escolhida == None:
+                        self.encerra_sistema()
             funcao_escolhida = lista_opcoes[opcao_escolhida]
             funcao_escolhida()
 
@@ -56,6 +58,9 @@ class ControladorSistema:
                 verificador = True
                 while verificador == True:
                     opcao_escolhida = self.__tela_sistema.tela_opcoes_do_cliente()
+                    if opcao_escolhida == None:
+                        self.encerra_sistema()
+
                     funcao_escolhida = lista_opcoes[opcao_escolhida]
                     funcao_escolhida()
                     verificador = False
@@ -67,6 +72,8 @@ class ControladorSistema:
                 verificador = True
                 while verificador == True:
                     opcao_escolhida = self.__tela_sistema.tela_opcoes_do_cliente_status_true()
+                    if opcao_escolhida == None:
+                        self.encerra_sistema()
                     funcao_escolhida = lista_opcoes[opcao_escolhida]
                     funcao_escolhida()
                     verificador = False
@@ -114,6 +121,8 @@ class ControladorSistema:
         while True:
             opcao_escolhida = self.__tela_sistema.tela_login()
             funcao_escolhida = lista_opcoes_login[opcao_escolhida]
+            if opcao_escolhida == None:
+                        self.encerra_sistema()
             if opcao_escolhida == 1:
                 retorno = funcao_escolhida()
                 if retorno != 0:

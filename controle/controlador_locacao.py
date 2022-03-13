@@ -101,12 +101,14 @@ class ControladorLocacao():
     self.__locacao_dao.add(locacao)
 
   def lista_historico_locacao(self):
+    locs = []
     for locacao in self.__locacao_dao.get_all():
       locacoes_cliente = 0
       if (locacao.cliente.email == self.__controlador_sistema.cliente_logado.email):
         locacoes_cliente += 1
         dados_locacao = {"data_aluguel": locacao.data_aluguel, "titulo_filme": locacao.filme.titulo}
-        self.__tela_locacao.mostra_historico_locacao(dados_locacao)
+        locs.append(dados_locacao)
+    self.__tela_locacao.mostra_historico_locacao(locs)
 
     if len(self.__locacao_dao.get_all()) == 0 or locacoes_cliente == 0:
       self.__tela_locacao.mostra_mensagem("Você nunca alugou um filme :(")
