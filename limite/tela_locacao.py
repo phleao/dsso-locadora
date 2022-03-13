@@ -4,15 +4,6 @@ sg.theme('DarkAmber')
 
 class TelaLocacao():
 
-  def mostra_locacao_antigo(self, dados_locacao):
-    status = dados_locacao["status"]
-    if status == False:
-        status = "Não está ativa"
-    else:
-        status = "Está ativa"
-    print(dados_locacao["codigo"], "  ", dados_locacao["titulo_filme"], "  ", dados_locacao["email"], "  ", dados_locacao["data_aluguel"], "   ", status)
-    print("\n")
-
   def mostra_locacao(self, locs):
    
     layout = [   
@@ -22,10 +13,6 @@ class TelaLocacao():
     window = sg.Window('Filmes', layout)
     event, values = window.read()
     window.close()
-
-  def seleciona_locacao(self):
-    codigo = input("Código da locação que deseja selecionar: ")
-    return codigo
 
   def mostra_mensagem(self, msg):
 
@@ -43,9 +30,6 @@ class TelaLocacao():
       event, values = window.read()
       window.close()
       return values[0]
-
-  def mostra_historico_locacao_antigo(self, locacao):
-    print("FILME: ", locacao["titulo_filme"], "no dia: ", locacao["data_aluguel"])
 
   def mostra_historico_locacao(self, locacao):
     if len(locacao) > 0:

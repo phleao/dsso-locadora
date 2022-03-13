@@ -12,18 +12,6 @@ class TelaPessoa():
 
         return {"nome": nome, "email": email, "senha": senha}
 
-    def pega_dados_cliente_antiga(self):
-        dados_pessoa = self.pega_dados_pessoa()
-        while True:
-            try:
-                idade = int(input("Idade: "))
-                break
-            except ValueError:
-                print("Digite um número válido")
-        dados_pessoa["idade"] = idade
-        dados_pessoa["status"] = False
-        return dados_pessoa
-
     def pega_dados_cliente(self):
         layout = [
                     [sg.Text('Preencha as informações necessárias')],
@@ -52,18 +40,6 @@ class TelaPessoa():
             return None
         return values[0]
 
-    def pega_dados_funcionario_antigo(self):
-        dados_pessoa = self.pega_dados_pessoa()
-        while True:
-            try:
-                cpf = int(input("CPF: "))
-                break
-            except ValueError:
-                print("Digite um número válido")
-
-        dados_pessoa["cpf"] = cpf
-        return dados_pessoa
-
     def pega_dados_funcionario(self):
         layout = [
                     [sg.Text('Preencha as informações necessárias')],
@@ -82,12 +58,6 @@ class TelaPessoa():
             return None
         return {"nome": values[0], "email": values[1], "senha": values[2], "cpf": int(values[3]), "status": False}
     
-    def pega_dados_login_antigo(self):
-        email = input("Email: ")
-        senha = input("Senha: ")
-
-        return {"email": email, "senha": senha}
-
     def pega_dados_login(self):
         layout = [
                 [sg.Text('Preencha as informações necessárias')],
@@ -103,15 +73,6 @@ class TelaPessoa():
             return None
 
         return {"email": values[0], "senha": values[1]}
-
-    def mostra_clientes_antigo(self, dados_cliente):
-        status = dados_cliente["status"]
-        if status == True:
-            status = "Locação ativa"
-        else:
-            status = "Sem locação ativa"
-        print("Nome: ", dados_cliente["nome"], "   Email: ", dados_cliente["email"], "     Status: ", status, "     Idade: ", dados_cliente["idade"])
-        print("\n")
 
     def mostra_clientes(self, clientes):
         if len(clientes) > 0:

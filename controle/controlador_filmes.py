@@ -14,7 +14,6 @@ class ControladorFilmes():
     def filmes(self):
         return self.__filme_dao.get_all()
 
-
     def pega_filme_por_titulo(self, titulo):
         for filme in self.__filme_dao.get_all():
             if(filme.titulo == titulo):

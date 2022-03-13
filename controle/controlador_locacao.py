@@ -36,8 +36,6 @@ class ControladorLocacao():
     else:
       return True
 
-
-
   def lista_locacao(self):
     locs = []
     for e in self.__locacao_dao.get_all():
@@ -84,7 +82,6 @@ class ControladorLocacao():
       return None
     elif evento == "Finalizar Locacao":
       self.__controlador_sistema.finalizar_locacao()
-
 
   def incluir_avaliacao(self):
     nota = self.__tela_locacao.pega_avaliacao()

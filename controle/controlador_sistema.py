@@ -85,7 +85,6 @@ class ControladorSistema:
     def verificar_locacao_atual(self):
         self.__controlador_locacao.ver_locacao_atual_cliente()
 
-
     def finalizar_locacao(self):
         locacao = self.__controlador_locacao.pega_locacao_cliente()
         self.__controlador_pessoa.alterar_status(self.__cliente_logado, False)
@@ -93,7 +92,6 @@ class ControladorSistema:
         self.__controlador_filmes.atualizar_filme(filme)
         self.__controlador_locacao.alterar_locacao(locacao)
         
-
     def ver_catalogo(self):
         self.__controlador_filmes.lista_filme_catalogo()
 
@@ -188,7 +186,6 @@ class ControladorSistema:
 
     def pega_nome_para_criar_genero(self, nome_genero):
         return self.__controlador_genero.inclui_genero(nome_genero)
-
 
     def atualiza_gen(self, genero):
         self.__controlador_genero.atualiza_genero(genero)
