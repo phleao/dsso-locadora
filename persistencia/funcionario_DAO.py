@@ -1,4 +1,4 @@
-from controle.abstract_DAO import DAO
+from persistencia.abstract_DAO import DAO
 from entidade.funcionario import Funcionario
 
 class FuncionarioDAO(DAO):

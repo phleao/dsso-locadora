@@ -1,7 +1,7 @@
 
 from limite.tela_locacao import TelaLocacao
 from entidade.locacao import Locacao
-from controle.locacao_DAO import LocacaoDAO
+from persistencia.locacao_DAO import LocacaoDAO
 
 class ControladorLocacao():
 
@@ -75,7 +75,7 @@ class ControladorLocacao():
   def ver_locacao_atual_cliente(self):
     for locacao in self.__locacao_dao.get_all():
       if self.__controlador_sistema.cliente_logado.email == locacao.cliente.email and locacao.status == True:
-        loc = {"titulo_filme": locacao.filme.titulo, "sinopse": locacao.filme.sinopse, "data_aluguel": locacao.data_aluguel}
+        loc = {"titulo_filme": locacao.filme.titulo, "link_acesso": locacao.filme.link_acesso, "data_aluguel": locacao.data_aluguel}
         evento  = self.__tela_locacao.mostra_locacao_atual(loc)
         break
     if evento == "Voltar":

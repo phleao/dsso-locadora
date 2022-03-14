@@ -1,4 +1,4 @@
-from controle.genero_DAO import GeneroDAO
+from persistencia.genero_DAO import GeneroDAO
 from entidade.genero import Genero
 
 class ControladorGenero():

@@ -1,6 +1,7 @@
 from entidade.cliente import Cliente
 from entidade.funcionario import Funcionario
 from entidade.locacao import Locacao
+from erros.login_invalido import LoginInvalido
 from limite.tela_sistema import TelaSistema
 from controle.controlador_filmes import ControladorFilmes
 from limite.tela_pessoa import TelaPessoa
@@ -23,6 +24,10 @@ class ControladorSistema:
     @property
     def cliente_logado(self):
         return self.__cliente_logado
+
+    @property
+    def email_logado(self):
+        return self.__email_logado
 
     @property
     def controlador_filmes(self):
@@ -133,7 +138,7 @@ class ControladorSistema:
                 return 2
         return 0
     
-    def acessa_login(self):
+    def acessa_login_sem_classe_de_erro(self):
         dados = self.__controlador_pessoa.pega_dados_log()
         if dados == None:
             return 0
@@ -150,13 +155,32 @@ class ControladorSistema:
                 if cliente.email == dados["email"]:
                     self.__cliente_logado = cliente
             self.abre_tela_cliente()
+    
+    def acessa_login(self):
+        while True:
+            dados = self.__controlador_pessoa.pega_dados_log()
+            if dados == None:
+                return 0
+
+            tentativa_login = self.verifica_login(dados["email"], dados["senha"])
+            try:
+                if tentativa_login == 0:
+                    raise LoginInvalido
+                elif tentativa_login == 1:
+                    self.__tela_sistema.mostra_mensagem("Bem vindo funcionário!")
+                    self.abre_tela_funcionario()
+                else:
+                    self.__tela_sistema.mostra_mensagem("Bem vindo cliente!")
+                    for cliente in self.__controlador_pessoa.clientes:
+                        if cliente.email == dados["email"]:
+                            self.__cliente_logado = cliente
+                    self.abre_tela_cliente()
+            
+            except LoginInvalido:
+                self.__tela_sistema.mostra_mensagem("Login Invalido")
 
     def guarda_email_login(self, email):
         self.__email_logado = email
-
-    @property
-    def email_logado(self):
-        return self.__email_logado
 
     def acessa_cad_cliente(self):
         self.__controlador_pessoa.incluir_cliente()
@@ -175,8 +199,6 @@ class ControladorSistema:
                     raise ErrouSenhaDoAdmError
             except ErrouSenhaDoAdmError:
                 self.__tela_sistema.mostra_mensagem("Senha para cadastrar funcionários Incorreta!!!")
-
-
 
     def historico_locacao(self):
         self.__controlador_locacao.lista_historico_locacao()

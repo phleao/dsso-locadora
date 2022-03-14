@@ -1,3 +1,4 @@
+
 import PySimpleGUI as sg
 
 class TelaFilme():
@@ -9,12 +10,12 @@ class TelaFilme():
             for filme in filmes:
                 items.append([filme["titulo"], filme["sinopse"], filme["genero"], filme["faixa_etaria"], filme["nota"]])
 
-            headings = [' Título','sinopse', 'Gênero', 'Faixa etária', 'nota' ]
+            headings = [' Título','Sinopse', 'Gênero', 'Faixa etária', 'Nota' ]
 
             layout = [[sg.Table(values= items, headings=headings, max_col_width=35,  justification='center', num_rows=6, key='-TABLE-', row_height=35)],
-                    [sg.Button(button_text = "Incluir"), sg.Submit(button_text = "Editar"), sg.Submit(button_text = "Excluir"), sg.Cancel(button_text="Voltar")]]
+                    [sg.Button(button_text = "Incluir", size=(15, 1)), sg.Submit(button_text = "Editar", size=(15, 1)), sg.Submit(button_text = "Excluir", size=(15, 1)), sg.Cancel(button_text="Voltar", size=(15, 1), button_color="Light grey")]]
 
-            window = sg.Window('tabela de teste', layout)
+            window = sg.Window('Catalogo de Filmes', layout, element_justification='center')
             event, values = window.read()
             window.close()
             if event != "Incluir" and event != "Voltar" and event != sg.WIN_CLOSED:
@@ -27,7 +28,7 @@ class TelaFilme():
             layout = [[sg.Text("Sem filmes no cátalogo")],
                      [sg.Button(button_text="Incluir"), sg.Cancel(button_text="Voltar")]]
 
-            window = sg.Window('tabela de teste', layout)
+            window = sg.Window('Catalogo de Filmes', layout, element_justification='center')
             event, values = window.read()
             window.close()
             return event, values
@@ -40,10 +41,10 @@ class TelaFilme():
             [sg.Text('Gênero', size=(15, 1)), sg.InputText(filme["genero"])],  # colocar bolinhas em vez de texto aparecendo
             [sg.Text('Faixa Etaria', size=(15, 1)), sg.InputText(filme["faixa_etaria"])],
             [sg.Text('Link de acesso', size=(15, 1)), sg.InputText(filme["link_acesso"])],
-            [sg.Submit(), sg.Cancel(button_text="Voltar")]
+            [sg.Cancel(button_text="Voltar", size=(15, 1), button_color="Light grey"), sg.Submit(button_text="Alterar",  size=(15, 1))]
         ]
 
-        window = sg.Window('Cadastro de cliente', layout)
+        window = sg.Window('Alterar Filme', layout, element_justification='center')
         event, values = window.read()
         window.close()
         if event == sg.WIN_CLOSED or event == "Voltar":
@@ -58,10 +59,10 @@ class TelaFilme():
             [sg.Text('Gênero', size=(15, 1)), sg.InputText()],  # colocar bolinhas em vez de texto aparecendo
             [sg.Text('Faixa Etaria', size=(15, 1)), sg.InputText()],
             [sg.Text('Link de acesso', size=(15, 1)), sg.InputText()],
-            [sg.Submit(), sg.Cancel(button_text="Voltar")]
+            [sg.Cancel(button_text="Voltar", size=(15, 1), button_color="Light grey"), sg.Submit(button_text="Adicionar", size=(15, 1))]
         ]
 
-        window = sg.Window('Cadastro de cliente', layout)
+        window = sg.Window('Novo Filme', layout, element_justification='center')
         event, values = window.read()
         window.close()
         if event == sg.WIN_CLOSED or event == "Voltar":
@@ -70,11 +71,11 @@ class TelaFilme():
 
     def mostra_recomendacoes(self, recom):
         layout = [
-                    [sg.Text('Top Filmes')],    
+                    [sg.Text('Esses são os nossos melhores filmes')],    
                     ([sg.Text(dic["titulo"]), sg.Text(dic["nota"])] for dic in recom),
-                    [sg.Cancel(button_text = "Voltar")]]
+                    [sg.Cancel(button_text="Voltar", button_color="Light Grey", size=(15,1))]]
         
-        window = sg.Window('Filmes', layout)
+        window = sg.Window('Melhores filmes', layout, element_justification='center')
         event, values = window.read()
         window.close()
 
@@ -91,9 +92,9 @@ class TelaFilme():
             headings = [' Título','sinopse', 'Gênero', 'Faixa etária', 'nota' ]
 
             layout = [[sg.Table(values= items, headings=headings, max_col_width=35,  justification='center', num_rows=6, key='-TABLE-', row_height=35)],
-                    [sg.Submit(button_text = "Alugar"), sg.Cancel(button_text="Voltar")]]
+                    [sg.Submit(button_text = "Alugar", size=(20,1)), sg.Cancel(button_text="Voltar", size=(15, 1), button_color="Light grey")]]
 
-            window = sg.Window('tabela de teste', layout)
+            window = sg.Window('Catalogo de Filmes', layout, element_justification='center')
             event, values = window.read()
             window.close()
             if event != "Voltar" and event != sg.WIN_CLOSED:
@@ -106,7 +107,7 @@ class TelaFilme():
             layout = [[sg.Text("Sem filmes no cátalogo")],
                      [sg.Cancel(button_text="Voltar")]]
 
-            window = sg.Window('tabela de teste', layout)
+            window = sg.Window('Catalogo de Filmes', layout)
             event, values = window.read()
             window.close()
             return event, values

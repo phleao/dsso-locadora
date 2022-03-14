@@ -1,7 +1,7 @@
 from entidade import filme
 from limite.tela_filme import TelaFilme
 from entidade.filme import Filme
-from controle.filme_DAO import FilmeDAO
+from persistencia.filme_DAO import FilmeDAO
 
 class ControladorFilmes():
 

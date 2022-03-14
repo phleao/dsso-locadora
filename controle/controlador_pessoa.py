@@ -1,8 +1,8 @@
 from entidade.cliente import Cliente
 from entidade.funcionario import Funcionario
 from limite.tela_pessoa import TelaPessoa
-from controle.cliente_DAO import ClienteDAO
-from controle.funcionario_DAO import FuncionarioDAO
+from persistencia.cliente_DAO import ClienteDAO
+from persistencia.funcionario_DAO import FuncionarioDAO
 
 class ControladorPessoa():
 
@@ -75,13 +75,11 @@ class ControladorPessoa():
         if evento == None:
             return None
 
-
     def pega_dados_log(self):
         return self.__tela_pessoa.pega_dados_login()
 
     def pega_senha_cad(self):
         return self.__tela_pessoa.pega_senha_de_cadastro()
-
 
     def alterar_status(self, cliente , status):
         cliente.status = status
