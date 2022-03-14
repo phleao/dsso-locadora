@@ -53,6 +53,8 @@ class TelaLocacao():
       window = sg.Window('Avaliação do filme', layout, element_justification='center')
       event, values = window.read()
       window.close()
+      if event == sg.WIN_CLOSED:
+          return 5
       return values[0]
 
   def mostra_historico_locacao(self, locacao):
